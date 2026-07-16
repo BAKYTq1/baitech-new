@@ -5,6 +5,13 @@ import React, { Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import img1 from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
+import img2 from '../../../../../../assets/svg/иконка11-blue-mirrored.svg'
+import img3 from '../../../../../../assets/svg/иконка13-blue-mirrored.svg'
+import img4 from '../../../../../../assets/svg/иконка14-blue-mirrored.svg'
+import img5 from '../../../../../../assets/svg/иконка15-blue-mirrored.svg'
+import img6 from '../../../../../../assets/svg/иконка16-blue-mirrored.svg'
+import img7 from '../../../../../../assets/svg/иконка17-blue-mirrored.svg'
+import img8 from '../../../../../../assets/svg/иконка20-blue-mirrored.png'
 
 function AnimatedGrid() {
   const pointsRef = useRef(null)
@@ -119,51 +126,10 @@ function BannerIcon({ kind }) {
 }
 
 // Статические иконки для features
-const featureIcons = [
-  <svg key="0" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect x="4" y="4" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="20" y="4" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="4" y="20" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="20" y="20" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="16" y1="10" x2="20" y2="10" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="16" y1="26" x2="20" y2="26" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="10" y1="16" x2="10" y2="20" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="26" y1="16" x2="26" y2="20" stroke="#173B73" strokeWidth="1.5"/>
-  </svg>,
-  <svg key="1" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="18" r="12" stroke="#173B73" strokeWidth="1.5"/>
-    <path d="M18 11v7l5 3" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  <svg key="2" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="14" r="6" stroke="#173B73" strokeWidth="1.5"/>
-    <path d="M6 30c0-6.627 5.373-10 12-10s12 3.373 12 10" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M24 8l4-4M28 8l-4-4" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  <svg key="3" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <path d="M18 4l11 5v9c0 8-5 13-11 14-6-1-11-6-11-14V9l11-5z" stroke="#173B73" strokeWidth="1.5" strokeLinejoin="round"/>
-    <path d="M13 18l4 4 8-8" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>,
-]
+const featureImages = [img2, img8, img3, img4]
 
 // Статические иконки для lighting systems
-const lightingIcons = [
-  <svg key="0" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <path d="M18 4v6M6.6 8.6l4.2 4.2M29.4 8.6l-4.2 4.2" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-    <circle cx="18" cy="20" r="8" stroke="#173B73" strokeWidth="1.5"/>
-    <path d="M15 27h6M16 30h4" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  <svg key="1" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect x="6" y="14" width="24" height="16" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <path d="M11 14V9a7 7 0 0114 0v5" stroke="#173B73" strokeWidth="1.5"/>
-    <circle cx="18" cy="21" r="2" fill="#173B73"/>
-    <path d="M18 23v3" stroke="#173B73" strokeWidth="1.5"/>
-  </svg>,
-  <svg key="2" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="18" r="12" stroke="#173B73" strokeWidth="1.5"/>
-    <circle cx="18" cy="18" r="3" fill="#173B73"/>
-    <path d="M18 6v3M18 27v3M6 18h3M27 18h3" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-]
+const lightingImages = [img5, img6, img7]
 
 export default function IndustrialLightingPage() {
   const { t } = useTranslation()
@@ -199,7 +165,7 @@ export default function IndustrialLightingPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('industrialLighting.breadcrumb.solutions')}
               </Link>
@@ -216,18 +182,18 @@ export default function IndustrialLightingPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('industrialLighting.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('industrialLighting.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/elektrooborudovanie/kabelnesushchie-sistemy" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/kabelnesushchie-sistemy" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('industrialLighting.links.cableSystems')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('industrialLighting.links.powerSupply')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/monitoring-i-kontrol" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/monitoring-i-kontrol" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('industrialLighting.links.monitoring')}
               </Link>
             </div>
@@ -274,14 +240,20 @@ export default function IndustrialLightingPage() {
           <div className="flex flex-col divide-y divide-slate-200">
             {features.map((f, i) => (
               <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-6 items-start">
-                <div className="lg:col-span-1 flex-shrink-0">
-                  {featureIcons[i] || featureIcons[0]}
-                </div>
+               <div className="lg:col-span-1 flex-shrink-0">
+  <Image
+    src={featureImages[i] || featureImages[0]}
+    alt={f.title || 'feature icon'}
+    width={36}
+    height={36}
+    className="object-contain"
+  />
+</div>
                 <div className="lg:col-span-4">
                   <p className="text-[14px] font-semibold text-[#173B73] leading-snug">{f.title}</p>
                 </div>
                 <div className="lg:col-span-7">
-                  <p className="text-[13px] text-slate-500 leading-relaxed">{f.text}</p>
+                  <p className="text-[14px] text-slate-500 leading-relaxed">{f.text}</p>
                 </div>
               </div>
             ))}
@@ -298,7 +270,7 @@ export default function IndustrialLightingPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('industrialLighting.systemsSubtitle')}
               </p>
             </div>
@@ -306,17 +278,23 @@ export default function IndustrialLightingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             {lightingSystems.map((s, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-3 px-2">
-                {lightingIcons[i] || lightingIcons[0]}
-                <p className="text-[13px] text-slate-700 font-medium leading-snug">{s.label}</p>
-              </div>
+             <div key={i} className="flex flex-col items-center text-center gap-3 px-2">
+  <Image
+    src={lightingImages[i] || lightingImages[0]}
+    alt={s.label || 'lighting icon'}
+    width={36}
+    height={36}
+    className="object-contain"
+  />
+  <p className="text-[14px] text-slate-700 font-medium leading-snug">{s.label}</p>
+</div>
             ))}
           </div>
 
           {/* ─── ЧЕКЛИСТ ─── */}
           <div className="flex flex-col gap-4 max-w-3xl">
             {checklistItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
@@ -330,7 +308,7 @@ export default function IndustrialLightingPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('industrialLighting.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('industrialLighting.footer.subtitle')}
             </p>
           </div>

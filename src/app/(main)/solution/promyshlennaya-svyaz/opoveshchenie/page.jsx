@@ -3,6 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../../../../../../assets/svg/logo.svg'
 import img1 from '../../../../../../assets/png/5310213237846513448.jpg'
+import iconCond1 from '../../../../../../assets/svg/icon_conditions_1_blue.svg'
+import iconCond2 from '../../../../../../assets/svg/icon_conditions_2_blue.svg'
+import iconCond3 from '../../../../../../assets/svg/icon_conditions_3_blue.svg'
+import iconCond4 from '../../../../../../assets/svg/icon_conditions_4_blue.svg'
+import iconStandard5 from '../../../../../../assets/svg/img2.png'
 import React, { Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GoArrowUpRight } from 'react-icons/go'
@@ -129,42 +134,6 @@ function BannerIcon({ kind }) {
   }
 }
 
-// Кастомные SVG-иконки для блоков устойчивости
-const armtelIcons = {
-  ex: (
-    <div className="w-10 h-10 border-2 border-[#173B73] text-[#173B73] font-mono text-xs flex items-center justify-center rounded-[4px] font-bold select-none">
-      Ex
-    </div>
-  ),
-  chemistry: (
-    <svg className="w-8 h-8 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-      <path d="M12 2l3.5 6h-7L12 2zM5 12l3.5 6h-7L5 12zM19 12l3.5 6h-7L19 12z" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ),
-  shield: (
-    <svg className="w-8 h-8 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 6v8" strokeLinecap="round"/>
-    </svg>
-  ),
-  audio: (
-    <svg className="w-8 h-8 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-      <path d="M12 3v18M17 7v10M7 7v10M22 10v4M2 10v4" strokeLinecap="round"/>
-    </svg>
-  ),
-  lan: (
-    <svg className="w-10 h-10 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <rect x="2" y="3" width="20" height="12" rx="2" />
-      <path d="M6 21v-3M18 21v-3M12 15v6M4 21h16" strokeLinecap="round"/>
-    </svg>
-  ),
-  bell: (
-    <svg className="w-10 h-10 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
 export default function ObjectNotificationPage() {
   const { t } = useTranslation()
 
@@ -198,7 +167,7 @@ export default function ObjectNotificationPage() {
             <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
               
               {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-              <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+              <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
                 <Link href="/solution" className="hover:text-white transition-colors duration-200">
                   {t('objectNotification.breadcrumb.solutions')}
                 </Link>
@@ -212,7 +181,7 @@ export default function ObjectNotificationPage() {
               <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
                 {t('objectNotification.title')}
               </h1>
-              <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+              <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
                 {t('objectNotification.subtitle')}
               </p>
             </div>
@@ -254,19 +223,24 @@ export default function ObjectNotificationPage() {
           </div>
         </section>
 
-        {/* ─── УСТОЙЧИВОСТЬ ─── */}
+        {/* ─── УСТОЙЧИВОСТЬ (иконки заменены на фото iconCond1-4) ─── */}
         <section className="max-w-[1280px] mx-auto mt-[30px] md:mt-10 px-4 xl:px-0 space-y-[15px] md:space-y-5">
           <h3 className="text-lg md:text-xl font-bold text-[#173B73]">
             {t('objectNotification.durabilityTitle')}
           </h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-slate-200">
-            {t('objectNotification.durabilityItems', { returnObjects: true }).map((item, i) => (
-              <div key={i} className={`p-[15px] md:p-5 flex flex-col justify-between min-h-[160px] ${i < 3 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''} bg-slate-50/50`}>
-                {armtelIcons[item.icon]}
-                <p className="text-[13px] text-[#1f2937] text-right mt-auto font-medium">{item.text}</p>
-              </div>
-            ))}
+            {t('objectNotification.durabilityItems', { returnObjects: true }).map((item, i) => {
+              const durabilityImages = [iconCond1, iconCond2, iconCond3, iconCond4]
+              return (
+                <div key={i} className={`p-[15px] md:p-5 flex flex-col justify-between min-h-[160px] ${i < 3 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''} bg-slate-50/50`}>
+                  <div className="w-10 h-10 relative">
+                    <Image src={durabilityImages[i]} alt="" fill className="object-contain" />
+                  </div>
+                  <p className="text-[14px] text-[#1f2937] text-right mt-auto font-medium">{item.text}</p>
+                </div>
+              )
+            })}
           </div>
         </section>
 
@@ -278,7 +252,7 @@ export default function ObjectNotificationPage() {
                 {t('objectNotification.localTitle')}
               </h3>
             </div>
-            <div className="text-[13px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
+            <div className="text-[14px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
               {t('objectNotification.localSubtitle')}
             </div>
           </div>
@@ -317,7 +291,7 @@ export default function ObjectNotificationPage() {
                 {t('objectNotification.armtelInfoTitle')}
               </h3>
             </div>
-            <div className="text-[13px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
+            <div className="text-[14px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
               {t('objectNotification.armtelInfoSubtitle')}
             </div>
           </div>
@@ -349,24 +323,24 @@ export default function ObjectNotificationPage() {
           </div>
         </section>
 
-        {/* ─── СТАНДАРТЫ ─── */}
+        {/* ─── СТАНДАРТЫ (иконка заменена на фото iconStandard5) ─── */}
         <section className="mt-[40px] md:mt-12 px-4 xl:px-0 space-y-[15px] md:space-y-5">
-          <h4 className="text-xs font-bold text-[#173B73] uppercase tracking-wider">
+          <h4 className="text-sm font-bold text-[#173B73] uppercase tracking-wider">
             {t('objectNotification.standardsTitle')}
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[15px] md:gap-5">
             {standards.map((text, i) => (
-              <div key={i} className="border border-slate-200 p-[15px] md:p-5 text-[12px] text-slate-500 leading-relaxed flex flex-col gap-3 rounded-2xl bg-slate-50/40">
-                <svg className="w-6 h-6 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+              <div key={i} className="border border-slate-200 p-[15px] md:p-5 text-[14px] text-slate-500 leading-relaxed flex flex-col gap-3 rounded-2xl bg-slate-50/40">
+                <div className="w-8 h-8 relative">
+                  <Image src={iconStandard5} alt="" fill className="object-contain" />
+                </div>
                 <p>{text}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ─── КАТАЛОГ ОБОРУДОВАНИЯ ─── */}
+        {/* ─── КАТАЛОГ ОБОРУДОВАНИЯ (Ex + иконка заменены на фото img1) ─── */}
         <section className="mt-[40px] md:mt-16 px-4 xl:px-0 space-y-[15px] md:space-y-5">
           <h3 className="text-lg md:text-xl font-bold text-[#173B73]">
             {t('objectNotification.catalogTitle')}
@@ -393,25 +367,20 @@ export default function ObjectNotificationPage() {
                   </div>
                 </div>
 
-                <div className="mt-2 mb-4 text-left min-h-[72px]">
-                  {product.ex && (
-                    <div className="w-6 h-6 border border-[#173B73] text-[#173B73] text-[9px] font-bold flex items-center justify-center rounded-[3px] mb-2 font-mono">
-                      Ex
-                    </div>
-                  )}
-                  {product.icon && (
-                    <div className="mb-1.5 h-6 flex items-center">
-                      {armtelIcons[product.icon]}
-                    </div>
-                  )}
-                  <p className="text-[12px] text-gray-400 font-light leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
+              <div className="mt-2 mb-4 text-left min-h-[72px]">
+  {i < 2 && (
+    <div className="w-8 h-8 relative mb-2">
+      <Image src={iconCond1} alt="" fill className="object-contain" />
+    </div>
+  )}
+  <p className="text-[14px] text-gray-400 font-light leading-relaxed">
+    {product.description}
+  </p>
+</div>
 
                 <div className="w-full border-t border-slate-200 my-4" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 text-[11px] text-gray-500 leading-normal">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 text-[14px] text-gray-500 leading-normal">
                   {product.specs.map((spec, j) => (
                     <div key={j}>
                       <p>
@@ -427,7 +396,7 @@ export default function ObjectNotificationPage() {
           </div>
 
           <div className="flex justify-center pt-4">
-            <button className="border-2 border-[#173B73] text-[#173B73] hover:bg-[#172B99] hover:border-[#172B99] hover:text-white font-bold text-xs px-6 py-2.5 rounded-full transition-colors flex items-center gap-2">
+            <button className="border-2 border-[#173B73] text-[#173B73] hover:bg-[#172B99] hover:border-[#172B99] hover:text-white font-bold text-sm px-6 py-2.5 rounded-full transition-colors flex items-center gap-2">
               {t('objectNotification.catalogButton')}
             </button>
           </div>
@@ -439,7 +408,7 @@ export default function ObjectNotificationPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('objectNotification.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('objectNotification.footer.subtitle')}
             </p>
           </div>

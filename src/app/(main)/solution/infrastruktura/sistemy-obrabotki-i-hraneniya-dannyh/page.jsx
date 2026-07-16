@@ -142,7 +142,7 @@ export default function DataStoragePage() {
         ))}
         <div className="max-w-[1280px] mx-auto px-4 xl:px-0 h-full grid grid-cols-1 md:grid-cols-12 items-center relative z-10">
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
-            <div className="text-[13px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
                <Link href="/solution" className="hover:text-white transition-colors">
               <span>{t('infrastruktura.dataStorage.breadcrumb.solutions')}</span>
                </Link>
@@ -155,7 +155,7 @@ export default function DataStoragePage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('infrastruktura.dataStorage.title')}
             </h1>
-            <p className="text-white/70 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/70 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('infrastruktura.dataStorage.subtitle')}
             </p>
             <div className="mt-4 flex flex-col gap-1.5">
@@ -163,7 +163,7 @@ export default function DataStoragePage() {
                 <Link
                   key={i}
                   href={l.href}
-                  className="text-white text-[13px] font-medium underline cursor-pointer"
+                  className="text-white text-[14px] font-medium underline cursor-pointer"
                 >
                   &gt; {t(`infrastruktura.dataStorage.${l.key}`)}
                 </Link>
@@ -198,7 +198,7 @@ export default function DataStoragePage() {
 
               <div className="flex flex-col gap-5">
                 {features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                     <div>
                       <p className="font-semibold text-slate-700">{f.title}</p>
@@ -221,7 +221,7 @@ export default function DataStoragePage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-8">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('infrastruktura.dataStorage.solutionsSubtitle')}
               </p>
             </div>
@@ -232,12 +232,12 @@ export default function DataStoragePage() {
             <p className="text-[14px] font-semibold text-slate-800 mb-1.5">
               {t('infrastruktura.dataStorage.complexSolutions.title')}
             </p>
-            <p className="text-[13px] text-slate-500 leading-relaxed mb-3">
+            <p className="text-[14px] text-slate-500 leading-relaxed mb-3">
               {t('infrastruktura.dataStorage.complexSolutions.intro')}
             </p>
             <div className="flex flex-col gap-2.5">
               {complexSolutionItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                   <p className="text-slate-600 leading-relaxed">{item}</p>
                 </div>
@@ -250,7 +250,7 @@ export default function DataStoragePage() {
             {infraBlocks.map((b, i) => (
               <div key={i}>
                 <p className="text-[14px] font-semibold text-slate-800 mb-1.5">{b.title}</p>
-                <p className="text-[13px] text-slate-500 leading-relaxed">{b.text}</p>
+                <p className="text-[14px] text-slate-500 leading-relaxed">{b.text}</p>
               </div>
             ))}
           </div>
@@ -262,7 +262,7 @@ export default function DataStoragePage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('infrastruktura.dataStorage.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('infrastruktura.dataStorage.footer.subtitle')}
             </p>
           </div>

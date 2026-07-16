@@ -7,6 +7,14 @@ import img1 from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
 import img from '../../../../../../assets/png/oblasti.svg'
 import img2 from '../../../../../../assets/png/armtel_info_shema.png'
+import img6 from '../../../../../../assets/svg/ико18-blue-mirrored.svg'
+import img3 from '../../../../../../assets/svg/ико19-blue-mirrored.svg'
+import img4 from '../../../../../../assets/svg/ико20-blue-mirrored.svg'
+import img5 from '../../../../../../assets/svg/Icon-73_blue.svg'
+import img7 from '../../../../../../assets/svg/Icon-21_blue.svg'
+import img8 from '../../../../../../assets/svg/icon_monitoring_3_blue.svg'
+import img9 from '../../../../../../assets/svg/icon_monitoring_2_blue.svg'
+import img10 from '../../../../../../assets/svg/icon_monitoring_1_blue.png'
 
 function AnimatedGrid() {
   const pointsRef = useRef(null)
@@ -131,62 +139,29 @@ export default function ControlMonitoringPage() {
   const monitoringFeatures = t('controlMonitoring.monitoringFeatures', { returnObjects: true })
   const alertingFeatures = t('controlMonitoring.alertingFeatures', { returnObjects: true })
   const acrosAdvantages = t('controlMonitoring.acrosAdvantages', { returnObjects: true })
-
-  const softwareCards = [
-    {
-      label: t('controlMonitoring.softwareCards.storage'),
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect x="5" y="6" width="22" height="6" rx="1.5" stroke="#173B73" strokeWidth="1.5" />
-          <rect x="5" y="14" width="22" height="6" rx="1.5" stroke="#173B73" strokeWidth="1.5" />
-          <rect x="5" y="22" width="22" height="4" rx="1.5" stroke="#173B73" strokeWidth="1.5" />
-        </svg>
-      ),
-    },
-    {
-      label: t('controlMonitoring.softwareCards.accessControl'),
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="11" r="5" stroke="#173B73" strokeWidth="1.5" />
-          <path d="M6 27c0-5.5 4.5-8.5 10-8.5s10 3 10 8.5" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      ),
-    },
-    {
-      label: t('controlMonitoring.softwareCards.statistics'),
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect x="4" y="6" width="24" height="16" rx="2" stroke="#173B73" strokeWidth="1.5" />
-          <path d="M9 17l4-5 4 3 5-7" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <line x1="12" y1="26" x2="20" y2="26" stroke="#173B73" strokeWidth="1.5" />
-        </svg>
-      ),
-    },
-    {
-      label: t('controlMonitoring.softwareCards.support'),
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="10" stroke="#173B73" strokeWidth="1.5" />
-          <circle cx="16" cy="16" r="4" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="16" y1="6" x2="16" y2="11" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="16" y1="21" x2="16" y2="26" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="6" y1="16" x2="11" y2="16" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="21" y1="16" x2="26" y2="16" stroke="#173B73" strokeWidth="1.5" />
-        </svg>
-      ),
-    },
-    {
-      label: t('controlMonitoring.softwareCards.documentation'),
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect x="7" y="4" width="18" height="24" rx="2" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="11" y1="11" x2="21" y2="11" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="11" y1="16" x2="21" y2="16" stroke="#173B73" strokeWidth="1.5" />
-          <line x1="11" y1="21" x2="17" y2="21" stroke="#173B73" strokeWidth="1.5" />
-        </svg>
-      ),
-    },
-  ]
+  const advantageImages = [img10, img9, img8]
+const softwareCards = [
+  {
+    label: t('controlMonitoring.softwareCards.storage'),
+    image: img6,
+  },
+  {
+    label: t('controlMonitoring.softwareCards.accessControl'),
+    image: img3,
+  },
+  {
+    label: t('controlMonitoring.softwareCards.statistics'),
+    image: img4,
+  },
+  {
+    label: t('controlMonitoring.softwareCards.support'),
+    image: img7,
+  },
+  {
+    label: t('controlMonitoring.softwareCards.documentation'),
+    image: img5,
+  },
+]
 
   return (
     <div className="text-[#1f2937] font-sans min-h-screen antialiased select-none">
@@ -206,12 +181,12 @@ export default function ControlMonitoringPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
-              <Link href="/solutions" className="hover:text-white transition-colors duration-200">
+            <div className="text-[14px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
+              <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('controlMonitoring.breadcrumb.solutions')}
               </Link>
               <span className="text-white/40">&gt;</span>
-              <Link href="/solutions/electrical-equipment" className="hover:text-white transition-colors duration-200">
+              <Link href="/solution/elektrooborudovanie" className="hover:text-white transition-colors duration-200">
                 {t('controlMonitoring.breadcrumb.electricalEquipment')}
               </Link>
               <span className="text-white/40">&gt;</span>
@@ -223,13 +198,13 @@ export default function ControlMonitoringPage() {
             </h1>
             
             <div className="mt-5 flex flex-col gap-1.5">
-              <Link href="/solution/elektrooborudovanie/kabelnesushchie-sistemy" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/kabelnesushchie-sistemy" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('controlMonitoring.links.cableSystems')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('controlMonitoring.links.powerSupply')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/promyshlennoe-osveshchenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/promyshlennoe-osveshchenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('controlMonitoring.links.industrialLighting')}
               </Link>
             </div>
@@ -262,7 +237,7 @@ export default function ControlMonitoringPage() {
   />
 </div>
             <div className="lg:col-span-8">
-              <p className="text-[13px] text-slate-500 leading-relaxed">
+              <p className="text-[14px] text-slate-500 leading-relaxed">
                 {t('controlMonitoring.acros.description')}
               </p>
             </div>
@@ -270,13 +245,13 @@ export default function ControlMonitoringPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-4">
             {acrosLeft.map((item, i) => (
-              <div key={`l-${i}`} className="flex items-start gap-2.5 text-[13px]">
+              <div key={`l-${i}`} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
             ))}
             {acrosRight.map((item, i) => (
-              <div key={`r-${i}`} className="flex items-start gap-2.5 text-[13px]">
+              <div key={`r-${i}`} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
@@ -295,13 +270,13 @@ export default function ControlMonitoringPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-4">
             {implementationLeft.map((item, i) => (
-              <div key={`l-${i}`} className="flex items-start gap-2.5 text-[13px]">
+              <div key={`l-${i}`} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
             ))}
             {implementationRight.map((item, i) => (
-              <div key={`r-${i}`} className="flex items-start gap-2.5 text-[13px]">
+              <div key={`r-${i}`} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
@@ -319,7 +294,7 @@ export default function ControlMonitoringPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-8">
-              <p className="text-[13px] text-slate-500 leading-relaxed">
+              <p className="text-[14px] text-slate-500 leading-relaxed">
                 {t('controlMonitoring.applications.description')}
               </p>
             </div>
@@ -349,10 +324,10 @@ export default function ControlMonitoringPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed mb-3">
+              <p className="text-[14px] text-gray-500 leading-relaxed mb-3">
                 {t('controlMonitoring.integration.subtitle')}
               </p>
-              <p className="text-[13px] text-slate-500 leading-relaxed">
+              <p className="text-[14px] text-slate-500 leading-relaxed">
                 {t('controlMonitoring.integration.description')}
               </p>
             </div>
@@ -360,7 +335,7 @@ export default function ControlMonitoringPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
             {monitoringFeatures.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
@@ -378,18 +353,24 @@ export default function ControlMonitoringPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-6">
-              <p className="text-[13px] text-gray-400">{t('controlMonitoring.software.platform')}</p>
+              {/* <p className="text-[14px] text-gray-400">{t('controlMonitoring.software.platform')}</p> */}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 divide-x divide-slate-200">
-            {softwareCards.map((c, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-3 px-3">
-                {c.icon}
-                <p className="text-[12px] text-slate-600 leading-snug">{c.label}</p>
-              </div>
-            ))}
-          </div>
+    <div className="grid grid-cols-2 sm:grid-cols-5 divide-x divide-slate-200">
+  {softwareCards.map((c, i) => (
+    <div key={i} className="flex flex-col items-center text-center gap-3 px-3">
+      <Image
+        src={c.image}
+        alt={c.label || 'software icon'}
+        width={50}
+        height={40}
+        className="object-contain h-[60px]"
+      />
+      <p className="text-[14px] text-slate-600 leading-snug">{c.label}</p>
+    </div>
+  ))}
+</div>
         </section>
 
         {/* ─── КОМПЛЕКСНЫЙ КОНТРОЛЬ СИСТЕМ ОПОВЕЩЕНИЯ И СВЯЗИ ─── */}
@@ -398,7 +379,7 @@ export default function ControlMonitoringPage() {
             <h2 className="text-xl md:text-2xl font-bold text-[#173B73] leading-snug">
               {t('controlMonitoring.alerting.title')}
             </h2>
-            <p className="text-[12px] text-gray-400 mt-1">{t('controlMonitoring.software.platform')}</p>
+            <p className="text-[14px] text-gray-400 mt-1">{t('controlMonitoring.software.platform')}</p>
             <div className="border-t-2 border-[#173B73] mt-3 w-24" />
           </div>
 
@@ -416,7 +397,7 @@ export default function ControlMonitoringPage() {
             </div>
             <div className="lg:col-span-7 flex flex-col gap-4">
               {alertingFeatures.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                   <p className="text-slate-600 leading-relaxed">{item}</p>
                 </div>
@@ -434,18 +415,20 @@ export default function ControlMonitoringPage() {
     <div className="border-t-2 border-[#173B73] mt-3 w-24" />
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
-    {acrosAdvantages.map((a, i) => (
-      <div key={i} className="flex flex-col items-center text-center gap-3 px-4 pt-4 sm:pt-0">
-        {/* Иконка с использованием dangerouslySetInnerHTML для SVG */}
-        <div 
-          className="text-[#173B73]"
-          dangerouslySetInnerHTML={{ __html: a.icon }} 
-        />
-        <p className="text-[13px] text-slate-600 leading-relaxed">{a.label}</p>
-      </div>
-    ))}
-  </div>
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
+  {acrosAdvantages.map((a, i) => (
+    <div key={i} className="flex flex-col items-center text-center gap-3 px-4 pt-4 sm:pt-0">
+      <Image
+        src={advantageImages[i % advantageImages.length]}
+        alt={a.label || 'advantage icon'}
+        width={50}
+        height={50}
+        className="object-contain h-[50px]"
+      />
+      <p className="text-[14px] text-slate-600 leading-relaxed">{a.label}</p>
+    </div>
+  ))}
+</div>
 </section>
 
         {/* ─── ФУТЕР ─── */}
@@ -454,7 +437,7 @@ export default function ControlMonitoringPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('controlMonitoring.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('controlMonitoring.footer.subtitle')}
             </p>
           </div>

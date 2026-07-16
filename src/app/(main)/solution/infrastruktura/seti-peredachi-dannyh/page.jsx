@@ -130,7 +130,7 @@ export default function DataNetworksPage() {
         ))}
         <div className="max-w-[1280px] mx-auto px-4 xl:px-0 h-full grid grid-cols-1 md:grid-cols-12 items-center relative z-10">
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
-            <div className="text-[13px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors">
                 {t(`${base}.breadcrumb.solutions`)}
               </Link>
@@ -143,17 +143,17 @@ export default function DataNetworksPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t(`${base}.title`)}
             </h1>
-            <p className="text-white/70 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/70 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t(`${base}.subtitle`)}
             </p>
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/infrastruktura/bshpd-i-rrl" className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors">
+              <Link href="/solution/infrastruktura/bshpd-i-rrl" className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors">
                 &gt; {t(`${base}.links.wireless`)}
               </Link>
-              <Link href="/solution/infrastruktura/sistemy-obrabotki-i-hraneniya-dannyh" className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors">
+              <Link href="/solution/infrastruktura/sistemy-obrabotki-i-hraneniya-dannyh" className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors">
                 &gt; {t(`${base}.links.dataStorage`)}
               </Link>
-              <Link href="/solution/infrastruktura/sistemy-chasofikatsii" className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors">
+              <Link href="/solution/infrastruktura/sistemy-chasofikatsii" className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors">
                 &gt; {t(`${base}.links.timeSync`)}
               </Link>
             </div>
@@ -185,7 +185,7 @@ export default function DataNetworksPage() {
               </p>
               <div className="flex flex-col gap-5">
                 {features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                     <div>
                       <p className="font-semibold text-slate-700">{f.title}</p>
@@ -209,7 +209,7 @@ export default function DataNetworksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-6 flex flex-col gap-5">
               {mplsItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                   <p className="text-slate-600 leading-relaxed">
                     <span className="font-semibold text-slate-700">{item.label}</span> {item.text}
@@ -236,7 +236,7 @@ export default function DataNetworksPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t(`${base}.footer.title`)}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t(`${base}.footer.subtitle`)}
             </p>
           </div>

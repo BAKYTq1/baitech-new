@@ -6,6 +6,10 @@ import { useTranslation } from 'react-i18next'
 import logo from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
 import img from  '../../../../../../assets/png/5310213237846513461.jpg'
+import img1 from  '../../../../../../assets/svg/icon_skud_1_blue.svg'
+import img2 from  '../../../../../../assets/svg/icon_skud_2_blue.svg'
+import img3 from  '../../../../../../assets/svg/icon_skud_3_blue.svg'
+import img4 from  '../../../../../../assets/svg/Icon-21_blue.svg'
 
 function AnimatedGrid() {
   const pointsRef = useRef(null)
@@ -211,7 +215,7 @@ export default function AccessControlPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('skud.breadcrumb.solutions')}
               </Link>
@@ -225,18 +229,18 @@ export default function AccessControlPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('skud.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('skud.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('skud.links.videoSurveillance')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('skud.links.securityAlarm')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('skud.links.notification')}
               </Link>
             </div>
@@ -288,7 +292,7 @@ export default function AccessControlPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="border-t-2 border-[#173B73] pt-3">
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[14px] text-gray-500 leading-relaxed">
                   {t('skud.controlSubtitle')}
                 </p>
               </div>
@@ -297,21 +301,27 @@ export default function AccessControlPage() {
         </section>
 
         {/* ─── 4 КАРТОЧКИ ТОЧЕК ДОСТУПА ─── */}
-        <section className="mt-[25px] md:mt-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 border border-slate-200">
-            {accessPoints.map((item, i) => (
-              <div
-                key={i}
-                className={`p-[15px] md:p-6 flex flex-col items-center gap-4 bg-slate-50/50 min-h-[130px] justify-center
-                  ${i < 3 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''}
-                  ${i === 1 ? 'border-b sm:border-b-0' : ''}`}
-              >
-                {accessIcons[item.icon] || accessIcons.door}
-                <p className="text-[13px] text-[#1f2937] font-medium">{item.label}</p>
-              </div>
-            ))}
+       <section className="mt-[25px] md:mt-8">
+  <div className="grid grid-cols-2 sm:grid-cols-4 border border-slate-200">
+    {accessPoints.map((item, i) => {
+      const iconMap = { door: img1, turnstile: img2, gate: img3, checkpoint: img4 }
+      const iconSrc = iconMap[item.icon] || img1
+      return (
+        <div
+          key={i}
+          className={`p-[15px] md:p-6 flex flex-col items-center gap-4 bg-slate-50/50 min-h-[130px] justify-center
+            ${i < 3 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''}
+            ${i === 1 ? 'border-b sm:border-b-0' : ''}`}
+        >
+          <div className="w-10 h-10 relative">
+            <Image src={iconSrc} alt="" fill className="object-contain" />
           </div>
-        </section>
+          <p className="text-[14px] text-[#1f2937] font-medium">{item.label}</p>
+        </div>
+      )
+    })}
+  </div>
+</section>
 
         {/* ─── СКУД — ИНСТРУМЕНТ ─── */}
         <section className="mt-[50px] md:mt-16">
@@ -322,10 +332,10 @@ export default function AccessControlPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             {/* Повышение уровня безопасности */}
             <div>
-              <p className="text-[13px] font-bold text-slate-800 mb-3">{t('skud.securityTitle')}</p>
+              <p className="text-[14px] font-bold text-slate-800 mb-3">{t('skud.securityTitle')}</p>
               <div className="space-y-3">
                 {securityItems.map((t, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                     <p className="text-slate-600 leading-relaxed">{t}</p>
                   </div>
@@ -335,10 +345,10 @@ export default function AccessControlPage() {
 
             {/* Автоматизация учёта рабочего времени */}
             <div>
-              <p className="text-[13px] font-bold text-slate-800 mb-3">{t('skud.timeTitle')}</p>
+              <p className="text-[14px] font-bold text-slate-800 mb-3">{t('skud.timeTitle')}</p>
               <div className="space-y-3">
                 {timeTrackingItems.map((t, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                     <p className="text-slate-600 leading-relaxed">{t}</p>
                   </div>
@@ -348,10 +358,10 @@ export default function AccessControlPage() {
 
             {/* Операционный контроль */}
             <div>
-              <p className="text-[13px] font-bold text-slate-800 mb-3">{t('skud.operationalTitle')}</p>
+              <p className="text-[14px] font-bold text-slate-800 mb-3">{t('skud.operationalTitle')}</p>
               <div className="space-y-3">
                 {operationalItems.map((t, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                     <p className="text-slate-600 leading-relaxed">{t}</p>
                   </div>
@@ -361,10 +371,10 @@ export default function AccessControlPage() {
 
             {/* Сценарии */}
             <div>
-              <p className="text-[13px] font-bold text-slate-800 mb-3">{t('skud.scenarioTitle')}</p>
+              <p className="text-[14px] font-bold text-slate-800 mb-3">{t('skud.scenarioTitle')}</p>
               <div className="space-y-3">
                 {scenarioItems.map((t, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                     <p className="text-slate-600 leading-relaxed">{t}</p>
                   </div>
@@ -374,10 +384,10 @@ export default function AccessControlPage() {
 
             {/* Высокая скорость */}
             <div className="md:col-span-2">
-              <p className="text-[13px] font-bold text-slate-800 mb-3">{t('skud.speedTitle')}</p>
+              <p className="text-[14px] font-bold text-slate-800 mb-3">{t('skud.speedTitle')}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {speedItems.map((t, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                     <p className="text-slate-600 leading-relaxed">{t}</p>
                   </div>
@@ -393,15 +403,15 @@ export default function AccessControlPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Список */}
-            <div className="lg:col-span-5 space-y-5 text-[13px] text-slate-600">
+            <div className="lg:col-span-5 space-y-5 text-[14px] text-slate-600">
               {components.map((block, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <span className="text-[#173B73] text-[9px] mt-1 flex-shrink-0">▲</span>
                   <div>
                     <p className="font-semibold text-slate-700 mb-1">{block.label}</p>
-                    {block.text && <p className="text-[12px] text-slate-500 leading-relaxed mb-1">{block.text}</p>}
+                    {block.text && <p className="text-[14px] text-slate-500 leading-relaxed mb-1">{block.text}</p>}
                     {block.items && (
-                      <ul className="space-y-0.5 text-[12px] text-slate-500">
+                      <ul className="space-y-0.5 text-[14px] text-slate-500">
                         {block.items.map((t, j) => <li key={j}>— {t}</li>)}
                       </ul>
                     )}
@@ -423,7 +433,7 @@ export default function AccessControlPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('skud.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('skud.footer.subtitle')}
             </p>
           </div>

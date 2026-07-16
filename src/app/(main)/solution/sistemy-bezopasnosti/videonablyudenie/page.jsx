@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next'
 import logo from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
 import img from '../../../../../../assets/png/5310213237846513460.jpg'
+import img2 from '../../../../../../assets/svg/icon_video_1_blue.svg'
+import img3 from '../../../../../../assets/svg/icon_video_2_blue.svg'
+import img4 from '../../../../../../assets/svg/icon_video_3_blue.svg'
 
 function AnimatedGrid() {
   const pointsRef = useRef(null)
@@ -213,7 +216,7 @@ export default function VideoSurveillancePage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('videoSurveillance.breadcrumb.solutions')}
               </Link>
@@ -227,18 +230,18 @@ export default function VideoSurveillancePage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('videoSurveillance.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('videoSurveillance.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('videoSurveillance.links.skud')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('videoSurveillance.links.securityAlarm')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('videoSurveillance.links.notification')}
               </Link>
             </div>
@@ -266,7 +269,7 @@ export default function VideoSurveillancePage() {
             <div className="lg:col-span-4 flex items-center justify-start">
               <Image 
                 src={logo} 
-                alt="Armtel Logo" 
+                alt=" Logo" 
                 width={200} 
                 height={200}
                 className="object-contain"
@@ -290,7 +293,7 @@ export default function VideoSurveillancePage() {
             </div>
             <div className="lg:col-span-5">
               <div className="border-t-2 border-[#173B73] pt-3">
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[14px] text-gray-500 leading-relaxed">
                   {t('videoSurveillance.headerSubtitle')}
                 </p>
               </div>
@@ -301,16 +304,22 @@ export default function VideoSurveillancePage() {
         {/* ─── 3 КАРТОЧКИ ─── */}
         <section className="mt-[25px] md:mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 border border-slate-200">
-            {advantages.map((item, i) => (
-              <div
-                key={i}
-                className={`p-[15px] md:p-6 flex flex-col items-start gap-4 bg-slate-50/50 min-h-[140px]
-                  ${i < 2 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''}`}
-              >
-                {icons[item.icon] || icons.analysis}
-                <p className="text-[13px] text-[#1f2937] font-medium leading-snug">{item.text}</p>
-              </div>
-            ))}
+           {advantages.map((item, i) => {
+  const iconMap = { analysis: img2, cameras: img3, modernize: img4 }
+  const iconSrc = iconMap[item.icon] || img2
+  return (
+    <div
+      key={i}
+      className={`p-[15px] md:p-6 flex flex-col items-start gap-4 bg-slate-50/50 min-h-[140px]
+        ${i < 2 ? 'border-b sm:border-b-0 sm:border-r border-slate-200' : ''}`}
+    >
+      <div className="w-10 h-10 relative">
+        <Image src={iconSrc} alt="" fill className="object-contain" />
+      </div>
+      <p className="text-[14px] text-[#1f2937] font-medium leading-snug">{item.text}</p>
+    </div>
+  )
+})}
           </div>
         </section>
 
@@ -322,14 +331,14 @@ export default function VideoSurveillancePage() {
                 {t('videoSurveillance.benefitsTitle')}
               </h3>
             </div>
-            <div className="text-[13px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
+            <div className="text-[14px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
               {t('videoSurveillance.benefitsSubtitle')}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
             {benefits.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                 <p className="text-slate-600 leading-relaxed">
                   <strong className="text-[#173B73] font-bold">{item.label}</strong> {item.text}
@@ -346,15 +355,15 @@ export default function VideoSurveillancePage() {
           </h3>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start ">
-            <div className="lg:col-span-5 space-y-5 text-[13px] text-slate-600">
+            <div className="lg:col-span-5 space-y-5 text-[14px] text-slate-600">
               {components.map((block, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <span className="text-[#173B73] text-[9px] mt-1 flex-shrink-0">▲</span>
                   <div>
                     <p className="font-semibold text-slate-700 mb-1">{block.label}</p>
-                    {block.text && <p className="text-[12px] text-slate-500 leading-relaxed">{block.text}</p>}
+                    {block.text && <p className="text-[14px] text-slate-500 leading-relaxed">{block.text}</p>}
                     {block.items && (
-                      <ul className="space-y-0.5 text-[12px] text-slate-500">
+                      <ul className="space-y-0.5 text-[14px] text-slate-500">
                         {block.items.map((t, j) => <li key={j}>— {t}</li>)}
                       </ul>
                     )}
@@ -375,7 +384,7 @@ export default function VideoSurveillancePage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('videoSurveillance.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('videoSurveillance.footer.subtitle')}
             </p>
           </div>

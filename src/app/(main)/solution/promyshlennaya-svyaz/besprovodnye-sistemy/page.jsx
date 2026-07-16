@@ -171,7 +171,7 @@ export default function BesprovodnayaSvyazPage() {
           <div className="col-span-1 md:col-span-8 flex flex-col justify-center">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('wirelessCommunication.breadcrumb.solutions')}
               </Link>
@@ -253,7 +253,7 @@ export default function BesprovodnayaSvyazPage() {
                 <h4 className="text-[14px] font-bold text-slate-800">
                   {item.title}:
                 </h4>
-                <p className="text-[13px] text-slate-400 font-light mt-1">
+                <p className="text-[14px] text-slate-400 font-light mt-1">
                   {item.text}
                 </p>
               </div>
@@ -270,12 +270,12 @@ export default function BesprovodnayaSvyazPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('wirelessCommunication.footer.title')}
             </h3>
-            <p className="text-[13px] text-slate-500 font-light mt-2">
+            <p className="text-[14px] text-slate-500 font-light mt-2">
               {t('wirelessCommunication.footer.subtitle')}
             </p>
           </div>
           <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
-            <p className="text-[11px] text-slate-400 font-light max-w-[240px] md:text-right mt-1">
+            <p className="text-[14px] text-slate-400 font-light max-w-[240px] md:text-right mt-1">
               {t('wirelessCommunication.footer.calc')}
             </p>
           </div>

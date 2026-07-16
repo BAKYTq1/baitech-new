@@ -5,11 +5,15 @@ import React, { Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import img1 from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
+import img from '../../../../../../assets/svg/icon_chasof_1_rezerv_blue.svg'
+import img2 from '../../../../../../assets/svg/icon_chasof_2_sinhron_blue.svg'
+import img3 from '../../../../../../assets/svg/icon_chasof_3_gibk_blue.svg'
+import img4 from '../../../../../../assets/svg/icon_chasof_4_integr_blue.svg'
 
 function AnimatedGrid() {
   const pointsRef = useRef(null)
-  useFrame(({ clock }) => {
-    if (!pointsRef.current) return
+  useFrame(({ clock }) => { 
+    if (!pointsRef.current) return  
     const positions = pointsRef.current.geometry.attributes.position.array
     const time = clock.getElapsedTime()
     let index = 0
@@ -124,7 +128,7 @@ export default function TimeSyncPage() {
   const features = t('timeSync.features', { returnObjects: true })
   const advantages = t('timeSync.advantages', { returnObjects: true })
   const products = t('timeSync.products', { returnObjects: true })
-
+  const advantageImages = [img, img2, img3, img4]
   return (
     <div className="text-[#1f2937] font-sans min-h-screen antialiased select-none">
 
@@ -141,7 +145,7 @@ export default function TimeSyncPage() {
         ))}
         <div className="max-w-[1280px] mx-auto px-4 xl:px-0 h-full grid grid-cols-1 md:grid-cols-12 items-center relative z-10">
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
-            <div className="text-[13px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('timeSync.breadcrumb.solutions')}
               </Link>
@@ -157,17 +161,17 @@ export default function TimeSyncPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('timeSync.title')}
             </h1>
-            <p className="text-white/70 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/70 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('timeSync.subtitle')}
             </p>
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="../seti-peredachi-dannyh" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="../seti-peredachi-dannyh" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('timeSync.links.networks')}
               </Link>
-              <Link href="../bshpd-i-rrl" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="../bshpd-i-rrl" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('timeSync.links.wirelessBroadband')}
               </Link>
-              <Link href="../sistemy-obrabotki-i-hraneniya-dannyh" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="../sistemy-obrabotki-i-hraneniya-dannyh" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('timeSync.links.dataStorage')}
               </Link>
             </div>
@@ -199,7 +203,7 @@ export default function TimeSyncPage() {
               </p>
               <div className="flex flex-col gap-5">
                 {features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                     <div>
                       <p className="font-semibold text-slate-700">{f.title}</p>
@@ -225,46 +229,22 @@ export default function TimeSyncPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {advantages.map((item, i) => (
-              <div key={i} className="border border-slate-200 rounded-sm p-5 flex flex-col items-center gap-3 text-center">
-                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center flex-shrink-0">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#173B73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {i === 0 && (
-                      <>
-                        <path d="M12 2v4M12 22v-4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-                        <circle cx="12" cy="12" r="3" />
-                      </>
-                    )}
-                    {i === 1 && (
-                      <>
-                        <path d="M12 2a10 10 0 0 1 10 10" />
-                        <path d="M12 2a10 10 0 0 0-10 10" />
-                        <path d="M12 22a10 10 0 0 1 10-10" />
-                        <path d="M12 22a10 10 0 0 0-10-10" />
-                        <circle cx="12" cy="12" r="4" />
-                      </>
-                    )}
-                    {i === 2 && (
-                      <>
-                        <path d="M12 2v20" />
-                        <path d="M4 12h16" />
-                        <circle cx="12" cy="12" r="8" />
-                      </>
-                    )}
-                    {i === 3 && (
-                      <>
-                        <path d="M12 2v20M4 12h16" />
-                        <path d="M8 8l8 8M16 8l-8 8" />
-                        <circle cx="12" cy="12" r="8" />
-                      </>
-                    )}
-                  </svg>
-                </div>
-                <p className="text-[12px] text-slate-600 leading-relaxed">{item}</p>
-              </div>
-            ))}
-          </div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  {advantages.map((item, i) => (
+    <div key={i} className="border border-slate-200 rounded-sm p-5 flex flex-col items-center gap-3 text-center">
+      <div className="w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0">
+        <Image
+          src={advantageImages[i % advantageImages.length]}
+          alt={typeof item === 'string' ? item : 'advantage icon'}
+          width={24}
+          height={24}
+          className="object-contain w-[60px] h-[40px] flex-shrink-0"
+        />
+      </div>
+      <p className="text-[14px] text-slate-600 leading-relaxed">{item}</p>
+    </div>
+  ))}
+</div>
         </section>
 
         {/* ─── ПРЕДЛАГАЕМ КОМПЛЕКСНЫЕ СИСТЕМЫ ─── */}
@@ -277,7 +257,7 @@ export default function TimeSyncPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('timeSync.productsSubtitle')}
               </p>
             </div>
@@ -292,7 +272,7 @@ export default function TimeSyncPage() {
                   </h4>
                 </div>
                 <div className="lg:col-span-8">
-                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                  <p className="text-[14px] text-slate-600 leading-relaxed">
                     {product.text}
                   </p>
                 </div>
@@ -307,7 +287,7 @@ export default function TimeSyncPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('timeSync.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('timeSync.footer.subtitle')}
             </p>
           </div>

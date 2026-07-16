@@ -132,12 +132,12 @@ function ChecklistText({ heading, subheading, items }) {
     <div className="mb-16">
       <div className="flex items-baseline gap-4 mb-6 border-b border-gray-100 pb-3">
         <h2 className="text-[22px] md:text-[26px] font-bold text-[#173B73]">{heading}</h2>
-        {subheading && <p className="text-[13px] text-gray-400 hidden sm:block">{subheading}</p>}
+        {subheading && <p className="text-[14px] text-gray-400 hidden sm:block">{subheading}</p>}
       </div>
       <ul className="space-y-4">
         {items.map((item, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="text-[#D97941] text-[13px] mt-1 flex-shrink-0">▲</span>
+            <span className="text-[#D97941] text-[14px] mt-1 flex-shrink-0">▲</span>
             <div>
               <span className="font-semibold text-[#173B73] text-[14px] md:text-[15px]">{item.title}: </span>
               <span className="text-[14px] md:text-[15px] text-gray-600 leading-relaxed">{item.text}</span>
@@ -150,7 +150,8 @@ function ChecklistText({ heading, subheading, items }) {
 }
 
 // ─────────────────────────────────────────────
-// 4. Сетка карточек (универсальная): иконка/значок + заголовок + описание
+// 4. Сетка карточек (универсальная): НОМЕР карточки + заголовок + описание
+//    (иконки заменены на цифры 1, 2, 3, 4 по просьбе — см. i + 1 ниже)
 // ─────────────────────────────────────────────
 function StatCardsGrid({ heading, subheading, items, columns = 3 }) {
   if (!items?.length) return null
@@ -165,7 +166,7 @@ function StatCardsGrid({ heading, subheading, items, columns = 3 }) {
       {heading && (
         <div className="flex items-baseline gap-4 mb-8 border-b border-gray-100 pb-3 max-w-[760px]">
           <h2 className="text-[22px] md:text-[26px] font-bold text-[#173B73]">{heading}</h2>
-          {subheading && <p className="text-[13px] text-gray-400 hidden sm:block">{subheading}</p>}
+          {subheading && <p className="text-[14px] text-gray-400 hidden sm:block">{subheading}</p>}
         </div>
       )}
       <div className={`grid grid-cols-1 ${colsClass} gap-4`}>
@@ -174,14 +175,12 @@ function StatCardsGrid({ heading, subheading, items, columns = 3 }) {
             key={i}
             className="border border-gray-200 rounded-lg p-6 hover:border-[#173B73] transition-colors duration-300"
           >
-            {item.icon && (
-              <div className="w-9 h-9 mb-4 text-[#173B73]">
-                <SvgIcon name={item.icon} size={36} />
-              </div>
-            )}
+            <div className="w-9 h-9 mb-4 rounded-full bg-[#173B73]/10 text-[#173B73] flex items-center justify-center font-bold text-[16px]">
+              {i + 1}
+            </div>
             <h4 className="text-[15px] font-semibold text-[#173B73] mb-2">{item.title}</h4>
             {item.desc && (
-              <p className="text-[13px] text-gray-500 leading-relaxed">{item.desc}</p>
+              <p className="text-[14px] text-gray-500 leading-relaxed">{item.desc}</p>
             )}
           </div>
         ))}
@@ -217,7 +216,7 @@ function ConnectedCardsRow({ heading, items }) {
             )}
             <h4 className="text-[15px] font-semibold text-[#173B73] mb-2">{item.title}</h4>
             {item.desc && (
-              <p className="text-[13px] text-gray-500 leading-relaxed">{item.desc}</p>
+              <p className="text-[14px] text-gray-500 leading-relaxed">{item.desc}</p>
             )}
           </div>
         ))}
@@ -301,7 +300,7 @@ function SectionCTA({ title, desc, ctaLabel, email = 'info@baitech.kg' }) {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('controlMonitoring.footer.title')}
             </h3>
-            <p className="text-[12px] ml-30 text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] ml-30 text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('controlMonitoring.footer.subtitle')}
             </p>
           </div>
@@ -353,7 +352,7 @@ const sectionExtras = {
       en: 'The Armtel system is resistant to harsh industrial conditions',
     },
     advantages: [
-      { icon: 'shield-lock', text: {
+      { icon: 'shield-loc', text: {
         ru: 'Взрывозащищённое исполнение для зон 1 и 2',
         ky: '1- жана 2-зоналар үчүн жарылуудан корголгон аткарылыш',
         en: 'Explosion-proof design for Zones 1 and 2',

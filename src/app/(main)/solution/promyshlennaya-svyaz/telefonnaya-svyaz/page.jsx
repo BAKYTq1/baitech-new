@@ -7,6 +7,10 @@ import React, { Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GoArrowUpRight } from 'react-icons/go'
 import { Canvas, useFrame } from '@react-three/fiber'
+import img2 from '../../../../../../assets/svg/icon_telef_1_blue.svg'
+import img3 from '../../../../../../assets/svg/icon_telef_2_blue.svg'
+import img4 from '../../../../../../assets/svg/icon_telef_3_blue.svg'
+
 
 // ─── ДЕКОРАТИВНЫЙ ИНТЕРАКТИВНЫЙ ФОН ДЛЯ БАННЕРА ───
 function AnimatedGrid() {
@@ -155,7 +159,7 @@ export default function TelephoneSvyazPage() {
           <div className="col-span-1 md:col-span-8 flex flex-col justify-center">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('telephoneCommunication.breadcrumb.solutions')}
               </Link>
@@ -225,27 +229,27 @@ export default function TelephoneSvyazPage() {
             <div key={i} className="border border-slate-200 rounded-lg p-8 flex flex-col justify-between min-h-[220px] shadow-sm">
               <div>
                 <h3 className="text-[17px] font-semibold text-slate-800 leading-tight">{item.title}</h3>
-                <p className="text-[13px] text-slate-400 mt-4 leading-relaxed font-light">
+                <p className="text-[14px] text-slate-400 mt-4 leading-relaxed font-light">
                   {item.text}
                 </p>
               </div>
-              <div className="flex justify-end mt-4">
-                {item.icon === 'network' && (
-                  <svg className="w-6 h-6 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A13.123 13.123 0 014.115 16c-.143-.368-.215-.76-.215-1.164 0-4.418 4.03-8 9-8a9.863 9.863 0 014.255.949M3.158 5.635A10.04 10.04 0 01.1 12c0 1.155.195 2.265.553 3.3a4.5 4.5 0 014.685-3.322m15.523-6.343A10.04 10.04 0 0012 2c-.52 0-1.028.04-1.527.117M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a3 3 0 11-6 0 3 3 0 016 0zM6 14a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                )}
-                {item.icon === 'connection' && (
-                  <svg className="w-6 h-6 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-                  </svg>
-                )}
-                {item.icon === 'monitoring' && (
-                  <svg className="w-6 h-6 text-[#173B73]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 100-12 6 6 0 000 12zM12 15a3 3 0 110-6 3 3 0 010 6z" />
-                  </svg>
-                )}
-              </div>
+             <div className="flex justify-end mt-4">
+  {item.icon === 'network' && (
+    <div className="w-8 h-8 relative">
+      <Image src={img2} alt="" fill className="object-contain" />
+    </div>
+  )}
+  {item.icon === 'connection' && (
+    <div className="w-8 h-8 relative">
+      <Image src={img3} alt="" fill className="object-contain" />
+    </div>
+  )}
+  {item.icon === 'monitoring' && (
+    <div className="w-8 h-8 relative">
+      <Image src={img4} alt="" fill className="object-contain" />
+    </div>
+  )}
+</div>
             </div>
           ))}
 
@@ -273,7 +277,7 @@ export default function TelephoneSvyazPage() {
           <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
             {t('telephoneCommunication.footer.title')}
           </h3>
-          <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+          <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
             {t('telephoneCommunication.footer.subtitle')}
           </p>
         </div>

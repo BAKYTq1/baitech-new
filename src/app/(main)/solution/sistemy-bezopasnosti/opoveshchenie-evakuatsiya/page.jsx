@@ -247,7 +247,7 @@ export default function FireSafetyPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('fireSafety.breadcrumb.solutions')}
               </Link>
@@ -258,21 +258,21 @@ export default function FireSafetyPage() {
               <span className="text-white/30">&gt;</span>
             </div>
 
-            <h1 className="text-1xl md:text-3xl font-bold text-white tracking-wide leading-tight max-w-xl">
+            <h1 className="text-2xl md:text-3xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('fireSafety.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('fireSafety.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('fireSafety.links.skud')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('fireSafety.links.videoSurveillance')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/okhrannaya-signalizatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('fireSafety.links.securityAlarm')}
               </Link>
             </div>
@@ -320,7 +320,7 @@ export default function FireSafetyPage() {
             <div className="flex-1 border-b-2 border-[#173B73] pb-1">
               <h3 className="text-xl font-bold text-[#173B73]">{t('fireSafety.fireAlarmTitle')}</h3>
             </div>
-            <div className="text-[13px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
+            <div className="text-[14px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
               {t('fireSafety.fireAlarmSubtitle')}
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function FireSafetyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               {fireSafetyItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <CheckIcon />
                   <p className="text-slate-600 leading-relaxed">
                     <strong className="text-[#173B73] font-bold">{item.label}</strong> {item.text}
@@ -345,13 +345,13 @@ export default function FireSafetyPage() {
         {/* ─── КОМПОНЕНТЫ СИСТЕМЫ АПС ─── */}
         <section className="mt-[40px] md:mt-12">
           <h4 className="text-lg font-bold text-[#173B73] mb-6">{t('fireSafety.apsComponentsTitle')}</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 text-[13px] text-slate-600">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 text-[14px] text-slate-600">
             {apsComponents.map((block, i) => (
               <div key={i} className="flex items-start gap-2.5">
                 <TriangleIcon />
                 <div>
                   <p className="font-semibold text-slate-700 mb-1">{block.label}</p>
-                  <ul className="space-y-0.5 text-[12px] text-slate-500">
+                  <ul className="space-y-0.5 text-[14px] text-slate-500">
                     {block.items.map((t, j) => (
                       <li key={j}>— {t}</li>
                     ))}
@@ -368,7 +368,7 @@ export default function FireSafetyPage() {
             <div className="flex-1 border-b-2 border-[#173B73] pb-1">
               <h3 className="text-xl font-bold text-[#173B73]">{t('fireSafety.auptTitle')}</h3>
             </div>
-            <div className="text-[13px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
+            <div className="text-[14px] text-gray-500 md:w-1/3 md:pl-6 pb-1 leading-tight">
               {t('fireSafety.auptSubtitle')}
             </div>
           </div>
@@ -376,7 +376,7 @@ export default function FireSafetyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               {auptItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <CheckIcon />
                   <p className="text-slate-600 leading-relaxed">
                     <strong className="text-[#173B73] font-bold">{item.label}</strong> {item.text}
@@ -393,13 +393,13 @@ export default function FireSafetyPage() {
         {/* ─── КОМПОНЕНТЫ СИСТЕМЫ АУПТ ─── */}
         <section className="mt-[40px] md:mt-12">
           <h4 className="text-lg font-bold text-[#173B73] mb-6">{t('fireSafety.auptComponentsTitle')}</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 text-[13px] text-slate-600">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 text-[14px] text-slate-600">
             {auptComponents.map((block, i) => (
               <div key={i} className="flex items-start gap-2.5">
                 <TriangleIcon />
                 <div>
                   <p className="font-semibold text-slate-700 mb-1">{block.label}</p>
-                  <ul className="space-y-0.5 text-[12px] text-slate-500">
+                  <ul className="space-y-0.5 text-[14px] text-slate-500">
                     {block.items.map((t, j) => (
                       <li key={j}>— {t}</li>
                     ))}
@@ -416,7 +416,7 @@ export default function FireSafetyPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('fireSafety.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('fireSafety.footer.subtitle')}
             </p>
           </div>

@@ -177,7 +177,7 @@ export default function SecurityAlarmPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('securityAlarm.breadcrumb.solutions')}
               </Link>
@@ -191,18 +191,18 @@ export default function SecurityAlarmPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('securityAlarm.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('securityAlarm.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('securityAlarm.links.skud')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('securityAlarm.links.videoSurveillance')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('securityAlarm.links.notification')}
               </Link>
             </div>
@@ -254,7 +254,7 @@ export default function SecurityAlarmPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="border-t-2 border-[#173B73] pt-3">
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[14px] text-gray-500 leading-relaxed">
                   {t('securityAlarm.regimeSubtitle')}
                 </p>
               </div>
@@ -266,7 +266,7 @@ export default function SecurityAlarmPage() {
         <section className="mt-[25px] md:mt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
             {securityItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                 <p className="text-slate-600 leading-relaxed">
                   <strong className="text-[#173B73] font-bold">{item.label}</strong> {item.text}
@@ -283,15 +283,15 @@ export default function SecurityAlarmPage() {
           </h3>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-5 space-y-5 text-[13px] text-slate-600">
+            <div className="lg:col-span-5 space-y-5 text-[14px] text-slate-600">
               {components.map((block, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <span className="text-[#173B73] text-[9px] mt-1 flex-shrink-0">▲</span>
                   <div>
                     <p className="font-semibold text-slate-700 mb-1">{block.label}</p>
-                    {block.text && <p className="text-[12px] text-slate-500 leading-relaxed mb-1">{block.text}</p>}
+                    {block.text && <p className="text-[14px] text-slate-500 leading-relaxed mb-1">{block.text}</p>}
                     {block.items && (
-                      <ul className="space-y-0.5 text-[12px] text-slate-500">
+                      <ul className="space-y-0.5 text-[14px] text-slate-500">
                         {block.items.map((t, j) => <li key={j}>— {t}</li>)}
                       </ul>
                     )}
@@ -312,7 +312,7 @@ export default function SecurityAlarmPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('securityAlarm.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('securityAlarm.footer.subtitle')}
             </p>
           </div>

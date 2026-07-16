@@ -27,7 +27,7 @@ export const solutionsData = [
       },
       {
         id: 'opoveshchenie',
-        icon: 'bell',
+        icon: 'bell2',
         href: '/solution/promyshlennaya-svyaz/opoveshchenie',
         title: { 
           ru: 'Оповещение', 
@@ -202,7 +202,7 @@ export const solutionsData = [
       },
       {
         id: 'bshpd-i-rrl',
-        icon: 'wifi',
+       icon: 'wireless-access',
         href: '/solution/infrastruktura/bshpd-i-rrl',
         title: { 
           ru: 'Беспроводной широкополосный доступ и радиорелейная линия', 
@@ -222,7 +222,7 @@ export const solutionsData = [
       },
       {
         id: 'sistemy-chasofikatsii',
-        icon: 'device-tv',
+        icon: 'wireless-line',
         href: '/solution/infrastruktura/sistemy-chasofikatsii',
         title: { 
           ru: 'Системы часофикации', 

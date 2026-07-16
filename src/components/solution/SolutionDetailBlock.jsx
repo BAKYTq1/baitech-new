@@ -109,7 +109,7 @@ function TextImageBlock({ block, reverse }) {
               {block.heading}
             </h2>
             {block.subheading && (
-              <p className="text-[13px] text-gray-400 hidden sm:block">{block.subheading}</p>
+              <p className="text-[14px] text-gray-400 hidden sm:block">{block.subheading}</p>
             )}
           </div>
           {block.subheading && (
@@ -176,7 +176,7 @@ function StandardsList({ heading, items }) {
                 </svg>
               )}
             </div>
-            <p className="text-[13px] text-gray-600 leading-relaxed">{item.text}</p>
+            <p className="text-[14px] text-gray-600 leading-relaxed">{item.text}</p>
           </div>
         ))}
       </div>
@@ -216,7 +216,7 @@ function ProductCards({ heading, products }) {
               {product.specs?.length > 0 && (
                 <ul className="space-y-2 mt-auto">
                   {product.specs.map((spec, j) => (
-                    <li key={j} className="flex items-start gap-2 text-[12.5px] text-gray-600 leading-relaxed">
+                    <li key={j} className="flex items-start gap-2 text-[14px] text-gray-600 leading-relaxed">
                       <CheckIcon />
                       <span>
                         <span className="font-medium text-gray-800">{spec.title}: </span>
@@ -247,7 +247,7 @@ function SoftwareGallery({ heading, subheading, items }) {
             {heading}
           </h2>
           {subheading && (
-            <p className="text-[13px] text-gray-400 hidden sm:block">{subheading}</p>
+            <p className="text-[14px] text-gray-400 hidden sm:block">{subheading}</p>
           )}
         </div>
       )}
@@ -280,11 +280,11 @@ function CTA({ title, desc, ctaLabel, email = 'info@baitech.kg' }) {
     <div className="border-t border-b border-gray-200 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gray-50/50 px-6 rounded-lg">
       <div>
         <h4 className="font-bold text-[16px] md:text-[18px] text-[#173B73]">{title}</h4>
-        <p className="text-gray-500 text-[13px] md:text-[14px] mt-1">{desc}</p>
+        <p className="text-gray-500 text-[14px] md:text-[14px] mt-1">{desc}</p>
       </div>
       <a
         href={`mailto:${email}`}
-        className="whitespace-nowrap inline-flex items-center gap-2 px-6 py-3 border border-[#173B73] text-[#173B73] hover:bg-[#173B73] hover:text-white text-[13px] uppercase tracking-wider font-medium transition-colors duration-300"
+        className="whitespace-nowrap inline-flex items-center gap-2 px-6 py-3 border border-[#173B73] text-[#173B73] hover:bg-[#173B73] hover:text-white text-[14px] uppercase tracking-wider font-medium transition-colors duration-300"
       >
         {ctaLabel}
         <GoArrowUpRight />

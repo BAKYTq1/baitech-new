@@ -155,7 +155,7 @@ export default function WirelessBroadbandPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
 
             {/* Breadcrumb */}
-            <div className="text-[13px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/70 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors">
                 {t(`${base}.breadcrumb.solutions`)}
               </Link>
@@ -169,7 +169,7 @@ export default function WirelessBroadbandPage() {
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t(`${base}.title`)}
             </h1>
-            <p className="text-white/70 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/70 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t(`${base}.subtitle`)}
             </p>
 
@@ -177,19 +177,19 @@ export default function WirelessBroadbandPage() {
             <div className="mt-4 flex flex-col gap-1.5">
               <Link
                 href="/solution/infrastruktura/seti-peredachi-dannyh"
-                className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors"
+                className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors"
               >
                 &gt; {t(`${base}.links.networks`)}
               </Link>
               <Link
                 href="/solution/infrastruktura/sistemy-obrabotki-i-hraneniya-dannyh"
-                className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors"
+                className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors"
               >
                 &gt; {t(`${base}.links.dataStorage`)}
               </Link>
               <Link
                 href="/solution/infrastruktura/sistemy-chasofikatsii"
-                className="text-white text-[13px] font-medium underline hover:text-white/80 transition-colors"
+                className="text-white text-[14px] font-medium underline hover:text-white/80 transition-colors"
               >
                 &gt; {t(`${base}.links.timeSync`)}
               </Link>
@@ -223,7 +223,7 @@ export default function WirelessBroadbandPage() {
               </p>
               <div className="flex flex-col gap-5">
                 {features.map((f, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                  <div key={i} className="flex items-start gap-2.5 text-[14px]">
                     <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">▲</span>
                     <div>
                       <p className="font-semibold text-slate-700">{f.title}</p>
@@ -246,7 +246,7 @@ export default function WirelessBroadbandPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t(`${base}.rrl.subtitle`)}
               </p>
             </div>
@@ -254,7 +254,7 @@ export default function WirelessBroadbandPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5 flex flex-col gap-4">
               {rrlItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                   <p className="text-slate-600 leading-relaxed">{item}</p>
                 </div>
@@ -283,7 +283,7 @@ export default function WirelessBroadbandPage() {
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t(`${base}.bshpd.subtitle`)}
               </p>
             </div>
@@ -291,7 +291,7 @@ export default function WirelessBroadbandPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="border border-slate-200 rounded-sm p-5 flex flex-col gap-4">
               {bshpdItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                   <p className="text-slate-600 leading-relaxed">{item}</p>
                 </div>
@@ -299,7 +299,7 @@ export default function WirelessBroadbandPage() {
             </div>
             {bshpdDiagrams.map((d, i) => (
               <div key={i} className="border border-slate-200 rounded-sm p-4 flex flex-col gap-3">
-                <p className="text-[13px] font-semibold text-slate-700 text-center">{d.title}</p>
+                <p className="text-[14px] font-semibold text-slate-700 text-center">{d.title}</p>
                 <div className="bg-white h-[320px] relative">
                   <Image
                     src={bshpdDiagramImages[i]}
@@ -319,7 +319,7 @@ export default function WirelessBroadbandPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t(`${base}.footer.title`)}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t(`${base}.footer.subtitle`)}
             </p>
           </div>

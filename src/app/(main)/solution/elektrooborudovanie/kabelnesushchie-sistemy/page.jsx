@@ -21,6 +21,10 @@ import img13 from '../../../../../../assets/png/elektrooborudovanie_kabel_2.png'
 import img14 from '../../../../../../assets/png/shema_chertezh_nesuschey_sistemy_falshpola.jpg'
 import img15 from '../../../../../../assets/png/shema_raskladka_plit_falshpola.jpg'
 import img16 from '../../../../../../assets/png/shema_tipovye_uzly_sistemy_falshpola.jpg'
+import img17 from '../../../../../../assets/svg/Icon-93-blue.svg'
+import img18 from '../../../../../../assets/svg/Icon-07_blue.svg'
+import img19 from '../../../../../../assets/svg/Icon-10_blue.svg'
+import img20 from '../../../../../../assets/svg/Icon-04_blue.svg'
 const THREE_IMG = [img14 , img15, img16]
 
 const PRODUCT_IMAGES = [img, img7, img12, img6, img5, img4, img3, img2, img13]
@@ -136,38 +140,7 @@ function BannerIcon({ kind }) {
   }
 }
 
-// Статические иконки для features
-const featureIcons = [
-  <svg key="0" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect x="4" y="4" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="20" y="4" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="4" y="20" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <rect x="20" y="20" width="12" height="12" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="16" y1="10" x2="20" y2="10" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="16" y1="26" x2="20" y2="26" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="10" y1="16" x2="10" y2="20" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="26" y1="16" x2="26" y2="20" stroke="#173B73" strokeWidth="1.5"/>
-  </svg>,
-  <svg key="1" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="14" r="6" stroke="#173B73" strokeWidth="1.5"/>
-    <path d="M6 30c0-6.627 5.373-10 12-10s12 3.373 12 10" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M24 8l4-4M28 8l-4-4" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  <svg key="2" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect x="6" y="4" width="24" height="28" rx="2" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="11" y1="12" x2="25" y2="12" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="11" y1="18" x2="25" y2="18" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="11" y1="24" x2="19" y2="24" stroke="#173B73" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  <svg key="3" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="18" r="12" stroke="#173B73" strokeWidth="1.5"/>
-    <circle cx="18" cy="18" r="5" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="18" y1="6" x2="18" y2="13" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="18" y1="23" x2="18" y2="30" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="6" y1="18" x2="13" y2="18" stroke="#173B73" strokeWidth="1.5"/>
-    <line x1="23" y1="18" x2="30" y2="18" stroke="#173B73" strokeWidth="1.5"/>
-  </svg>,
-]
+const featureImages = [img17, img18, img19, img20]
 
 export default function MountingSystemsPage() {
   const { t } = useTranslation()
@@ -209,7 +182,7 @@ console.log('products:', products)
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('mountingSystems.breadcrumb.solutions')}
               </Link>
@@ -223,18 +196,18 @@ console.log('products:', products)
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
               {t('mountingSystems.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('mountingSystems.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('mountingSystems.links.powerSupply')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/promyshlennoe-osveshchenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/promyshlennoe-osveshchenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('mountingSystems.links.industrialLighting')}
               </Link>
-              <Link href="/solution/elektrooborudovanie/monitoring-i-kontrol" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/elektrooborudovanie/monitoring-i-kontrol" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('mountingSystems.links.monitoring')}
               </Link>
             </div>
@@ -281,14 +254,20 @@ console.log('products:', products)
           <div className="flex flex-col divide-y divide-slate-200">
             {features.map((f, i) => (
               <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-6 items-start">
-                <div className="lg:col-span-1 flex-shrink-0">
-                  {featureIcons[i] || featureIcons[0]}
-                </div>
+               <div className="lg:col-span-1 flex-shrink-0">
+  <Image
+    src={featureImages[i] || featureImages[0]}
+    alt={f.title || 'feature icon'}
+    width={36}
+    height={36}
+    className="object-contain"
+  />
+</div>
                 <div className="lg:col-span-4">
                   <p className="text-[14px] font-semibold text-[#173B73] leading-snug">{f.title}</p>
                 </div>
                 <div className="lg:col-span-7">
-                  <p className="text-[13px] text-slate-500 leading-relaxed">{f.text}</p>
+                  <p className="text-[14px] text-slate-500 leading-relaxed">{f.text}</p>
                 </div>
               </div>
             ))}
@@ -305,7 +284,7 @@ console.log('products:', products)
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('mountingSystems.adaptSubtitle')}
               </p>
             </div>
@@ -325,7 +304,7 @@ console.log('products:', products)
                   />
                 </div>
                 <div className="p-4">
-                  <p className="text-[13px] text-slate-700 leading-snug">{p.label}</p>
+                  <p className="text-[14px] text-slate-700 leading-snug">{p.label}</p>
                 </div>
               </div>
             ))}
@@ -342,7 +321,7 @@ console.log('products:', products)
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('mountingSystems.metalSubtitle')}
               </p>
             </div>
@@ -351,7 +330,7 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5 flex flex-col gap-3">
               {metalItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                   <p className="text-slate-600 leading-relaxed">{item}</p>
                 </div>
@@ -387,7 +366,7 @@ console.log('products:', products)
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
                 {t('mountingSystems.fprSubtitle')}
               </p>
             </div>
@@ -396,7 +375,7 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-6 flex flex-col gap-4">
               {fprItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-[13px]">
+                <div key={i} className="flex items-start gap-2.5 text-[14px]">
                   <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                   <div>
                     <p className="font-semibold text-slate-700">{item.label}</p>
@@ -443,7 +422,7 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {falshpolItems.map((item, i) => (
               <div key={i} className="flex flex-col gap-3">
-                <div className={`text-[13px] text-slate-700 font-medium leading-snug pb-3 ${i < falshpolItems.length - 1 ? 'border-r-0 lg:border-r border-slate-200 pr-0 lg:pr-6' : ''}`}>
+                <div className={`text-[14px] text-slate-700 font-medium leading-snug pb-3 ${i < falshpolItems.length - 1 ? 'border-r-0 lg:border-r border-slate-200 pr-0 lg:pr-6' : ''}`}>
                   {item.label}
                 </div>
                 <div className="bg-white rounded-sm h-[180px] relative overflow-hidden flex items-center justify-center p-2">
@@ -456,13 +435,13 @@ console.log('products:', products)
                     onError={(e) => { e.currentTarget.style.display = 'none' }}
                   />
                 </div>
-                <p className="text-[11px] text-slate-400">{item.caption}</p>
+                <p className="text-[14px] text-slate-400">{item.caption}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-8 flex justify-center">
-            <button className="border border-[#173B73] text-[#173B73] text-[13px] px-6 py-2.5 rounded-sm hover:bg-[#173B73] hover:text-white transition-colors">
+            <button className="border border-[#173B73] text-[#173B73] text-[14px] px-6 py-2.5 rounded-sm hover:bg-[#173B73] hover:text-white transition-colors">
               {t('mountingSystems.downloadButton')}
             </button>
           </div>
@@ -474,7 +453,7 @@ console.log('products:', products)
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('mountingSystems.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('mountingSystems.footer.subtitle')}
             </p>
           </div>

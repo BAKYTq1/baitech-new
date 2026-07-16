@@ -201,7 +201,7 @@ export default function SOUstaPage() {
           <div className="col-span-1 md:col-span-7 flex flex-col justify-center h-full pt-4 md:pt-0">
             
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
-            <div className="text-[13px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
                 {t('soUsta.breadcrumb.solutions')}
               </Link>
@@ -212,21 +212,21 @@ export default function SOUstaPage() {
               <span className="text-white/30">&gt;</span>
             </div>
 
-            <h1 className="text-1xl md:text-2xl font-bold text-white tracking-wide ">
+            <h1 className="text-2xl md:text-2xl font-bold text-white tracking-wide ">
               {t('soUsta.title')}
             </h1>
-            <p className="text-white/50 text-[13px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
+            <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
               {t('soUsta.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
-              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/opoveshchenie-evakuatsiya" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('soUsta.links.sou')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/skud" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('soUsta.links.skud')}
               </Link>
-              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[13px] font-medium hover:underline">
+              <Link href="/solution/sistemy-bezopasnosti/videonablyudenie" className="text-white text-[14px] font-medium hover:underline">
                 &gt; {t('soUsta.links.videoSurveillance')}
               </Link>
             </div>
@@ -278,7 +278,7 @@ export default function SOUstaPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="border-t-2 border-[#173B73] pt-3">
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[14px] text-gray-500 leading-relaxed">
                   {t('soUsta.conflictSubtitle')}
                 </p>
               </div>
@@ -293,7 +293,7 @@ export default function SOUstaPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
             {methodologyItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                 <p className="text-slate-600 leading-relaxed">{item}</p>
               </div>
@@ -311,7 +311,7 @@ export default function SOUstaPage() {
             </div>
             <div className="lg:col-span-5">
               <div className="border-t-2 border-[#173B73] pt-3">
-                <p className="text-[13px] text-gray-500 leading-relaxed">
+                <p className="text-[14px] text-gray-500 leading-relaxed">
                   {t('soUsta.scenariosSubtitle')}
                 </p>
               </div>
@@ -326,7 +326,7 @@ export default function SOUstaPage() {
                     <path d="M6.5 10l2.5 2.5 4.5-4.5" stroke="#173B73" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <p className="text-[12px] text-slate-500 leading-relaxed">{text}</p>
+                <p className="text-[14px] text-slate-500 leading-relaxed">{text}</p>
               </div>
             ))}
           </div>
@@ -340,7 +340,7 @@ export default function SOUstaPage() {
                 <h3 className="text-[15px] font-bold mb-3 leading-snug text-[#173B73]">
                   {card.title}
                 </h3>
-                <p className="text-[13px] text-slate-500 leading-relaxed">{card.text}</p>
+                <p className="text-[14px] text-slate-500 leading-relaxed">{card.text}</p>
               </div>
             ))}
           </div>
@@ -364,7 +364,7 @@ export default function SOUstaPage() {
                     <path d="M6.5 10l2.5 2.5 4.5-4.5" stroke="#173B73" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <p className="text-[12px] text-slate-500 leading-relaxed">{text}</p>
+                <p className="text-[14px] text-slate-500 leading-relaxed">{text}</p>
               </div>
             ))}
           </div>
@@ -387,7 +387,7 @@ export default function SOUstaPage() {
               <h3 className="text-[17px] font-bold text-[#173B73] mb-3 leading-snug">
                 {t('soUsta.labTitle')}
               </h3>
-              <p className="text-[13px] text-slate-500 leading-relaxed">
+              <p className="text-[14px] text-slate-500 leading-relaxed">
                 {t('soUsta.labText')}
               </p>
             </div>
@@ -416,7 +416,7 @@ export default function SOUstaPage() {
           </h2>
           <div className="flex flex-col gap-5">
             {requirements.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-[13px]">
+              <div key={i} className="flex items-start gap-2.5 text-[14px]">
                 <span className="text-[#173B73] font-bold mt-[2px] flex-shrink-0">☑</span>
                 <p className="text-slate-600 leading-relaxed">
                   <strong className="text-[#173B73] font-bold">{item.label}</strong>{item.text}
@@ -429,13 +429,13 @@ export default function SOUstaPage() {
         {/* ─── ТК 234 ─── */}
         <section className="mt-8">
           <div className="border border-[#173B73] rounded-sm p-6">
-            <p className="text-[13px] font-bold text-slate-800 mb-2 leading-snug">
+            <p className="text-[14px] font-bold text-slate-800 mb-2 leading-snug">
               {t('soUsta.tk234Title')}
             </p>
-            <p className="text-[12px] text-slate-500 leading-relaxed mb-1">
+            <p className="text-[14px] text-slate-500 leading-relaxed mb-1">
               {t('soUsta.tk234Text1')}
             </p>
-            <p className="text-[12px] text-slate-500 leading-relaxed">
+            <p className="text-[14px] text-slate-500 leading-relaxed">
               {t('soUsta.tk234Text2')}
             </p>
           </div>
@@ -447,7 +447,7 @@ export default function SOUstaPage() {
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
               {t('soUsta.footer.title')}
             </h3>
-            <p className="text-[12px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
+            <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
               {t('soUsta.footer.subtitle')}
             </p>
           </div>

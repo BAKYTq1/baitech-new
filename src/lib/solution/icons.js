@@ -1,23 +1,66 @@
+// ─── ИМПОРТЫ ВСЕХ ИКОНОК (те же файлы, что и в CorporateBlock.jsx) ───
+// ВАЖНО: если у алиаса "@/assets/..." не настроен, замени на относительный
+// путь от этого файла (lib/solution/icons.js) до папки assets, например
+import IconTopologyStar from '../../../assets/svg/icon_prom_sv_blue (1).svg';
+import IconBell        from '../../../assets/svg/icon_sis_opov_evak_blue.svg';
+import IconBell2       from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__16_45_51-removebg-preview.png';
+import IconDeviceTv    from '../../../assets/svg/icon_t_sv_blue.svg';
+import IconWifi        from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__17_05_10-removebg-preview.png';
+import IconCamera      from '../../../assets/svg/icon_sis_video_tele_nabl_blue.svg';
+import IconShieldLock  from '../../../assets/svg/icon_sis_ohr_sign_blue.svg';
+import IconDoor        from '../../../assets/svg/icon_skud_blue.svg';
+// import IconUserShield  from '../../../assets/svg/иконка16-blue-mirrored.svg';
+import IconBellEvac    from '../../../assets/svg/ико23-blue-mirrored.svg';
+import IconTools       from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__17_00_25-removebg-preview.png';
+import IconPlug        from '../../../assets/svg/icon_sis_elektropit-blue-mirrored.svg';
+import IconBulb        from '../../../assets/svg/icon_prom_osv-blue-mirrored.svg';
+import IconLaptop      from '../../../assets/svg/icon_monitor_kontrol-blue-mirrored.svg';
+import IconRouter      from '../../../assets/svg/icon_seti_sis_pered_dann-blue-mirrored.svg';
+import IconServer      from '../../../assets/svg/icon_sis_obr_hran_dann-blue-mirrored (1).svg';
+import IconClock       from '../../../assets/svg/icon_sis_chas-blue-mirrored.svg';
+import IconTopology    from '../../../assets/svg/иконка11-blue-mirrored.svg';
+import IconShieldCheck from '../../../assets/svg/shield-check-blue.svg';
+import IconUserShield  from '../../../assets/svg/icon-ksb-sopriusta_blue.svg';
+import IconSistemaChasogikasii  from '../../../assets/svg/icon_besp_shir_dost-blue-mirrored.svg';
+import IconBesprovonyeradiolinia    from '../../../assets/svg/icon_sis_chas-blue-mirrored.svg';
+
+
+// ─── ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: рендерит импортированную картинку как <img> ───
+// next/image-импорт svg/png — это объект вида { src, width, height } либо строка,
+// поэтому вытаскиваем .src, если он есть.
+function img(source, alt = '') {
+  const url = source?.src || source;
+  return <img src={url} alt={alt} className="w-full h-full object-contain" />;
+}
+
+// ─── МАППИНГ ИКОНОК (зеркало ICON_MAP из CorporateBlock.jsx) ───
 const icons = {
-  camera: <svg viewBox="0 0 64 64" fill="none"><rect x="4" y="16" width="40" height="32" rx="4" stroke="currentColor" strokeWidth="2.5"/><path d="M44 26l14-8v28l-14-8V26z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><circle cx="22" cy="32" r="6" stroke="currentColor" strokeWidth="2.5"/></svg>,
+  'topology-star':   img(IconTopologyStar),
+  'bell':            img(IconBell),
+  'bell2':           img(IconBell2),
+  'device-tv':       img(IconDeviceTv),
+  'wifi':            img(IconWifi),
+  'camera':          img(IconCamera),
+  'shield-lock':     img(IconShieldLock),
+  'door':            img(IconDoor),
+  'user-shield':     img(IconUserShield),
+  'bell-evac':       img(IconBellEvac),
+  'tools':           img(IconTools),
+  'plug':            img(IconPlug),
+  'bulb':            img(IconBulb),
+  'device-laptop':   img(IconLaptop),
+  'router':          img(IconRouter),
+  'server':          img(IconServer),
+  'shield-check':    img(IconShieldCheck),
+  'wireless-access': img(IconSistemaChasogikasii),
+  'wireless-line':   img(IconBesprovonyeradiolinia),
+
+  // ─── старые ручные SVG-иконки, которых нет среди файлов выше ───
+  // (оставлены на случай, если где-то используются другие ключи)
   'building-store': <svg viewBox="0 0 64 64" fill="none"><path d="M8 24l6-14h36l6 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M8 24a8 8 0 0016 0 8 8 0 0016 0 8 8 0 0016 0" stroke="currentColor" strokeWidth="2.5"/><path d="M8 32v22h48V32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><rect x="24" y="38" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2.5"/></svg>,
   home: <svg viewBox="0 0 64 64" fill="none"><path d="M6 30L32 8l26 22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 26v26h40V26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><rect x="24" y="36" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2.5"/></svg>,
   car: <svg viewBox="0 0 64 64" fill="none"><path d="M10 34l8-16h28l8 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><rect x="4" y="34" width="56" height="14" rx="4" stroke="currentColor" strokeWidth="2.5"/><circle cx="16" cy="52" r="6" stroke="currentColor" strokeWidth="2.5"/><circle cx="48" cy="52" r="6" stroke="currentColor" strokeWidth="2.5"/><path d="M4 42h56" stroke="currentColor" strokeWidth="2.5"/></svg>,
-  'shield-lock': <svg viewBox="0 0 64 64" fill="none"><path d="M32 6L8 16v18c0 14 12 22 24 26 12-4 24-12 24-26V16L32 6z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><rect x="24" y="30" width="16" height="14" rx="3" stroke="currentColor" strokeWidth="2.5"/><path d="M27 30v-4a5 5 0 0110 0v4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  door: <svg viewBox="0 0 64 64" fill="none"><rect x="14" y="6" width="36" height="52" rx="3" stroke="currentColor" strokeWidth="2.5"/><path d="M14 58H6m44 0h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><circle cx="44" cy="32" r="3" stroke="currentColor" strokeWidth="2.5"/></svg>,
   lock: <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="28" width="44" height="30" rx="4" stroke="currentColor" strokeWidth="2.5"/><path d="M20 28V20a12 12 0 0124 0v8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><circle cx="32" cy="44" r="4" stroke="currentColor" strokeWidth="2.5"/><line x1="32" y1="48" x2="32" y2="54" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  bell: <svg viewBox="0 0 64 64" fill="none"><path d="M32 8a18 18 0 0118 18v12l4 6H10l4-6V26A18 18 0 0132 8z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M26 44a6 6 0 0012 0" stroke="currentColor" strokeWidth="2.5"/><line x1="32" y1="4" x2="32" y2="8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  'user-shield': <svg viewBox="0 0 64 64" fill="none"><circle cx="24" cy="18" r="10" stroke="currentColor" strokeWidth="2.5"/><path d="M4 58c0-12 9-18 20-18s20 6 20 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M46 28l12 6v10c0 6-5 11-12 13-7-2-12-7-12-13V34l12-6z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></svg>,
-  wifi: <svg viewBox="0 0 64 64" fill="none"><path d="M8 24a34 34 0 0148 0" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M16 32a22 22 0 0132 0" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M24 40a10 10 0 0116 0" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><circle cx="32" cy="50" r="4" stroke="currentColor" strokeWidth="2.5"/></svg>,
-  router: <svg viewBox="0 0 64 64" fill="none"><rect x="6" y="28" width="52" height="20" rx="4" stroke="currentColor" strokeWidth="2.5"/><path d="M16 28V18m16 10V14m16 14V18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><circle cx="16" cy="38" r="3" stroke="currentColor" strokeWidth="2.5"/><circle cx="28" cy="38" r="3" stroke="currentColor" strokeWidth="2.5"/><path d="M40 38h10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  'topology-star': <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="6" stroke="currentColor" strokeWidth="2.5"/><circle cx="32" cy="8" r="5" stroke="currentColor" strokeWidth="2.5"/><circle cx="56" cy="44" r="5" stroke="currentColor" strokeWidth="2.5"/><circle cx="8" cy="44" r="5" stroke="currentColor" strokeWidth="2.5"/><path d="M32 26V13m15.7 18.5l8.7 5M16.3 31.5l-8.7 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  plug: <svg viewBox="0 0 64 64" fill="none"><path d="M22 6v16m20-16v16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M12 22h40a16 16 0 01-16 16H28A16 16 0 0112 22z" stroke="currentColor" strokeWidth="2.5"/><line x1="32" y1="38" x2="32" y2="58" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  bulb: <svg viewBox="0 0 64 64" fill="none"><path d="M32 10c-9.9 0-18 7.9-18 17.8 0 6.1 3 10.3 6.9 14.2 1.7 1.7 3.1 3.9 3.1 6h16c0-2.1 1.4-4.3 3.1-6 3.9-3.9 6.9-8.1 6.9-14.2C50 17.9 41.9 10 32 10z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M26 48h12M24 54h16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M32 4v4M18 12l3 3M46 12l-3 3" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  'device-tv': <svg viewBox="0 0 64 64" fill="none"><rect x="12" y="8" width="40" height="48" rx="6" stroke="currentColor" strokeWidth="2.5"/><circle cx="32" cy="28" r="10" stroke="currentColor" strokeWidth="2.5"/><path d="M32 22v6l4 2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M26 46h12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  tools: <svg viewBox="0 0 64 64" fill="none"><path d="M18 14l8 8-9 9-8-8 9-9z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M38 14a10 10 0 0112 12L34 42l-8-8 16-16z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M30 38l-8 8M18 50l-4 4M34 42l10 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>,
-  server: <svg viewBox="0 0 64 64" fill="none"><rect x="6" y="8" width="52" height="16" rx="3" stroke="currentColor" strokeWidth="2.5"/><rect x="6" y="28" width="52" height="16" rx="3" stroke="currentColor" strokeWidth="2.5"/><rect x="6" y="48" width="52" height="10" rx="3" stroke="currentColor" strokeWidth="2.5"/><circle cx="16" cy="16" r="3" stroke="currentColor" strokeWidth="2.5"/><circle cx="16" cy="36" r="3" stroke="currentColor" strokeWidth="2.5"/></svg>,
-  'shield-check': <svg viewBox="0 0 64 64" fill="none"><path d="M32 6L8 16v18c0 14 12 22 24 26 12-4 24-12 24-26V16L32 6z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M22 33l7 7 14-14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-  'device-laptop': <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="10" width="44" height="30" rx="3" stroke="currentColor" strokeWidth="2.5"/><path d="M4 52h56M18 52l-4 0m32 0h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M4 52l6-10h44l6 10" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/></svg>,
 }
 
 export { icons }

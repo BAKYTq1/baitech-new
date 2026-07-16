@@ -9,16 +9,17 @@ import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 
 // ─── ИМПОРТЫ SVG ИКОНОК ───
-import IconTopologyStar from '../../../assets/svg/иконка11-blue-mirrored.svg';
-import IconBell        from '../../../assets/svg/ико19-blue-mirrored.svg';
-import IconDeviceTv    from '../../../assets/svg/иконка17-blue-mirrored.svg';
-import IconWifi        from '../../../assets/svg/icon_besp_shir_dost-blue-mirrored.svg';
-import IconCamera      from '../../../assets/svg/иконка13-blue-mirrored.svg';
-import IconShieldLock  from '../../../assets/svg/иконка14-blue-mirrored.svg';
-import IconDoor        from '../../../assets/svg/иконка15-blue-mirrored.svg';
+import IconTopologyStar from '../../../assets/svg/icon_prom_sv_blue (1).svg';
+import IconBell        from '../../../assets/svg/icon_sis_opov_evak_blue.svg';
+import IconBell2       from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__16_45_51-removebg-preview.png';
+import IconDeviceTv    from '../../../assets/svg/icon_t_sv_blue.svg';
+import IconWifi        from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__17_05_10-removebg-preview.png';
+import IconCamera      from '../../../assets/svg/icon_sis_video_tele_nabl_blue.svg';
+import IconShieldLock  from '../../../assets/svg/icon_sis_ohr_sign_blue.svg';
+import IconDoor        from '../../../assets/svg/icon_skud_blue.svg';
 // import IconUserShield  from '../../../assets/svg/иконка16-blue-mirrored.svg';
 import IconBellEvac    from '../../../assets/svg/ико23-blue-mirrored.svg';
-import IconTools       from '../../../assets/svg/Icon-04-blue-mirrored.svg';
+import IconTools       from '../../../assets/svg/ChatGPT_Image_14_июл._2026_г.__17_00_25-removebg-preview.png';
 import IconPlug        from '../../../assets/svg/icon_sis_elektropit-blue-mirrored.svg';
 import IconBulb        from '../../../assets/svg/icon_prom_osv-blue-mirrored.svg';
 import IconLaptop      from '../../../assets/svg/icon_monitor_kontrol-blue-mirrored.svg';
@@ -27,12 +28,15 @@ import IconServer      from '../../../assets/svg/icon_sis_obr_hran_dann-blue-mir
 import IconClock       from '../../../assets/svg/icon_sis_chas-blue-mirrored.svg';
 import IconTopology    from '../../../assets/svg/иконка11-blue-mirrored.svg';
 import IconShieldCheck from '../../../assets/svg/shield-check-blue.svg';
-import IconUserShield  from '../../../assets/svg/user-shield-blue.svg';
+import IconUserShield  from '../../../assets/svg/icon-ksb-sopriusta_blue.svg';
+import IconSistemaChasogikasii  from '../../../assets/svg/icon_besp_shir_dost-blue-mirrored.svg';
+import IconBesprovonyeradiolinia    from '../../../assets/svg/icon_sis_chas-blue-mirrored.svg';
 
 // ─── МАППИНГ ИКОНОК ───
 const ICON_MAP = {
   'topology-star': IconTopologyStar,
   'bell':          IconBell,
+  'bell2':          IconBell2,
   'device-tv':     IconDeviceTv,
   'wifi':          IconWifi,
   'camera':        IconCamera,
@@ -47,6 +51,8 @@ const ICON_MAP = {
   'router':        IconRouter,
   'server':        IconServer,
   'shield-check':  IconShieldCheck,
+  'wireless-access': IconSistemaChasogikasii,
+  'wireless-line':   IconBesprovonyeradiolinia,
 };
 
 // Иконки для секций (в HeroBanner маленькие)
@@ -220,10 +226,10 @@ function HeroBanner({ sections, lang, uiT }) {
                           </svg>
                         )}
                       </div>
-                      <span className="text-[13px] md:text-[14px] flex-1 group-hover:text-white transition-colors leading-snug">
+                      <span className="text-[14px] md:text-[14px] flex-1 group-hover:text-white transition-colors leading-snug">
                         {s.title[lang] || s.title.ru}
                       </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#173B72] text-[13px] font-bold text-white flex-shrink-0">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#173B72] text-[14px] font-bold text-white flex-shrink-0">
                         <GoArrowUpRight />
                       </span>
                     </Link>
