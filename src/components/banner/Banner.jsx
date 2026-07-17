@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -13,8 +13,8 @@ import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import Image from 'next/image';
 
 export function Banner({ categoryName }) {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const [prevEl, setPrevEl] = useState(null);
+  const [nextEl, setNextEl] = useState(null);
 
   const { data: banners = [], isLoading, error } = useBanners('main');
 
@@ -33,24 +33,15 @@ export function Banner({ categoryName }) {
         spaceBetween={0}
         slidesPerView={1}
         pagination={{ clickable: true, dynamicBullets: false }}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        }}
-        onSwiper={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
-        }}
+        navigation={{ prevEl, nextEl }}
         autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
         effect="fade"
         fadeEffect={{ crossFade: true }}
         loop={filteredBanners.length > 1}
-        speed={1000}
+        speed={200}
         className="hero-banner__swiper"
       >
-        {filteredBanners.map((banner) => {
+        {filteredBanners.map((banner, index) => {
           const backgroundImage = banner.existing_images?.[0]?.image;
           return (
             <SwiperSlide key={banner.id}>
@@ -63,7 +54,7 @@ export function Banner({ categoryName }) {
                     height={0}
                     sizes="100vw"
                     className="banner-slide__img"
-                    priority
+                    priority={index === 0}
                     quality={80}
                   />
                 ) : (
@@ -76,10 +67,20 @@ export function Banner({ categoryName }) {
           );
         })}
 
-        <button ref={prevRef} className="hero-banner__arrow hero-banner__arrow--prev" aria-label="Назад">
+        <button
+          type="button"
+          ref={(node) => setPrevEl(node)}
+          className="hero-banner__arrow hero-banner__arrow--prev"
+          aria-label="Назад"
+        >
           <IoChevronBack size={24} />
         </button>
-        <button ref={nextRef} className="hero-banner__arrow hero-banner__arrow--next" aria-label="Вперёд">
+        <button
+          type="button"
+          ref={(node) => setNextEl(node)}
+          className="hero-banner__arrow hero-banner__arrow--next"
+          aria-label="Вперёд"
+        >
           <IoChevronForward size={24} />
         </button>
       </Swiper>
