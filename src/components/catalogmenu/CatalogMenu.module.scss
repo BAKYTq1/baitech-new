@@ -20,9 +20,10 @@
   border: 1px solid #f0f0f0;
   min-height: 400px;
   max-height: 80vh;
-  width: 900px;       // Фиксированная ширина
+  width: 1200px;       // Фиксированная ширина
+  overflow: visible;
+  
   max-width: 95vw;
-  overflow: hidden;
 }
 
 // ── Колонка 1: категории ───────────────────────────────────────
@@ -32,6 +33,24 @@
   padding: 8px 0;
   overflow-y: auto;
   flex-shrink: 0;
+}
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent; /* или #f1f1f1 */
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #0a77dd;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #0868c0;
 }
 
 .navButton {
@@ -111,6 +130,8 @@
   flex: 1;
   padding: 24px 28px;
   overflow-y: auto;
+    overflow-x: visible; 
+    
   position: relative; // Для попапа
 }
 
@@ -189,7 +210,7 @@
 .brandItem {
   display: block;
   width: 100%;
-  padding: 8px 16px;
+  padding: 4px 16px;
   font-size: 13px;
   color: #444;
   background: none;
@@ -198,10 +219,10 @@
   cursor: pointer;
   transition: background 0.12s, color 0.12s;
 
-  &:hover {
-    background: #f0f7ff;
-    color: #005bff;
-  }
+  // &:hover {
+  //   // background: #f0f7ff;
+  //   // color: #005bff;
+  // }
 }
 
 .popupLoader {
@@ -229,15 +250,18 @@
 }
 
 .subItem {
-  font-size: 13px;
+  font-size: 14px;
   color: #777;
-  background: none;
   border: none;
+  width: auto;
   padding: 3px 0;
   cursor: pointer;
-  text-align: left;
-  transition: color 0.15s;
-
+  // text-align: left;
+  // transition: color 0.15s;
+ display: flex;
+  align-items: center;
+   position: relative; 
+  gap: 4px;
   &:hover { color: #005bff; }
 }
 

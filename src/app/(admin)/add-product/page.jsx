@@ -23,8 +23,9 @@ const AddProduct = () => {
     name: "",
     article: "",
     price: "",
-    parentCategory: "",
-    category: "",
+    parentCategory: "", // уровень 1 — корневая категория
+    category: "", // уровень 2 — подкатегория
+    subCategory: "", // уровень 3 — под-подкатегория
     brand: "",
     bonus: "",
     description: "",
@@ -77,15 +78,26 @@ const AddProduct = () => {
   };
 
   const flatCategories = useMemo(() => flattenCategories(categories), [categories]);
+
+  // ===== Категории: разворачиваем дерево на 3 уровня =====
   const rootCategories = useMemo(
     () => (categories || []).filter((item) => item.parent === null || item.parent === undefined),
     [categories]
   );
+
+  // Уровень 2 — подкатегории выбранной корневой категории
   const selectedParentCategory = useMemo(
     () => rootCategories.find((item) => String(item.id) === String(formData.parentCategory)),
     [rootCategories, formData.parentCategory]
   );
   const availableSubcategories = selectedParentCategory?.subcategories || [];
+
+  // Уровень 3 — под-подкатегории выбранной подкатегории (если есть)
+  const selectedSubCategory = useMemo(
+    () => availableSubcategories.find((item) => String(item.id) === String(formData.category)),
+    [availableSubcategories, formData.category]
+  );
+  const availableSubSubcategories = selectedSubCategory?.subcategories || [];
 
   const closeModal = () => {
     setModalType(null);
@@ -126,7 +138,10 @@ const AddProduct = () => {
     payload.append("name", formData.name);
     payload.append("article", formData.article);
     payload.append("price", formData.price);
-    payload.append("category", formData.category || formData.parentCategory);
+    payload.append(
+      "category",
+      formData.subCategory || formData.category || formData.parentCategory
+    );
     payload.append("brand", formData.brand);
     payload.append("bonus", formData.bonus);
     payload.append("description", formData.description);
@@ -209,7 +224,6 @@ const AddProduct = () => {
                       placeholder="Введите название..."
                     />
                   </div>
-
                 </div>
                 <div className="modal-actions">
                   <button className="cancel-btn" onClick={closeModal}>
@@ -330,6 +344,7 @@ const AddProduct = () => {
                     ...prev,
                     parentCategory: e.target.value,
                     category: "",
+                    subCategory: "",
                   }))
                 }
               >
@@ -362,7 +377,13 @@ const AddProduct = () => {
               <select
                 name="category"
                 value={formData.category}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    category: e.target.value,
+                    subCategory: "",
+                  }))
+                }
                 disabled={!formData.parentCategory || availableSubcategories.length === 0}
               >
                 <option value="">
@@ -382,6 +403,43 @@ const AddProduct = () => {
                   setModalData({
                     name: "",
                     parent: formData.parentCategory || "",
+                  });
+                }}
+              >
+                <Plus size={20} />
+              </button>
+              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category")}>
+                <Trash2 size={18} />
+              </button>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Под-подкатегория</label>
+            <div className="select-wrapper">
+              <select
+                name="subCategory"
+                value={formData.subCategory}
+                onChange={handleInputChange}
+                disabled={!formData.category || availableSubSubcategories.length === 0}
+              >
+                <option value="">
+                  {formData.category ? "Выберите под-подкатегорию" : "Сначала выберите подкатегорию"}
+                </option>
+                {availableSubSubcategories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="add-small-btn"
+                onClick={() => {
+                  setModalType("category");
+                  setModalData({
+                    name: "",
+                    parent: formData.category || "",
                   });
                 }}
               >
@@ -451,5 +509,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-
-
