@@ -8,6 +8,7 @@ import Features from '../features/Features';
 import CatalogButton from '../catalogbutton/CatalogButton';
 import { Recommendations } from '../recomendation/Recommendations';
 import { News } from '../News/News';
+import Partners from '../services/Partners';
 
 function HomeInner() {
   const searchParams = useSearchParams();
@@ -21,6 +22,7 @@ function HomeInner() {
       <Features categoryName={hasCategoryPreview ? categoryName : null} />
       <Recommendations categoryName={hasCategoryPreview ? categoryName : null} />
       <News />
+      <Partners/>
     </div>
   );
 }

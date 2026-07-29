@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import img1 from '../../../../../../assets/svg/logo.svg'
 import { Canvas, useFrame } from '@react-three/fiber'
+import logo from '../../../../../../assets/svg/logo.svg'
 import img from '../../../../../../assets/png/elektrooborudovanie_kabel_1_mirrored.webp'
 import img11 from '../../../../../../assets/png/elektrooborudovanie_kabel_2_mirrored.webp'
 import img2 from '../../../../../../assets/png/elektrooborudovanie_kabel_3_mirrored.webp'
@@ -18,16 +18,12 @@ import img8 from '../../../../../../assets/png/elektrooborudovanie_product_2_mir
 import img9 from '../../../../../../assets/png/elektrooborudovanie_product_3_mirrored.webp'
 import img10 from '../../../../../../assets/png/elektrooborudovanie_product_4_mirrored.webp'
 import img13 from '../../../../../../assets/png/elektrooborudovanie_kabel_2.png'
-import img14 from '../../../../../../assets/png/shema_chertezh_nesuschey_sistemy_falshpola.jpg'
-import img15 from '../../../../../../assets/png/shema_raskladka_plit_falshpola.jpg'
-import img16 from '../../../../../../assets/png/shema_tipovye_uzly_sistemy_falshpola.jpg'
 import img17 from '../../../../../../assets/svg/Icon-93-blue.svg'
 import img18 from '../../../../../../assets/svg/Icon-07_blue.svg'
 import img19 from '../../../../../../assets/svg/Icon-10_blue.svg'
 import img20 from '../../../../../../assets/svg/Icon-04_blue.svg'
-const THREE_IMG = [img14 , img15, img16]
-
 const PRODUCT_IMAGES = [img, img7, img12, img6, img5, img4, img3, img2, img13]
+
 function AnimatedGrid() {
   const pointsRef = useRef(null)
   useFrame(({ clock }) => {
@@ -140,17 +136,18 @@ function BannerIcon({ kind }) {
   }
 }
 
+// Статические иконки для features
 const featureImages = [img17, img18, img19, img20]
 
-export default function MountingSystemsPage() {
+export default function CableSystemsPage() {
   const { t } = useTranslation()
 
   // Получаем переведенные данные с проверкой
-  const featuresData = t('mountingSystems.features', { returnObjects: true })
-  const productsData = t('mountingSystems.products', { returnObjects: true })
-  const metalItemsData = t('mountingSystems.metalItems', { returnObjects: true })
-  const fprItemsData = t('mountingSystems.fprItems', { returnObjects: true })
-  const falshpolItemsData = t('mountingSystems.falshpolItems', { returnObjects: true })
+  const featuresData = t('cableSystems.features', { returnObjects: true })
+  const productsData = t('cableSystems.products', { returnObjects: true })
+  const metalItemsData = t('cableSystems.metalItems', { returnObjects: true })
+  const fprItemsData = t('cableSystems.fprItems', { returnObjects: true })
+  const falshpolItemsData = t('cableSystems.falshpolItems', { returnObjects: true })
 
   // Защита от ошибок - проверяем, что данные являются массивами
   const features = Array.isArray(featuresData) ? featuresData : []
@@ -158,9 +155,7 @@ export default function MountingSystemsPage() {
   const metalItems = Array.isArray(metalItemsData) ? metalItemsData : []
   const fprItems = Array.isArray(fprItemsData) ? fprItemsData : []
   const falshpolItems = Array.isArray(falshpolItemsData) ? falshpolItemsData : []
-console.log('THREE_IMG:', THREE_IMG)
-console.log('PRODUCT_IMAGES:', PRODUCT_IMAGES)
-console.log('products:', products)
+
   return (
     <div className="text-[#1f2937] font-sans min-h-screen antialiased select-none">
 
@@ -184,31 +179,31 @@ console.log('products:', products)
             {/* ─── ХЛЕБНЫЕ КРОШКИ ─── */}
             <div className="text-[14px] font-medium text-white/60 mb-3 flex items-center gap-1.5 flex-wrap">
               <Link href="/solution" className="hover:text-white transition-colors duration-200">
-                {t('mountingSystems.breadcrumb.solutions')}
+                {t('cableSystems.breadcrumb.solutions')}
               </Link>
               <span className="text-white/30">&gt;</span>
               <Link href="/solution/elektrooborudovanie" className="hover:text-white transition-colors duration-200">
-                {t('mountingSystems.breadcrumb.electricalEquipment')}
+                {t('cableSystems.breadcrumb.electricalEquipment')}
               </Link>
               <span className="text-white/30">&gt;</span>
             </div>
 
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-wide leading-tight max-w-xl">
-              {t('mountingSystems.title')}
+              {t('cableSystems.title')}
             </h1>
             <p className="text-white/50 text-[14px] md:text-[14px] mt-3 max-w-lg leading-relaxed">
-              {t('mountingSystems.subtitle')}
+              {t('cableSystems.subtitle')}
             </p>
             
             <div className="mt-4 flex flex-col gap-1.5">
               <Link href="/solution/elektrooborudovanie/sistemy-elektropitaniya" className="text-white text-[14px] font-medium hover:underline">
-                &gt; {t('mountingSystems.links.powerSupply')}
+                &gt; {t('cableSystems.links.powerSupply')}
               </Link>
               <Link href="/solution/elektrooborudovanie/promyshlennoe-osveshchenie" className="text-white text-[14px] font-medium hover:underline">
-                &gt; {t('mountingSystems.links.industrialLighting')}
+                &gt; {t('cableSystems.links.industrialLighting')}
               </Link>
               <Link href="/solution/elektrooborudovanie/monitoring-i-kontrol" className="text-white text-[14px] font-medium hover:underline">
-                &gt; {t('mountingSystems.links.monitoring')}
+                &gt; {t('cableSystems.links.monitoring')}
               </Link>
             </div>
           </div>
@@ -234,7 +229,7 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-4 flex items-center justify-start">
               <Image 
-                src={img1} 
+                src={logo} 
                 alt="Armtel Logo" 
                 width={200} 
                 height={200}
@@ -243,7 +238,7 @@ console.log('products:', products)
             </div>
             <div className="lg:col-span-8">
               <p className="text-[14px] text-slate-600 leading-relaxed">
-                {t('mountingSystems.armtelDescription')}
+                {t('cableSystems.armtelDescription')}
               </p>
             </div>
           </div>
@@ -254,7 +249,7 @@ console.log('products:', products)
           <div className="flex flex-col divide-y divide-slate-200">
             {features.map((f, i) => (
               <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-6 items-start">
-               <div className="lg:col-span-1 flex-shrink-0">
+                <div className="lg:col-span-1 flex-shrink-0">
   <Image
     src={featureImages[i] || featureImages[0]}
     alt={f.title || 'feature icon'}
@@ -279,13 +274,13 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
             <div className="lg:col-span-5">
               <h2 className="text-xl md:text-2xl font-bold text-[#173B73] leading-snug">
-                {t('mountingSystems.adaptTitle')}
+                {t('cableSystems.adaptTitle')}
               </h2>
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
               <p className="text-[14px] text-gray-500 leading-relaxed">
-                {t('mountingSystems.adaptSubtitle')}
+                {t('cableSystems.adaptSubtitle')}
               </p>
             </div>
           </div>
@@ -295,12 +290,11 @@ console.log('products:', products)
               <div key={i} className="border border-slate-200 rounded-sm overflow-hidden">
                 <div className="bg-white h-[180px] relative flex items-center justify-center p-2">
                   <Image
-                    src={PRODUCT_IMAGES[i] || p.img}
+                     src={PRODUCT_IMAGES[i] || p.img}
                     alt={p.label}
-                    width={200}
+                   width={200}
                     height={150}
                     className="object-contain"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
                   />
                 </div>
                 <div className="p-4">
@@ -316,13 +310,13 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
             <div className="lg:col-span-5">
               <h2 className="text-xl md:text-2xl font-bold text-[#173B73] leading-snug">
-                {t('mountingSystems.metalTitle')}
+                {t('cableSystems.metalTitle')}
               </h2>
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
               <p className="text-[14px] text-gray-500 leading-relaxed">
-                {t('mountingSystems.metalSubtitle')}
+                {t('cableSystems.metalSubtitle')}
               </p>
             </div>
           </div>
@@ -337,21 +331,24 @@ console.log('products:', products)
               ))}
             </div>
             <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-              {[
-                'https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_4.png',
-                'https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_1.png'
-              ].map((img, i) => (
-                <div key={i} className="bg-white rounded-sm h-[120px] relative overflow-hidden flex items-center justify-center p-2">
-                  <Image
-                    src={img}
-                    alt={t('mountingSystems.metalImageAlt')}
-                    width={200}
+              <div className="bg-white rounded-sm h-[120px] relative overflow-hidden flex items-center justify-center p-2">
+                <Image
+                  src="https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_4.png"
+                  alt={t('cableSystems.metalImageAlt')}
+                     width={200}
                     height={100}
                     className="object-contain"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                  />
-                </div>
-              ))}
+                />
+              </div>
+              <div className="bg-white rounded-sm h-[120px] relative overflow-hidden flex items-center justify-center p-2">
+                <Image
+                  src="https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_1.png"
+                  alt={t('cableSystems.metalImageAlt')}
+                     width={200}
+                    height={100}
+                    className="object-contain"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -361,13 +358,13 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
             <div className="lg:col-span-5">
               <h2 className="text-xl md:text-2xl font-bold text-[#173B73] leading-snug">
-                {t('mountingSystems.fprTitle')}
+                {t('cableSystems.fprTitle')}
               </h2>
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
             <div className="lg:col-span-7">
               <p className="text-[14px] text-gray-500 leading-relaxed">
-                {t('mountingSystems.fprSubtitle')}
+                {t('cableSystems.fprSubtitle')}
               </p>
             </div>
           </div>
@@ -385,21 +382,24 @@ console.log('products:', products)
               ))}
             </div>
             <div className="lg:col-span-6 flex flex-col gap-4">
-              {[
-                'https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_2.png',
-                'https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_3.png'
-              ].map((img, i) => (
-                <div key={i} className="bg-white rounded-sm h-[140px] relative overflow-hidden flex items-center justify-center p-2">
-                  <Image
-                    src={img}
-                    alt={t('mountingSystems.fprImageAlt')}
-                    width={200}
+              <div className="bg-white rounded-sm h-[140px] relative overflow-hidden flex items-center justify-center p-2">
+                <Image
+                  src="https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_2.png"
+                  alt={t('cableSystems.fprImageAlt')}
+                  width={200}
                     height={120}
                     className="object-contain"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                  />
-                </div>
-              ))}
+                />
+              </div>
+              <div className="bg-white rounded-sm h-[140px] relative overflow-hidden flex items-center justify-center p-2">
+                <Image
+                  src="https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_product_3.png"
+                  alt={t('cableSystems.fprImageAlt')}
+                  width={200}
+                    height={120}
+                    className="object-contain"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -409,14 +409,14 @@ console.log('products:', products)
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-6">
             <div className="lg:col-span-6">
               <h2 className="text-xl md:text-2xl font-bold text-[#173B73] leading-snug">
-                {t('mountingSystems.falshpolTitle')}
+                {t('cableSystems.falshpolTitle')}
               </h2>
               <div className="border-t-2 border-[#173B73] mt-3" />
             </div>
           </div>
 
           <p className="text-[14px] text-slate-600 mb-6">
-            {t('mountingSystems.falshpolDescription')}
+            {t('cableSystems.falshpolDescription')}
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -427,12 +427,11 @@ console.log('products:', products)
                 </div>
                 <div className="bg-white rounded-sm h-[180px] relative overflow-hidden flex items-center justify-center p-2">
                   <Image
-                   src={item.img}
+                    src={item.img}
                     alt={item.caption}
                     width={300}
                     height={300}
                     className="object-cover"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
                   />
                 </div>
                 <p className="text-[14px] text-slate-400">{item.caption}</p>
@@ -440,21 +439,21 @@ console.log('products:', products)
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center">
+          {/* <div className="mt-8 flex justify-center">
             <button className="border border-[#173B73] text-[#173B73] text-[14px] px-6 py-2.5 rounded-sm hover:bg-[#173B73] hover:text-white transition-colors">
-              {t('mountingSystems.downloadButton')}
+              {t('cableSystems.downloadButton')}
             </button>
-          </div>
+          </div> */}
         </section>
 
         {/* ─── ФУТЕР ─── */}
         <section className="mb-[100px] mt-24">
           <div className="border-t border-[#173B73] pt-6 flex flex-col md:flex-row justify-between items-start gap-4">
             <h3 className="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
-              {t('mountingSystems.footer.title')}
+              {t('cableSystems.footer.title')}
             </h3>
             <p className="text-[14px] text-slate-400 max-w-xs md:text-right font-light leading-relaxed">
-              {t('mountingSystems.footer.subtitle')}
+              {t('cableSystems.footer.subtitle')}
             </p>
           </div>
         </section>

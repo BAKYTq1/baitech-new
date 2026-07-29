@@ -1,7 +1,7 @@
 ﻿'use client';
 import { useState } from 'react';
 import styles from './Navbar.module.scss';
-import { LayoutGrid, Monitor, Video, FileText, BookOpen } from 'lucide-react';
+import { LayoutGrid, Monitor, Video, FileText, BookOpen, Wrench } from 'lucide-react';
 import Catalog from '../catalogmenu/Catalog';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -43,25 +43,25 @@ export default function NavItem() {
     if (!item.categoryKey) return '';
     return resolveCategoryName(item.categoryKey, item.fallbackCategory);
   };
-
-  const menuItems = [
+const menuItems = [
     { label: t('navbar.catalog'), icon: <LayoutGrid size={18} />, isCatalog: true },
     {
-  label: t('navbar.pcComponents'),
-  link: '/',
-  categoryKey: 'pcComponents',
-  fallbackCategory: t('navbar.pcComponents'),
-  icon: <Monitor size={18} />,
-},
-{
-  label: t('navbar.videoSurveillance'),
-  link: '/',
-  categoryKey: 'videoSurveillance', 
-  fallbackCategory: t('navbar.videoSurveillance'),
-  icon: <Video size={18} />,
-},
+      label: t('navbar.pcComponents'),
+      link: '/',
+      categoryKey: 'pcComponents',
+      fallbackCategory: t('navbar.pcComponents'),
+      icon: <Monitor size={18} />,
+    },
+    {
+      label: t('navbar.videoSurveillance'),
+      link: '/',
+      categoryKey: 'videoSurveillance',
+      fallbackCategory: t('navbar.videoSurveillance'),
+      icon: <Video size={18} />,
+    },
     { label: t('navbar.solutions'), link: '/solution', icon: <FileText size={18} /> },
     { label: t('navbar.courses'), link: '/course', icon: <BookOpen size={18} /> },
+    { label: t('navbar.services'), link: '/services', icon: <Wrench size={18} /> },
   ];
 
   const hasNestedCategory = (category, currentCategory) => {

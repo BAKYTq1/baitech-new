@@ -13,76 +13,84 @@ export default function CatalogButton() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  // subBrandsMap теперь используется и для подкатегорий (уровень 2), и для под-подкатегорий (уровень 3)
   const [subBrandsMap, setSubBrandsMap] = useState({});
 
   const toggleCategory = (id) => {
     setActiveCategory((prev) => (prev === id ? null : id));
   };
 
-  const toggleSubBrands = useCallback(async (sub) => {
-    const current = subBrandsMap[sub.id];
+  const fetchBrandsFor = useCallback(
+    async (item) => {
+      try {
+        const data = await productApi.getByCategory(item.name);
+        const products = data.results || data;
+        const brandIds = [...new Set(products.map((p) => p.brand))];
+        return (allBrands || []).filter((brand) => brandIds.includes(brand.id));
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    },
+    [allBrands]
+  );
 
-    if (current?.open) {
+  // Универсальный тоггл — работает и для подкатегории, и для под-подкатегории
+  const toggleSubBrands = useCallback(
+    async (item) => {
+      const current = subBrandsMap[item.id];
+
+      if (current?.open) {
+        setSubBrandsMap((prev) => ({
+          ...prev,
+          [item.id]: { ...prev[item.id], open: false },
+        }));
+        return;
+      }
+
+      if (current?.brands) {
+        if (current.brands.length === 0) return;
+
+        setSubBrandsMap((prev) => ({
+          ...prev,
+          [item.id]: { ...prev[item.id], open: true },
+        }));
+        return;
+      }
+
       setSubBrandsMap((prev) => ({
         ...prev,
-        [sub.id]: { ...prev[sub.id], open: false },
+        [item.id]: { brands: null, loading: true, open: true },
       }));
-      return;
-    }
 
-    if (current?.brands) {
-      if (current.brands.length === 0) return;
-
+      const filtered = await fetchBrandsFor(item);
       setSubBrandsMap((prev) => ({
         ...prev,
-        [sub.id]: { ...prev[sub.id], open: true },
+        [item.id]: { brands: filtered, loading: false, open: filtered.length > 0 },
       }));
-      return;
-    }
+    },
+    [subBrandsMap, fetchBrandsFor]
+  );
 
-    setSubBrandsMap((prev) => ({
-      ...prev,
-      [sub.id]: { brands: null, loading: true, open: true },
-    }));
-
-    try {
-      const data = await productApi.getByCategory(sub.name);
-      const products = data.results || data;
-      const brandIds = [...new Set(products.map((p) => p.brand))];
-      const filtered = (allBrands || []).filter((brand) => brandIds.includes(brand.id));
-      setSubBrandsMap((prev) => ({
-        ...prev,
-        [sub.id]: { brands: filtered, loading: false, open: filtered.length > 0 },
-      }));
-    } catch (error) {
-      console.error(error);
-      setSubBrandsMap((prev) => ({
-        ...prev,
-        [sub.id]: { brands: [], loading: false, open: false },
-      }));
-    }
-  }, [allBrands, subBrandsMap]);
-
+  // Предзагружаем бренды только для "листовых" элементов:
+  // — подкатегорий (уровень 2) БЕЗ своих детей
+  // — всех под-подкатегорий (уровень 3)
   useEffect(() => {
     const preloadBrands = async () => {
       const activeSubcategories =
         categories?.find((category) => category.id === activeCategory)?.subcategories || [];
 
-      const missingSubs = activeSubcategories.filter((sub) => !(sub.id in subBrandsMap));
+      const leafSubs = activeSubcategories.filter((sub) => !sub.subcategories?.length);
+      const allChildren = activeSubcategories.flatMap((sub) => sub.subcategories || []);
+      const allItems = [...leafSubs, ...allChildren];
+
+      const missingSubs = allItems.filter((item) => !(item.id in subBrandsMap));
       if (missingSubs.length === 0) return;
 
       const loadedEntries = await Promise.all(
-        missingSubs.map(async (sub) => {
-          try {
-            const data = await productApi.getByCategory(sub.name);
-            const products = data.results || data;
-            const brandIds = [...new Set(products.map((p) => p.brand))];
-            const filtered = (allBrands || []).filter((brand) => brandIds.includes(brand.id));
-            return [sub.id, { brands: filtered, loading: false, open: false }];
-          } catch (error) {
-            console.error(error);
-            return [sub.id, { brands: [], loading: false, open: false }];
-          }
+        missingSubs.map(async (item) => {
+          const filtered = await fetchBrandsFor(item);
+          return [item.id, { brands: filtered, loading: false, open: false }];
         })
       );
 
@@ -95,7 +103,7 @@ export default function CatalogButton() {
     if (activeCategory) {
       preloadBrands();
     }
-  }, [activeCategory, allBrands, categories, subBrandsMap]);
+  }, [activeCategory, categories, subBrandsMap, fetchBrandsFor]);
 
   const handleCategoryClick = (category) => {
     setIsOpen(false);
@@ -170,9 +178,12 @@ export default function CatalogButton() {
                     {activeCategory === category.id && category.subcategories?.length > 0 && (
                       <div className={styles.subDrawer}>
                         {category.subcategories.map((sub) => {
+                          const hasChildren = sub.subcategories?.length > 0;
                           const subState = subBrandsMap[sub.id];
                           const isSubOpen = subState?.open;
-                          const hasBrands = (subState?.brands || []).length > 0;
+                          // Бренды у уровня 2 показываем только если у sub НЕТ своих детей —
+                          // иначе за бренды отвечают уже под-подкатегории
+                          const hasBrands = !hasChildren && (subState?.brands || []).length > 0;
 
                           return (
                             <div key={sub.id} className={styles.subGroup}>
@@ -217,16 +228,54 @@ export default function CatalogButton() {
 
                               {sub.subcategories?.length > 0 && (
                                 <ul className={styles.subList}>
-                                  {sub.subcategories.map((child) => (
-                                    <li key={child.id}>
-                                      <button
-                                        className={styles.subItem}
-                                        onClick={() => handleSubcategoryClick(child)}
-                                      >
-                                        {child.name}
-                                      </button>
-                                    </li>
-                                  ))}
+                                  {sub.subcategories.map((child) => {
+                                    const childState = subBrandsMap[child.id];
+                                    const isChildOpen = childState?.open;
+                                    const childHasBrands = (childState?.brands || []).length > 0;
+
+                                    return (
+                                      <li key={child.id}>
+                                        <div className={styles.subRow}>
+                                          <button
+                                            className={styles.subItem}
+                                            onClick={() => handleSubcategoryClick(child)}
+                                          >
+                                            {child.name}
+                                          </button>
+
+                                          {childHasBrands && (
+                                            <button
+                                              className={styles.brandToggle}
+                                              onClick={() => toggleSubBrands(child)}
+                                            >
+                                              <ChevronRight
+                                                size={13}
+                                                className={`${styles.brandArrow} ${isChildOpen ? styles.brandArrowOpen : ''}`}
+                                              />
+                                            </button>
+                                          )}
+                                        </div>
+
+                                        {isChildOpen && childHasBrands && (
+                                          <div className={styles.brandsInline}>
+                                            {childState?.loading ? (
+                                              <Loader2 size={14} className={styles.spinner} />
+                                            ) : (
+                                              childState.brands.map((brand) => (
+                                                <button
+                                                  key={brand.id}
+                                                  className={styles.brandChip}
+                                                  onClick={() => handleBrandClick(child, brand.id)}
+                                                >
+                                                  {brand.name}
+                                                </button>
+                                              ))
+                                            )}
+                                          </div>
+                                        )}
+                                      </li>
+                                    );
+                                  })}
                                 </ul>
                               )}
                             </div>

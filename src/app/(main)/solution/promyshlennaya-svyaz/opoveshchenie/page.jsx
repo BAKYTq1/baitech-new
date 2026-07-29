@@ -396,9 +396,9 @@ export default function ObjectNotificationPage() {
           </div>
 
           <div className="flex justify-center pt-4">
-            <button className="border-2 border-[#173B73] text-[#173B73] hover:bg-[#172B99] hover:border-[#172B99] hover:text-white font-bold text-sm px-6 py-2.5 rounded-full transition-colors flex items-center gap-2">
+            {/* <button className="border-2 border-[#173B73] text-[#173B73] hover:bg-[#172B99] hover:border-[#172B99] hover:text-white font-bold text-sm px-6 py-2.5 rounded-full transition-colors flex items-center gap-2">
               {t('objectNotification.catalogButton')}
-            </button>
+            </button> */}
           </div>
         </section>
 

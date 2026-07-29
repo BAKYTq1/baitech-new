@@ -154,6 +154,80 @@
   &:hover { color: #2c3e50; }
 }
 
+// Строка с названием (подкатегория/под-подкатегория) + кнопкой раскрытия брендов
+.subRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// Разделитель только у строк третьего уровня (под-подкатегории) — как раньше был на subItem
+.subList .subRow {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 8px 0;
+}
+
+.subList li:last-child .subRow {
+  border-bottom: none;
+}
+
+// Кнопка-стрелка "показать бренды"
+.brandToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.brandArrow {
+  color: #ccc;
+  transition: transform 0.2s, color 0.2s;
+
+  &.brandArrowOpen {
+    transform: rotate(90deg);
+    color: #005bff;
+  }
+}
+
+// Список брендов, раскрытых inline под подкатегорией/под-подкатегорией
+.brandsInline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 0 4px;
+}
+
+.brandChip {
+  padding: 5px 12px;
+  font-size: 12px;
+  color: #444;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: #f0f7ff;
+    color: #005bff;
+    border-color: #cfe3ff;
+  }
+}
+
+.spinner {
+  animation: catalogButtonSpin 0.8s linear infinite;
+  color: #005bff;
+}
+
+@keyframes catalogButtonSpin {
+  to { transform: rotate(360deg); }
+}
+
 .subList {
   list-style: none;
   padding: 0;
@@ -161,18 +235,14 @@
 }
 
 .subItem {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
+  padding: 0;
   font-size: 14px;
   color: #444;
   background: none;
   border: none;
-  border-bottom: 1px solid #f0f0f0;
   text-align: left;
   cursor: pointer;
   transition: color 0.15s;
 
-  &:last-child { border: none; }
   &:hover { color: #005bff; }
 }
