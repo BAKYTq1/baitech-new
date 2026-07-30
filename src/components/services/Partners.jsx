@@ -23,6 +23,7 @@ import logo16 from "../../../assets/svg/16.svg";
 import logo17 from "../../../assets/svg/17.svg";
 import logo18 from "../../../assets/svg/18.svg";
 import logo19 from "../../../assets/svg/19.svg";
+import { useTranslation } from "react-i18next";
 
 const DEFAULT_PARTNERS = [
   { src: logo01, name: "Партнёр 1" },
@@ -56,8 +57,9 @@ const AUTOPLAY_MS = 3000;
  *  - title     {string}  heading text
  *  - partners  {Array<{src, name, href?}>}  defaults to the 19 bundled logos
  */
-export default function Partners({ title = "Наши партнёры", partners = DEFAULT_PARTNERS }) {
+export default function Partners({ partners = DEFAULT_PARTNERS }) {
   const count = partners.length;
+  const {t} = useTranslation();
 
   // Render the list 3x so we can scroll indefinitely in either direction
   // and silently "rewind" once we drift into the outer copies.
@@ -184,7 +186,7 @@ export default function Partners({ title = "Наши партнёры", partners
   return (
     <section className={styles.section}>
       <header className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{t("OurPartners")}</h2>
       </header>
 
       {count === 0 ? (

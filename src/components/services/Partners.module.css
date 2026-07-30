@@ -37,6 +37,7 @@
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin: 0;
+  text-align: center;
 }
 
 /* --- Carousel --- */
@@ -82,10 +83,6 @@
   overflow: hidden;
 }
 
-.item:hover {
-  border-color: var(--accent);
-  box-shadow: 0 8px 22px rgba(31, 92, 78, 0.12);
-}
 
 .link {
   position: absolute;
@@ -97,15 +94,15 @@
 .logo {
   /* next/image with `fill` sets position:absolute; inset:0 aligns to the
      tile's padding edge automatically, so no extra spacing rules needed here. */
-  object-fit: contain;
-  filter: grayscale(1) opacity(0.55);
+  object-fit: cover;
+  /* filter: grayscale(1) opacity(0.55); */
   transition: filter 0.25s ease;
   pointer-events: none; /* let drags on the tile pass through to the track */
 }
 
-.item:hover .logo {
+/* .item:hover .logo {
   filter: grayscale(0) opacity(1);
-}
+} */
 
 .empty {
   text-align: left;

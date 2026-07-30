@@ -259,7 +259,6 @@ export default function IndustrialCommunicationPage() {
             <div className="flex items-center gap-2">
               <Image src={logo} alt="Armtel Logo" width={200} height={200} className="object-contain" /> 
             </div>
-            <span className="text-[10px] text-gray-400 tracking-widest uppercase ml-9 mt-[-4px]">by Baitech</span>
           </div>
 
           <div className="lg:col-span-9 space-y-[15px] md:space-y-5">
