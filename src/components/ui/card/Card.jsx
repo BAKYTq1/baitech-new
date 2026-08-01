@@ -72,6 +72,8 @@ function Card({ product }) {
     ? numericPrice.toLocaleString("ru-RU", { maximumFractionDigits: 0 })
     : "-";
   const isHighPrice = Number.isFinite(numericPrice) && numericPrice >= HIGH_PRICE_LIMIT;
+  // Товар без цены (или с ценой 0) продаётся только за бонусные баллы
+  const isBonusOnly = !(numericPrice > 0);
 
   const whatsappMessage = isHighPrice
     ? "Здравствуйте! Интересует товар: " + (product?.name || "-") + ", артикул: " + (product?.article || "-") + "."
@@ -201,12 +203,20 @@ function Card({ product }) {
           ) : isAvailable ? (
             <>
               <div className="product-card__price">
-                <span className="currency">
-                  {product.bonus || 0} {t("card.bonuses")}
-                </span>
-                <span className="amount">
-                  {formattedPrice} {t("card.currency")}
-                </span>
+                {isBonusOnly ? (
+                  <span className="amount product-card__price--bonus">
+                    {product.bonus_price ?? 0} {t("card.bonusPoints", t('ball'))}
+                  </span>
+                ) : (
+                  <>
+                    <span className="currency">
+                      {product.bonus || 0} {t("card.bonuses")}
+                    </span>
+                    <span className="amount">
+                      {formattedPrice} {t("card.currency")}
+                    </span>
+                  </>
+                )}
               </div>
               <button
                 className={`product-card__cart ${isInCart ? "product-card__cart--active" : ""}`}
@@ -275,7 +285,7 @@ function Card({ product }) {
       {showAuthModal && (
         <div className="auth-modal__overlay" onClick={() => setShowAuthModal(false)}>
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="auth-modal__close" onClick={() => setShowAuthModal(false)} aria-label="Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ">
+            <button className="auth-modal__close" onClick={() => setShowAuthModal(false)} aria-label="Закрыть">
               <IoClose size={20} />
             </button>
             <div className="auth-modal__icon">
@@ -299,5 +309,3 @@ function Card({ product }) {
 }
 
 export default Card;
-
-

@@ -57,10 +57,15 @@ export default function FullProductCard({ product }) {
   );
   const isInCart = !!cartItem;
   const isAvailable = product?.is_available;
-  const formattedPrice = Number.isFinite(Number(product?.price))
-    ? Number(product.price).toLocaleString('ru-RU')
-    : '-';
-  const isHighPrice = Number(product?.price) >= HIGH_PRICE_LIMIT;
+const numericPrice =
+  product?.price === null || product?.price === undefined || product?.price === ''
+    ? null
+    : Number(product.price);
+const formattedPrice = Number.isFinite(numericPrice)
+  ? numericPrice.toLocaleString('ru-RU')
+  : '-';
+const isHighPrice = Number.isFinite(numericPrice) && numericPrice >= HIGH_PRICE_LIMIT;
+const isBonusOnly = !(numericPrice > 0);
   const whatsappMessage = isHighPrice
     ? `Здравствуйте! Интересует товар: ${product?.name || '-'}, артикул: ${product?.article || '-'}.`
     : `Здравствуйте! Интересует товар: ${product?.name || '-'}, артикул: ${product?.article || '-'}, цена: ${formattedPrice} сом.`;
@@ -146,9 +151,11 @@ export default function FullProductCard({ product }) {
                   <div className={styles.bonus}>
                     {product.bonus || 0} {t('card.bonuses')}
                   </div>
-                  <div className={styles.price}>
-                    {formattedPrice} {t('card.currency')}
-                  </div>
+                <div className={styles.price}>
+    {isBonusOnly
+      ? `${product.bonus_price ?? 0} ${t('ball')}`
+      : `${formattedPrice} ${t('card.currency')}`}
+  </div>
                 </div>
 
                 <button

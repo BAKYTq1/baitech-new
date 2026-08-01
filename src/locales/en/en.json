@@ -657,7 +657,10 @@
       "currency": "som",
       "pcs": "pcs",
       "processing": "Processing...",
-      "submitButton": "Place Order"
+      "submitButton": "Place Order",
+      "paymentMethod": "Payment method",
+      "payWithBonus": "With bonus points ({{balance}})",
+       "noBonus": "You have no bonus points"
     },
     "success": {
       "title": "Order Information",
@@ -704,6 +707,7 @@
   "returned":         "Returned",
   "not_paid":         "Not Paid",
   "awaiting_payment": "Awaiting Payment",
+  "paid_with_bonus": "Paid with Bonuses",
   "pending":          "Pending",
   "cancelled":        "Cancelled"
 },
@@ -2877,6 +2881,6 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-  "OurPartners": "Our Partners"
-
+  "OurPartners": "Our Partners",
+  "ball": "points"
 }

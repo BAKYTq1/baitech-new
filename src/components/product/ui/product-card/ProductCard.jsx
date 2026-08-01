@@ -108,6 +108,8 @@ const ProductCard = ({ productId }) => {
     ? parsedPrice.toLocaleString()
     : product?.price || "0";
   const isHighPrice = Number.isFinite(parsedPrice) && parsedPrice >= HIGH_PRICE_LIMIT;
+  // Товар без цены (или с ценой 0) продаётся только за бонусные баллы
+  const isBonusOnly = !(parsedPrice > 0);
   const whatsappMessage = isHighPrice
     ? `Здравствуйте! Интересует товар: ${product?.name || "-"}, артикул: ${product?.article || "-"}.`
     : `Здравствуйте! Интересует товар: ${product?.name || "-"}, артикул: ${product?.article || "-"}, цена: ${formattedPrice} сом.`;
@@ -166,6 +168,10 @@ const ProductCard = ({ productId }) => {
           </p>
           {isHighPrice ? (
             <div className="product__contact-title">{t("card.contactForPrice")}</div>
+          ) : isBonusOnly ? (
+            <div className="product__price product__price--bonus">
+              {product.bonus_price || 0} {t('productCard.bonusPoints', t('ball'))}
+            </div>
           ) : (
             <>
               <div className="product__price">{formattedPrice} {t('productCard.currency')}</div>

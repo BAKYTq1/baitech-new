@@ -634,7 +634,10 @@
       "currency": "сом",
       "pcs": "шт",
       "processing": "Оформляем...",
-      "submitButton": "Оформить заказ"
+      "submitButton": "Оформить заказ",
+      "paymentMethod": "Способ оплаты",
+      "payWithBonus": "Бонусами ({{balance}})",
+      "noBonus": "У вас нет бонусов"
     },
     "success": {
       "title": "Информация о заказе",
@@ -673,6 +676,7 @@
   "returned":         "Возврат",
   "not_paid":         "Не оплачено",
   "awaiting_payment": "Ожидание оплаты",
+  "paid_with_bonus":  "Оплачено бонусами",
   "pending":          "В обработке",
   "cancelled":        "Отменено"
 },
@@ -2627,5 +2631,6 @@
       "subtitle": "Рассчитаем стоимость проекта и подключимся на любом этапе реализации"
     }
   },
-  "OurPartners":"Наши партнёры"
+  "OurPartners":"Наши партнёры",
+  "ball": "баллов"
 }

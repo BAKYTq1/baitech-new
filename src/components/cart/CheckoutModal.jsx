@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import styles from './CheckoutModal.module.scss';
 import { $api } from '../../../API/api';
 import Image from 'next/image';
+import { useMyProfile } from '@/lib/auth/hooks/hooks';
 
 export default function CheckoutModal({ items, allItems, onClose }) {
   const { t, i18n } = useTranslation();
@@ -20,7 +21,21 @@ export default function CheckoutModal({ items, allItems, onClose }) {
   const [selectedAddressString, setSelectedAddressString] = useState('');
   const [createdOrder, setCreatedOrder] = useState(null);
   const [form, setForm] = useState({ first_name: '', last_name: '', phone_number: '' });
-  const [payment] = useState('qr');
+  const [payment, setPayment] = useState('qr');
+
+  // Баланс бонусов пользователя — из личного кабинета
+  const { data: profile } = useMyProfile();
+  const bonusBalance = Number(profile?.bonus_balance ?? 0);
+
+  // Определяем тип заказа по составу корзины: товар без цены (price <= 0) покупается только за бонусы
+  const hasBonusItem = items.some((item) => !(Number(item.product?.price) > 0));
+  const hasMoneyItem = items.some((item) => Number(item.product?.price) > 0);
+  const isBonusOrder = hasBonusItem && !hasMoneyItem;
+  const canPayWithBonus = bonusBalance > 0;
+
+  useEffect(() => {
+    setPayment(isBonusOrder ? 'bonus' : 'qr');
+  }, [isBonusOrder]);
 
   const buildAddressString = (a) =>
     `${a.address_1}${a.address_2 ? `, ${a.address_2}` : ''}, ${a.region}`;
@@ -77,6 +92,7 @@ export default function CheckoutModal({ items, allItems, onClose }) {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries(['cart']);
+      queryClient.invalidateQueries(['profile']);
       setCreatedOrder(data);
 
       if (payment === 'cash' || data?.payment_method === 'cash') {
@@ -124,11 +140,17 @@ export default function CheckoutModal({ items, allItems, onClose }) {
       phone_number: form.phone_number,
       address: selectedAddressString,
       payment_method: payment,
+      ...(payment === 'bonus' ? { status: 'paid_with_bonus' } : {}),
     });
   };
 
   const handlePay = () => {
     if (payment === 'cash' || createdOrder?.payment_method === 'cash') {
+      setStep('cash-success');
+      return;
+    }
+    if (payment === 'bonus' || createdOrder?.payment_method === 'bonus') {
+      // Оплата бонусами списывается на бэкенде при создании заказа, отдельного шага оплаты не требуется
       setStep('cash-success');
       return;
     }
@@ -256,13 +278,27 @@ export default function CheckoutModal({ items, allItems, onClose }) {
                 </div>
 
                 <div className={styles.paymentSection}>
-                  <p>{t('checkoutModal.form.qrPayment')}</p>
+                  <p>{t('checkoutModal.form.paymentMethod')}</p>
+
+                  {isBonusOrder ? (
+                    canPayWithBonus ? (
+                      <p style={{ marginTop: 8 }}>
+                        {t('checkoutModal.form.payWithBonus', { balance: bonusBalance.toLocaleString('ru-RU') })}
+                      </p>
+                    ) : (
+                      <p style={{ marginTop: 8, color: '#E35845' }}>
+                        {t('checkoutModal.form.noBonus')}
+                      </p>
+                    )
+                  ) : (
+                    <p style={{ marginTop: 8 }}>{t('checkoutModal.form.qrPayment')}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
                   className={styles.btnPrimary}
-                  disabled={orderMutation.isPending || !isFormValid}
+                  disabled={orderMutation.isPending || !isFormValid || (isBonusOrder && !canPayWithBonus)}
                 >
                   {orderMutation.isPending ? t('checkoutModal.form.processing') : t('checkoutModal.form.submitButton')}
                 </button>

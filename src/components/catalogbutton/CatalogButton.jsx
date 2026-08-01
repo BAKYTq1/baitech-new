@@ -156,7 +156,7 @@ export default function CatalogButton() {
                         <span className={styles.itemTitle}>{category.name}</span>
                       </button>
 
-                      {category.subcategories?.length > 0 ? (
+                      {category.subcategories?.length > 0 && (
                         <button
                           className={styles.toggleBtn}
                           type="button"
@@ -170,8 +170,6 @@ export default function CatalogButton() {
                             className={`${styles.subArrow} ${activeCategory === category.id ? styles.subArrowOpen : ''}`}
                           />
                         </button>
-                      ) : (
-                        <ChevronRight size={15} className={styles.subArrow} />
                       )}
                     </div>
 

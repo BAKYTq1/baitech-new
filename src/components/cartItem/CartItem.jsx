@@ -25,6 +25,11 @@ export default function CartItem({ item, checked, onToggle }) {
     updateItem({ id: item.id, product_id: product.id, quantity: item.quantity - 1 });
   };
 
+  const numericPrice =
+  product?.price === null || product?.price === undefined || product?.price === ''
+    ? null
+    : Number(product.price);
+const isBonusOnly = !(numericPrice > 0);
   return (
     <div className={styles.card}>
       <div className={styles.imageBlock}>
@@ -55,12 +60,16 @@ export default function CartItem({ item, checked, onToggle }) {
           {product.description?.length > 85 ? '...' : ''}
         </p>
 
-        <div className={styles.priceRow}>
-         <div className={styles.bonus}>{Number((product.bonus || 0) * item.quantity).toLocaleString()} {t('cartItem.bonuses')}</div>
-          <div className={styles.price}>
-            {Number(item.total_price || product.price || 0).toLocaleString()} {t('cartItem.currency')}
-          </div>
-        </div>
+      <div className={styles.priceRow}>
+  <div className={styles.bonus}>
+    {Number((product.bonus || 0) * item.quantity).toLocaleString()} {t('cartItem.bonuses')}
+  </div>
+  <div className={styles.price}>
+    {isBonusOnly
+      ? `${Number((product.bonus_price || 0) * item.quantity).toLocaleString()} ${t('ball')}`
+      : `${Number(item.total_price || product.price || 0).toLocaleString()} ${t('cartItem.currency')}`}
+  </div>
+</div>
 
         <div className={styles.footer}>
           <div className={styles.counter}>

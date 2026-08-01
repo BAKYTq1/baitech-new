@@ -217,7 +217,7 @@ export default function SidebarApp() {
           </div>
           <div>
             <p className="text-[18px] font-[500] text-[#00162A]">
-              {bonusBalance.toLocaleString('ru-RU')} {t('profile.bonuses.currency')}
+              {bonusBalance.toLocaleString('ru-RU')} {t('profile.bonuses.bonusesText')}
             </p>
             <p className="text-[13px] text-gray-500">
               {t('profile.bonuses.available')}

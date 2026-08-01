@@ -28,6 +28,8 @@ const AddProduct = () => {
     subCategory: "", // уровень 3 — под-подкатегория
     brand: "",
     bonus: "",
+    bonusCost: "", // стоимость товара в бонусных баллах — используется, если цена не указана
+    discount: "",
     description: "",
     characteristics: "",
     images: [null, null, null, null],
@@ -45,6 +47,20 @@ const AddProduct = () => {
       const num = Number(value);
       if (num > 9999 || num < 0) return;
       setFormData((prev) => ({ ...prev, bonus: value }));
+      return;
+    }
+
+    if (name === "bonusCost") {
+      const num = Number(value);
+      if (num < 0) return;
+      setFormData((prev) => ({ ...prev, bonusCost: value }));
+      return;
+    }
+
+    if (name === "discount") {
+      const num = Number(value);
+      if (num > 100 || num < 0) return;
+      setFormData((prev) => ({ ...prev, discount: value }));
       return;
     }
 
@@ -69,7 +85,7 @@ const AddProduct = () => {
   const flattenCategories = (items, depth = 0) => {
     let flat = [];
     items?.forEach((item) => {
-      flat.push({ ...item, displayName: `${"— ".repeat(depth)}${item.name}` });
+      flat.push({ ...item, displayName: `${"— ".repeat(depth)}${item.name}`, depth });
       if (item.subcategories?.length) {
         flat = flat.concat(flattenCategories(item.subcategories, depth + 1));
       }
@@ -78,6 +94,20 @@ const AddProduct = () => {
   };
 
   const flatCategories = useMemo(() => flattenCategories(categories), [categories]);
+
+  // Списки для модалки "Управление" — раздельно по уровням
+  const rootCategoriesFlat = useMemo(
+    () => flatCategories.filter((item) => item.depth === 0),
+    [flatCategories]
+  );
+  const subCategoriesFlat = useMemo(
+    () => flatCategories.filter((item) => item.depth === 1),
+    [flatCategories]
+  );
+  const subSubCategoriesFlat = useMemo(
+    () => flatCategories.filter((item) => item.depth === 2),
+    [flatCategories]
+  );
 
   // ===== Категории: разворачиваем дерево на 3 уровня =====
   const rootCategories = useMemo(
@@ -137,16 +167,27 @@ const AddProduct = () => {
     const payload = new FormData();
     payload.append("name", formData.name);
     payload.append("article", formData.article);
-    payload.append("price", formData.price);
     payload.append(
       "category",
       formData.subCategory || formData.category || formData.parentCategory
     );
     payload.append("brand", formData.brand);
-    payload.append("bonus", formData.bonus);
+    payload.append("discount", formData.discount || "0");
     payload.append("description", formData.description);
     payload.append("characteristics", formData.characteristics);
     payload.append("is_available", "true");
+
+    const isBonusOnly = !(Number(formData.price) > 0);
+
+    if (isBonusOnly) {
+      // Товар доступен только за бонусные баллы — цены нет, есть только стоимость в баллах
+      payload.append("price", "0");
+      payload.append("bonus_price", formData.bonusCost);
+      payload.append("bonus", "0");
+    } else {
+      payload.append("price", formData.price);
+      payload.append("bonus", formData.bonus);
+    }
 
     formData.images.forEach((file) => {
       if (file) payload.append("images", file);
@@ -173,23 +214,40 @@ const AddProduct = () => {
               <X size={20} />
             </button>
 
-            {modalType === "manage-category" || modalType === "manage-brand" ? (
+            {modalType === "manage-category-root" || modalType === "manage-category-sub" || modalType === "manage-category-subsub" || modalType === "manage-brand" ? (
               <>
-                <h3>Управление {modalType === "manage-category" ? "категориями" : "брендами"}</h3>
+                <h3>
+                  Управление{" "}
+                  {modalType === "manage-category-root"
+                    ? "категориями"
+                    : modalType === "manage-category-sub"
+                    ? "подкатегориями"
+                    : modalType === "manage-category-subsub"
+                    ? "под-подкатегориями"
+                    : "брендами"}
+                </h3>
                 <div className="management-list">
-                  {(modalType === "manage-category" ? flatCategories : brands)?.map((item) => (
+                  {(modalType === "manage-category-root"
+                    ? rootCategoriesFlat
+                    : modalType === "manage-category-sub"
+                    ? subCategoriesFlat
+                    : modalType === "manage-category-subsub"
+                    ? subSubCategoriesFlat
+                    : brands
+                  )?.map((item) => (
                     <div key={item.id} className="management-item">
                       <span>{item.displayName || item.name}</span>
                       <button
                         className="delete-item-btn"
                         onClick={async () => {
-                          const itemType = modalType === "manage-category" ? "категорию" : "бренд";
+                          const isCategory = modalType !== "manage-brand";
+                          const itemType = isCategory ? "категорию" : "бренд";
                           if (!window.confirm(`Вы уверены, что хотите удалить ${itemType} "${item.name}"?`)) {
                             return;
                           }
 
                           try {
-                            if (modalType === "manage-category") {
+                            if (isCategory) {
                               await deleteCategory(item.id);
                             } else {
                               await deleteBrand(item.id);
@@ -331,6 +389,9 @@ const AddProduct = () => {
           <div className="form-group">
             <label>Цена (сом)</label>
             <input name="price" type="number" value={formData.price} onChange={handleInputChange} />
+            <small className="field-hint">
+              Оставьте пустым, если товар продаётся только за бонусные баллы
+            </small>
           </div>
 
           <div className="form-group">
@@ -365,7 +426,7 @@ const AddProduct = () => {
               >
                 <Plus size={20} />
               </button>
-              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category")}>
+              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category-root")}>
                 <Trash2 size={18} />
               </button>
             </div>
@@ -408,7 +469,7 @@ const AddProduct = () => {
               >
                 <Plus size={20} />
               </button>
-              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category")}>
+              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category-sub")}>
                 <Trash2 size={18} />
               </button>
             </div>
@@ -445,7 +506,7 @@ const AddProduct = () => {
               >
                 <Plus size={20} />
               </button>
-              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category")}>
+              <button type="button" className="delete-small-btn" onClick={() => setModalType("manage-category-subsub")}>
                 <Trash2 size={18} />
               </button>
             </div>
@@ -479,8 +540,25 @@ const AddProduct = () => {
           </div>
 
           <div className="form-group">
-            <label>Бонусные баллы (%)</label>
-            <input name="bonus" type="number" value={formData.bonus} onChange={handleInputChange} />
+            {Number(formData.price) > 0 ? (
+              <>
+                <label>Бонусные баллы (%)</label>
+                <input name="bonus" type="number" value={formData.bonus} onChange={handleInputChange} />
+              </>
+            ) : (
+              <>
+                <label>Стоимость в бонусных баллах</label>
+                <input name="bonusCost" type="number" value={formData.bonusCost} onChange={handleInputChange} />
+                <small className="field-hint">
+                  Сколько баллов нужно накопить, чтобы получить этот товар
+                </small>
+              </>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label>Скидка (%)</label>
+            <input name="discount" type="number" value={formData.discount} onChange={handleInputChange} />
           </div>
         </div>
 

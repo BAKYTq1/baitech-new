@@ -31,6 +31,8 @@ const EditProduct = () => {
     subCategory: "", // уровень 3 — под-подкатегория
     brand: "",
     bonus: "",
+    bonusCost: "", // стоимость товара в бонусных баллах — используется, если цена не указана
+    discount: "",
     description: "",
     characteristics: "",
     is_available: true,
@@ -74,6 +76,8 @@ const EditProduct = () => {
       subCategory: level3 ? String(level3.id) : "",
       brand: product.brand ? String(product.brand) : "",
       bonus: product.bonus || "",
+      bonusCost: product.bonus_price ? String(product.bonus_price) : "",
+      discount: product.discount || "",
       description: product.description || "",
       characteristics: product.characteristics || "",
       is_available: product.is_available ?? true,
@@ -95,6 +99,20 @@ const EditProduct = () => {
       const num = Number(value);
       if (num > 9999 || num < 0) return;
       setFormData((prev) => ({ ...prev, bonus: value }));
+      return;
+    }
+
+    if (name === "bonusCost") {
+      const num = Number(value);
+      if (num < 0) return;
+      setFormData((prev) => ({ ...prev, bonusCost: value }));
+      return;
+    }
+
+    if (name === "discount") {
+      const num = Number(value);
+      if (num > 100 || num < 0) return;
+      setFormData((prev) => ({ ...prev, discount: value }));
       return;
     }
 
@@ -161,16 +179,27 @@ const EditProduct = () => {
     const payload = new FormData();
     payload.append("name", formData.name);
     payload.append("article", formData.article);
-    payload.append("price", formData.price);
     payload.append(
       "category",
       formData.subCategory || formData.category || formData.parentCategory
     );
     payload.append("brand", formData.brand);
-    payload.append("bonus", formData.bonus);
+    payload.append("discount", formData.discount || "0");
     payload.append("description", formData.description);
     payload.append("characteristics", formData.characteristics);
     payload.append("is_available", String(formData.is_available));
+
+    const isBonusOnly = !(Number(formData.price) > 0);
+
+    if (isBonusOnly) {
+      // Товар доступен только за бонусные баллы — цены нет, есть только стоимость в баллах
+      payload.append("price", "0");
+      payload.append("bonus_price", formData.bonusCost);
+      payload.append("bonus", "0");
+    } else {
+      payload.append("price", formData.price);
+      payload.append("bonus", formData.bonus);
+    }
 
     imageFiles.forEach((file) => {
       if (file) payload.append("images", file);
@@ -286,6 +315,9 @@ const EditProduct = () => {
           <div className="form-group">
             <label>Цена (сом)</label>
             <input name="price" type="number" value={formData.price} onChange={handleInputChange} />
+            <small className="field-hint">
+              Оставьте пустым, если товар продаётся только за бонусные баллы
+            </small>
           </div>
         </div>
 
@@ -372,8 +404,27 @@ const EditProduct = () => {
           </div>
 
           <div className="form-group">
-            <label>Бонусные баллы (%)</label>
-            <input name="bonus" type="number" value={formData.bonus} onChange={handleInputChange} />
+            {Number(formData.price) > 0 ? (
+              <>
+                <label>Бонусные баллы (%)</label>
+                <input name="bonus" type="number" value={formData.bonus} onChange={handleInputChange} />
+              </>
+            ) : (
+              <>
+                <label>Стоимость в бонусных баллах</label>
+                <input name="bonusCost" type="number" value={formData.bonusCost} onChange={handleInputChange} />
+                <small className="field-hint">
+                  Сколько баллов нужно накопить, чтобы получить этот товар
+                </small>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label>Скидка (%)</label>
+            <input name="discount" type="number" value={formData.discount} onChange={handleInputChange} />
           </div>
         </div>
 

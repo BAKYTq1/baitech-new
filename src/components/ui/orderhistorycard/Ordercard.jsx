@@ -12,6 +12,7 @@
   returned:         'status status--error',
   not_paid:         'status status--error',
   awaiting_payment: 'status status--pending',
+  paid_with_bonus: 'status paid_with_bonus',
 }
 
     function OtherHistoryCard({ item }) {

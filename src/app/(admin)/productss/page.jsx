@@ -192,8 +192,14 @@ useEffect(() => {
                       <div className="info-value">{product.article}</div>
                     </div>
                     <div className="info-block">
-                      <div className="info-label">Цена</div>
-                      <div className="info-value">{product.price} сом</div>
+                      <div className="info-label">
+                        {Number(product.price) > 0 ? "Цена" : "Цена в бонусах"}
+                      </div>
+                      <div className="info-value">
+                        {Number(product.price) > 0
+                          ? `${product.price} сом`
+                          : `${product.bonus_price ?? 0} баллов`}
+                      </div>
                     </div>
                     <div className="info-block">
                       <div className="info-label">Статус</div>
