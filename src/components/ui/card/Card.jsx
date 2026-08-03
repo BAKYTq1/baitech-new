@@ -64,6 +64,8 @@ function Card({ product }) {
   const isInCart = !!cartItem;
   const imageSrc = product?.existing_images?.[0]?.image || PRODUCT_PLACEHOLDER;
   const isAvailable = product?.is_available;
+  const discount = Number(product?.discount || 0);
+  const hasDiscount = discount > 0;
   const numericPrice =
     product?.price === null || product?.price === undefined || product?.price === ""
       ? null
@@ -136,6 +138,9 @@ function Card({ product }) {
         >
           {isAvailable ? t("card.inStock") : t("card.outOfStock")}
         </div>
+        {hasDiscount && (
+          <div className="product-card__discount">-{discount}%</div>
+        )}
 
         <Link href={productDetailPath}>
           <div className="product-card__image">

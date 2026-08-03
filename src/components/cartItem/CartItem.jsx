@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next';
 export default function CartItem({ item, checked, onToggle }) {
   const { t } = useTranslation();
   const product = item.product || {};
+  const discount = Number(product?.discount || 0);
+  const hasDiscount = discount > 0;
   const { mutate: deleteItem } = useDeleteCartItem();
   const { mutate: updateItem, isPending } = useUpdateCartItem();
 
@@ -36,6 +38,9 @@ const isBonusOnly = !(numericPrice > 0);
         <span className={styles.badge}>
           {product.is_available ? t('cartItem.inStock') : t('cartItem.outOfStock')}
         </span>
+        {hasDiscount && (
+          <span className={styles.discount}>-{discount}%</span>
+        )}
         {product.existing_images?.[0]?.image && (
           <Image
             src={product.existing_images[0].image}

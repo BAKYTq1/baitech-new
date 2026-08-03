@@ -57,6 +57,8 @@ export default function FullProductCard({ product }) {
   );
   const isInCart = !!cartItem;
   const isAvailable = product?.is_available;
+  const discount = Number(product?.discount || 0);
+  const hasDiscount = discount > 0;
 const numericPrice =
   product?.price === null || product?.price === undefined || product?.price === ''
     ? null
@@ -87,6 +89,9 @@ const isBonusOnly = !(numericPrice > 0);
       <div className={`${styles.badge} ${product.is_available ? styles.available : styles.waiting}`}>
         {product.is_available ? t('card.inStock') : t('card.outOfStock')}
       </div>
+      {hasDiscount && (
+        <div className={styles.discount}>-{discount}%</div>
+      )}
 
       <Link href={productDetailPath} className={styles.wrapper}>
         <div className={styles.imageSection}>

@@ -37,6 +37,18 @@
   background: #f44336;
 }
 
+.discount {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 5px;
+  color: #fff;
+  background: #e35845;
+  z-index: 2;
+}
+
 .card.grid {
   display: flex;
   flex-direction: column;

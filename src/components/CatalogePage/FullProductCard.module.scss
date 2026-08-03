@@ -37,6 +37,18 @@
   background: #f44336;
 }
 
+.discount {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  color: #fff;
+  background: #e35845;
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 5px;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: 300px 1fr;
