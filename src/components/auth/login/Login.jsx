@@ -36,17 +36,27 @@ const LoginPage = ({ type = "login" }) => {
 
         console.log('Login response:', response);
 
-        const isAdmin = response?.role === 'admin' || 
-                        response?.user?.is_staff === true || 
+        const isAdmin = response?.role === 'admin' ||
+                        response?.user?.role === 'admin' ||
+                        response?.user?.is_staff === true ||
                         response?.user?.is_superuser === true;
-        
+
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminRefreshToken');
+        localStorage.removeItem('isAdmin');
+
         if (isAdmin) {
           if (response?.access) {
             localStorage.setItem('adminToken', response.access);
+            localStorage.setItem('access_token', response.access);
+            localStorage.setItem('accessToken', response.access);
           }
           if (response?.refresh) {
             localStorage.setItem('adminRefreshToken', response.refresh);
+            localStorage.setItem('refresh_token', response.refresh);
           }
+          localStorage.setItem('isAdmin', 'true');
+          localStorage.setItem('userRole', response?.role || response?.user?.role || 'admin');
           toast.success(t('loginPage.messages.welcomeAdmin'));
           router.push('/productss');
         } else {
@@ -57,6 +67,7 @@ const LoginPage = ({ type = "login" }) => {
           if (response?.refresh) {
             localStorage.setItem('refresh_token', response.refresh);
           }
+          localStorage.setItem('userRole', response?.user?.role || 'user');
           toast.success(t('loginPage.messages.loginSuccess'));
           router.push('/');
         }

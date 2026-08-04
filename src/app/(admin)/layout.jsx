@@ -1,4 +1,5 @@
 import AdminPanel from "@/components/admin/adminSideBar/AdminPanel";
+import AdminGuard from "@/components/admin/AdminGuard";
 
 export const metadata = {
   title: "Admin Dashboard",
@@ -7,19 +8,21 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        backgroundColor: "#f8f9fa",
-        gap: "20px",
-      }}
-    >
-      <AdminPanel />
+    <AdminGuard>
+      <div
+        style={{
+          display: "flex",
+          minHeight: "100vh",
+          backgroundColor: "#f8f9fa",
+          gap: "20px",
+        }}
+      >
+        <AdminPanel />
 
-      <main style={{ flex: 1 }}>
-        {children}
-      </main>
-    </div>
+        <main style={{ flex: 1 }}>
+          {children}
+        </main>
+      </div>
+    </AdminGuard>
   );
 }

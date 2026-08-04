@@ -66,6 +66,10 @@ $api.interceptors.response.use(
       if (typeof window !== "undefined") {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminRefreshToken');
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('userRole');
         localStorage.removeItem('user');
         window.dispatchEvent(new Event('authChange'));
       }

@@ -16,6 +16,7 @@ const clearAuthStorage = () => {
   localStorage.removeItem("adminToken");
   localStorage.removeItem("adminRefreshToken");
   localStorage.removeItem("isAdmin");
+  localStorage.removeItem("userRole");
   localStorage.removeItem("user");
 };
 
@@ -99,29 +100,32 @@ export const useLogin = () => {
                       data.user?.is_superuser;
 
       if (isAdmin) {
-        // ✅ Для админа используем access_token (единообразие)
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('accessToken', data.access);
         localStorage.setItem('refresh_token', data.refresh);
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('isAdmin', 'true');
+        localStorage.setItem('userRole', data.user?.role || data.role || 'admin');
+        localStorage.setItem('adminToken', data.access);
+        localStorage.setItem('adminRefreshToken', data.refresh);
         
         toast.success('Добро пожаловать!');
         
-        // Уведомляем об изменении авторизации
         window.dispatchEvent(new Event('authChange'));
         
         router.push('/productss');
       } else {
-        // ✅ Для обычного пользователя тоже access_token
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminRefreshToken');
+        localStorage.removeItem('isAdmin');
         localStorage.setItem('access_token', data.access);
         localStorage.setItem('accessToken', data.access);
         localStorage.setItem('refresh_token', data.refresh);
         localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('userRole', data.user?.role || 'user');
         
         toast.success('Вход выполнен успешно!');
         
-        // Уведомляем об изменении авторизации
         window.dispatchEvent(new Event('authChange'));
         
         router.push('/');
