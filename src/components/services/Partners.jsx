@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Partners.module.css";
 
-// Logos copied into ./logos — swap the imports (or the `logos` prop) for your own.
+// Логотипы скопированы в ./logos — замените импорты (или проп `logos`) на свои.
 import logo01 from "../../../assets/svg/1partner.svg";
 import logo02 from "../../../assets/svg/2partner.svg";
 import logo03 from "../../../assets/svg/3.svg";
@@ -51,7 +51,8 @@ const AUTOPLAY_MS = 3000;
 
 /**
  * Partners — left-aligned "our partners" heading over an infinite,
- * draggable logo carousel that auto-advances every 3 seconds.
+ * draggable logo carousel that auto-advances every 3 seconds,
+ * with prev/next arrow controls.
  *
  * Props:
  *  - title     {string}  heading text
@@ -133,8 +134,8 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
     return () => clearInterval(id);
   }, [step]);
 
-  // After a move (auto or drag) finishes, snap invisibly back into the
-  // middle copy's range so the carousel can keep scrolling forever.
+  // After a move (auto, drag, or arrow click) finishes, snap invisibly back
+  // into the middle copy's range so the carousel can keep scrolling forever.
   function rewindIfNeeded(value) {
     const setWidth = step * count;
     if (setWidth === 0) return value;
@@ -149,6 +150,19 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
 
   function handleTransitionEnd() {
     setOffset((prev) => rewindIfNeeded(prev));
+  }
+
+  // --- Arrow controls ---
+  function goNext() {
+    if (step === 0) return;
+    setTransitionOn(true);
+    setOffset((prev) => prev - step);
+  }
+
+  function goPrev() {
+    if (step === 0) return;
+    setTransitionOn(true);
+    setOffset((prev) => prev + step);
   }
 
   // --- Drag to scroll (mouse or touch) ---
@@ -192,52 +206,76 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
       {count === 0 ? (
         <p className={styles.empty}>Список партнёров скоро появится.</p>
       ) : (
-        <div
-          className={`${styles.viewport} ${isDragging ? styles.dragging : ""}`}
-          ref={viewportRef}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-          onMouseEnter={() => (pausedRef.current = true)}
-          onMouseLeave={() => (pausedRef.current = false)}
-        >
-          <ul
-            className={`${styles.track} ${transitionOn ? styles.animate : styles.noTransition}`}
-            ref={trackRef}
-            style={{ transform: `translateX(${offset}px)` }}
-            onTransitionEnd={handleTransitionEnd}
+        <div className={styles.carouselWrap}>
+          <button
+            type="button"
+            className={`${styles.arrowBtn} ${styles.arrowLeft}`}
+            aria-label="Предыдущие партнёры"
+            onClick={goPrev}
           >
-            {loopItems.map((partner, idx) => (
-              <li
-                className={styles.item}
-                key={partner.key}
-                ref={idx === 0 ? firstItemRef : null}
-                aria-hidden={partner.hidden || undefined}
-              >
-                {partner.href ? (
-                  <a
-                    className={styles.link}
-                    href={partner.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={partner.name}
-                    tabIndex={partner.hidden ? -1 : undefined}
-                    onClick={handleLinkClick}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          <div
+            className={`${styles.viewport} ${isDragging ? styles.dragging : ""}`}
+            ref={viewportRef}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            onMouseEnter={() => (pausedRef.current = true)}
+            onMouseLeave={() => (pausedRef.current = false)}
+          >
+            <ul
+              className={`${styles.track} ${transitionOn ? styles.animate : styles.noTransition}`}
+              ref={trackRef}
+              style={{ transform: `translateX(${offset}px)` }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {loopItems.map((partner, idx) => (
+                <li
+                  className={styles.item}
+                  key={partner.key}
+                  ref={idx === 0 ? firstItemRef : null}
+                  aria-hidden={partner.hidden || undefined}
+                >
+                  {partner.href ? (
+                    <a
+                      className={styles.link}
+                      href={partner.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={partner.name}
+                      tabIndex={partner.hidden ? -1 : undefined}
+                      onClick={handleLinkClick}
+                      draggable={false}
+                    />
+                  ) : null}
+                  <Image
+                    className={styles.logo}
+                    src={partner.src}
+                    alt={partner.name}
+                    fill
+                    sizes="(max-width: 600px) 40vw, (max-width: 1000px) 22vw, 190px"
                     draggable={false}
                   />
-                ) : null}
-                <Image
-                  className={styles.logo}
-                  src={partner.src}
-                  alt={partner.name}
-                  fill
-                  sizes="(max-width: 600px) 40vw, (max-width: 1000px) 22vw, 190px"
-                  draggable={false}
-                />
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button
+            type="button"
+            className={`${styles.arrowBtn} ${styles.arrowRight}`}
+            aria-label="Следующие партнёры"
+            onClick={goNext}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
       )}
     </section>

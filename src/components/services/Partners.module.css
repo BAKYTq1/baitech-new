@@ -119,3 +119,81 @@
     transition: none;
   }
 }
+.carouselWrap {
+  position: relative;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.viewport.dragging {
+  cursor: grabbing;
+}
+
+.arrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+  background: var(--bg, #fff);
+  color: var(--ink, #14171a);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background 0.15s ease, transform 0.15s ease;
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.arrowBtn:hover {
+  background: var(--surface, #f6f7f5);
+}
+
+.arrowBtn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.arrowBtn:focus-visible {
+  outline: 2px solid var(--accent, #1f5c4e);
+  outline-offset: 2px;
+}
+
+.arrowLeft {
+  left: -20px;
+
+}
+
+.arrowRight {
+  right: -20px;
+
+}
+
+@media (max-width: 1300px) {
+  .arrowLeft {
+    left: -10px;
+  }
+  .arrowRight {
+    right: -10px;
+  }
+}
+@media (max-width: 768px) {
+  .arrowLeft {
+    left: -5px;
+  }
+  .arrowRight {
+    right: -5px;
+  }
+}
