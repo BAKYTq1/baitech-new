@@ -44,26 +44,35 @@ export default function NavItem() {
     return resolveCategoryName(item.categoryKey, item.fallbackCategory);
   };
 const menuItems = [
-    { label: t('navbar.catalog'), icon: <LayoutGrid size={18} />, isCatalog: true },
-    {
-      label: t('navbar.pcComponents'),
-      link: '/',
-      categoryKey: 'pcComponents',
-      fallbackCategory: t('navbar.pcComponents'),
-      icon: <Monitor size={18} />,
-    },
-    {
-      label: t('navbar.videoSurveillance'),
-      link: '/',
-      categoryKey: 'videoSurveillance',
-      fallbackCategory: t('navbar.videoSurveillance'),
-      icon: <Video size={18} />,
-    },
-    { label: t('navbar.solutions'), link: '/solution', icon: <FileText size={18} /> },
-    { label: t('navbar.courses'), link: '/course', icon: <BookOpen size={18} /> },
-    { label: t('navbar.services'), link: '/services', icon: <Wrench size={18} /> },
-  ];
-
+  { label: t('navbar.catalog'), icon: <LayoutGrid size={18} />, isCatalog: true },
+  {
+    label: t('navbar.pcComponents'),
+    link: '/',
+    categoryKey: 'pcComponents',
+    fallbackCategory: t('navbar.pcComponents'),
+    icon: <Monitor size={18} />,
+  },
+  {
+    label: t('navbar.videoSurveillance'),
+    link: '/',
+    categoryKey: 'videoSurveillance',
+    fallbackCategory: t('navbar.videoSurveillance'),
+    icon: <Video size={18} />,
+  },
+  { label: t('navbar.solutions'), link: '/solution', icon: <FileText size={18} /> },
+  {
+    label: t('navbar.courses'),
+    link: '/course',
+    newTab: true, // новый флаг
+    icon: <BookOpen size={18} />,
+  },
+  {
+    label: t('navbar.services'),
+    link: '/services',
+    newTab: true, // новый флаг
+    icon: <Wrench size={18} />,
+  },
+];
   const hasNestedCategory = (category, currentCategory) => {
     if (!category || !currentCategory) return false;
     if (category.name === currentCategory) return true;
@@ -112,16 +121,17 @@ const menuItems = [
               <span className={styles.label}>{item.label}</span>
               <span className={styles.icon}>{item.icon}</span>
             </button>
-          ) : item.link ? (
-            <Link
-              key={index}
-              href={getHref(item)}
-              className={`${styles.navItem} ${isActive(item) ? styles.navItemActive : ''}`}
-            >
-              <span className={styles.label}>{item.label}</span>
-              <span className={styles.icon}>{item.icon}</span>
-            </Link>
-          ) : (
+         ) : item.link ? (
+  <Link
+    key={index}
+    href={getHref(item)}
+    className={`${styles.navItem} ${isActive(item) ? styles.navItemActive : ''}`}
+    {...(item.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+  >
+    <span className={styles.label}>{item.label}</span>
+    <span className={styles.icon}>{item.icon}</span>
+  </Link>
+) : (
             <button key={index} className={styles.navItem} type="button">
               <span className={styles.label}>{item.label}</span>
               <span className={styles.icon}>{item.icon}</span>
