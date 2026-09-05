@@ -45,6 +45,7 @@
 .viewport {
   overflow: hidden;
   width: 100%;
+  padding: 10px 0px;
   cursor: grab;
   user-select: none;
   touch-action: pan-y;
@@ -78,11 +79,13 @@
   background: white;
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: clamp(14px, 3vw, 22px);
+  padding: clamp(8px, 1.5vw, 14px);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   overflow: hidden;
 }
-
+.item:hover {
+  box-shadow: 5px 5px 5px 5px rgba(3, 3, 3, 0.37);
+}
 
 .link {
   position: absolute;

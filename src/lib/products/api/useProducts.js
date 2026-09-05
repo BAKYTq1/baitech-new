@@ -2,6 +2,13 @@ import { $api } from "../../../../API/api";
 const apiClient = $api;
 
 export const productApi = {
+  search: async (query) => {
+    const { data } = await apiClient.get('products/products/search/', {
+      params: { q: query },
+    });
+    return data;
+  },
+
   getAll: async (params = {}) => {
     // Убираем пустые значения чтобы не слать ?search=&category=
     const cleanParams = Object.fromEntries(

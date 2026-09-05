@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "./style.scss";
-import "../recomendation/recommendations.scss";
 import { useBanner } from "@/lib/news/hooks/hooks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -60,7 +59,7 @@ export function News() {
           <button
             type="button"
             ref={prevRef}
-            className="recommendations__nav recommendations__nav--prev"
+            className="news__nav news__nav--prev"
             aria-label="Previous news"
             onClick={(e) => e.preventDefault()}
           >
@@ -69,7 +68,7 @@ export function News() {
           <button
             type="button"
             ref={nextRef}
-            className="recommendations__nav recommendations__nav--next"
+            className="news__nav news__nav--next"
             aria-label="Next news"
             onClick={(e) => e.preventDefault()}
           >
@@ -87,10 +86,7 @@ export function News() {
             autoplay={
               shouldLoop ? { delay: 3000, stopOnInteraction: false } : false
             }
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
+            navigation
             onBeforeInit={(swiper) => {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
@@ -120,7 +116,7 @@ export function News() {
                   return (
                     <SwiperSlide key={item.id}>
                       <div
-                        className="bg-white flex flex-col gap-[10px] rounded-[15px] shadow-sm transition-all duration-300 hover:shadow-lg cursor-pointer"
+                        className="bg-white flex flex-col gap-[10px] rounded-[15px] shadow-sm transition-all duration-300 hover:shadow-[5px_5px_5px_5px_rgba(3,3,3,0.37)] cursor-pointer"
                         style={{ padding: "10px" }}
                         onClick={() => handleNewsClick(item)}
                       >

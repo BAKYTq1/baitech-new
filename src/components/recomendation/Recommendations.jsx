@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -23,8 +23,10 @@ const CardSkeleton = () => (
 );
 
 export function Recommendations({ categoryName }) {
- const { t } = useTranslation();
+  const { t } = useTranslation();
   const { products = [], isLoading, isError } = useProducts({ category: categoryName || '' });
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   const recommendedProducts = products.slice(0, 10);
 
@@ -45,10 +47,10 @@ export function Recommendations({ categoryName }) {
         {categoryName ? categoryName : t("recommendations.title")}
       </h2>
       <div className="recommendations-carousel">
-        <button className="recommendations__nav recommendations__nav--prev" aria-label="Previous products">
+        <button ref={prevRef} className="recommendations__nav recommendations__nav--prev" aria-label="Previous products">
           <IoChevronBackOutline size={22} />
         </button>
-        <button className="recommendations__nav recommendations__nav--next" aria-label="Next products">
+        <button ref={nextRef} className="recommendations__nav recommendations__nav--next" aria-label="Next products">
           <IoChevronForwardOutline size={22} />
         </button>
 
@@ -58,9 +60,10 @@ export function Recommendations({ categoryName }) {
           slidesPerView={1.5}
           centeredSlides
           pagination={false}
-          navigation={{
-            prevEl: ".recommendations__nav--prev",
-            nextEl: ".recommendations__nav--next",
+          navigation
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
           }}
           loop
           grabCursor
