@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useProducts } from '@/lib/products/hooks/hooks';
 import { productApi } from '@/lib/products/api/useProducts';
+import { useQuery } from '@tanstack/react-query';
 import styles from './CatalogPage.module.scss';
 import { LayoutGrid, List, AlignJustify, ChevronDown, Search, ChevronRight, ChevronLeft, SlidersHorizontal, X, Check } from 'lucide-react';
 import ProductCard from './ProductCard';
@@ -54,6 +55,15 @@ const getPaginationItems = (currentPage, totalPages) => {
   if (currentPage <= 4) return [1, 2, 3, 4, 'ellipsis', totalPages];
   if (currentPage >= totalPages - 3) return [1, 'ellipsis', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
   return [1, 'ellipsis', currentPage - 1, currentPage, currentPage + 1, 'ellipsis', totalPages];
+};
+
+const matchesProductSearch = (product, search) => {
+  const normalizedSearch = search.trim().toLowerCase();
+  if (!normalizedSearch) return true;
+
+  const name = String(product.name || '').toLowerCase();
+  const article = String(product.article || '').toLowerCase();
+  return name.includes(normalizedSearch) || article.includes(normalizedSearch);
 };
 
 // ─── Mobile Filter Bottom Sheet ───────────────────────────────────────────────
@@ -368,24 +378,49 @@ export default function CatalogPage() {
     brand: bnd || "",
   });
 
-  const prevFiltersRef = useRef({ cat, bnd });
+  const { data: allSearchProducts = [], isLoading: isAllSearchLoading, isFetching: isAllSearchFetching } = useQuery({
+    queryKey: ['products', 'catalog-search-all-pages', { category: cat || "", brand: bnd || "" }],
+    queryFn: () => productApi.getAllPages({
+      category: cat || "",
+      brand: bnd || "",
+    }),
+    enabled: Boolean(query),
+    select: (data) => data?.results || (Array.isArray(data) ? data : []),
+    retry: false,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const prevFiltersRef = useRef({ cat, bnd, query });
   useEffect(() => {
     const prev = prevFiltersRef.current;
-    if (prev.cat !== cat || prev.bnd !== bnd) {
+    if (prev.cat !== cat || prev.bnd !== bnd || prev.query !== query) {
       setCurrentPage(1);
       setStaleProducts([]);
-      prevFiltersRef.current = { cat, bnd };
+      prevFiltersRef.current = { cat, bnd, query };
     }
-  }, [cat, bnd]);
+  }, [cat, bnd, query]);
+
+  const searchedProducts = useMemo(
+    () => allSearchProducts.filter((product) => matchesProductSearch(product, query)),
+    [allSearchProducts, query]
+  );
+  const paginatedSearchProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return searchedProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [currentPage, searchedProducts]);
+
+  const productsSource = query ? paginatedSearchProducts : allProducts;
+  const productsLoading = query ? isAllSearchLoading : isLoading;
+  const productsFetching = query ? isAllSearchFetching : isFetching;
 
   useEffect(() => {
-    if (!isLoading && !isFetching) setStaleProducts(allProducts);
-  }, [isLoading, isFetching, allProducts]);
+    if (!productsLoading && !productsFetching) setStaleProducts(productsSource);
+  }, [productsLoading, productsFetching, productsSource]);
 
-  const displayProducts = (isLoading || isFetching) ? staleProducts : allProducts;
-  const isRefetching = (isLoading || isFetching) && staleProducts.length > 0;
-  const isInitialLoading = (isLoading || isFetching) && staleProducts.length === 0;
-  const totalPages = Math.max(1, Math.ceil((totalCount ?? 0) / ITEMS_PER_PAGE));
+  const displayProducts = (productsLoading || productsFetching) ? staleProducts : productsSource;
+  const isRefetching = (productsLoading || productsFetching) && staleProducts.length > 0;
+  const isInitialLoading = (productsLoading || productsFetching) && staleProducts.length === 0;
+  const totalPages = Math.max(1, Math.ceil((query ? searchedProducts.length : totalCount ?? 0) / ITEMS_PER_PAGE));
 
   useEffect(() => {
     if (!cat) return;

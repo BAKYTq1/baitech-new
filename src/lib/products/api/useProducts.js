@@ -1,6 +1,12 @@
 import { $api } from "../../../../API/api";
 const apiClient = $api;
 
+const normalizeListResponse = (data) => {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.results)) return data.results;
+  return [];
+};
+
 export const productApi = {
   search: async (query) => {
     const { data } = await apiClient.get('products/products/search/', {
@@ -16,6 +22,35 @@ export const productApi = {
     );
     const { data } = await apiClient.get('products/products/', { params: cleanParams });
     return data;
+  },
+
+  getAllPages: async (params = {}) => {
+    const { page: _page, search: _search, article: _article, ...baseParams } = params;
+    const firstPage = await productApi.getAll({ ...baseParams, page: 1 });
+    const firstResults = normalizeListResponse(firstPage);
+    const allResults = [...firstResults];
+    const pageSize = firstResults.length || 20;
+    const totalPages = firstPage?.count ? Math.ceil(firstPage.count / pageSize) : null;
+    let page = 2;
+
+    while (totalPages ? page <= totalPages : Boolean(firstPage?.next) && page <= 100) {
+      const data = await productApi.getAll({ ...baseParams, page });
+      const results = normalizeListResponse(data);
+
+      if (results.length === 0) break;
+      allResults.push(...results);
+
+      if (!totalPages && !data?.next) break;
+      page += 1;
+    }
+
+    return {
+      ...firstPage,
+      count: allResults.length,
+      next: null,
+      previous: null,
+      results: allResults,
+    };
   },
 
   getSimilar: async (productId) => {

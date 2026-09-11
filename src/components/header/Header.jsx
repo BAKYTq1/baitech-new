@@ -14,8 +14,8 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '@/lib/cart/hooks/hooks'
 import { useSiteSettings } from '@/lib/settings/hook'
-import { useQueryClient } from '@tanstack/react-query'
-import { useProducts } from '@/lib/products/hooks/hooks'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { productApi } from '@/lib/products/api/useProducts'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,6 +24,7 @@ export default function Header() {
   const [isContactsOpen, setIsContactsOpen] = useState(false)
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const modalRef = useRef(null)
@@ -35,8 +36,36 @@ export default function Header() {
   const { t, i18n } = useTranslation()
   const { data: items = [] } = useCart()
   const { settings, isLoading } = useSiteSettings()
-  const { products = [], categories = [] } = useProducts()
   const queryClient = useQueryClient()
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery.trim())
+    }, 300)
+
+    return () => clearTimeout(timeoutId)
+  }, [searchQuery])
+
+  const normalizeListResponse = (data) => {
+    if (Array.isArray(data)) return data
+    if (Array.isArray(data?.results)) return data.results
+    return []
+  }
+
+  const { data: searchProductsData = [], isFetching: isSearchingProducts } = useQuery({
+    queryKey: ['products', 'header-search-all-pages'],
+    queryFn: () => productApi.getAllPages(),
+    enabled: debouncedSearchQuery.length > 0,
+    select: normalizeListResponse,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: productApi.getCategories,
+    select: normalizeListResponse,
+  })
 
   useEffect(() => {
     const checkAuth = () => {
@@ -168,7 +197,7 @@ export default function Header() {
 
   const normalizedSearch = searchQuery.trim().toLowerCase()
   const suggestionProducts = normalizedSearch
-    ? products
+    ? searchProductsData
       .filter((product) => {
         const name = String(product?.name || '').toLowerCase()
         const article = String(product?.article || '').toLowerCase()
@@ -211,7 +240,9 @@ export default function Header() {
 
   const renderSearchDropdown = () => (
     <div className="header__search-dropdown">
-      {hasSuggestions ? (
+      {isSearchingProducts ? (
+        <div className="search-empty">Поиск...</div>
+      ) : hasSuggestions ? (
         <>
           {suggestionProducts.length > 0 && (
             <div className="search-section">
@@ -380,7 +411,9 @@ export default function Header() {
 
           {isSearchOpen && searchQuery.trim() && (
             <div className="header__search-dropdown">
-              {hasSuggestions ? (
+              {isSearchingProducts ? (
+                <div className="search-empty">Поиск...</div>
+              ) : hasSuggestions ? (
                 <>
                   {suggestionProducts.length > 0 && (
                     <div className="search-section">
