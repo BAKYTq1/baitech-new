@@ -66,12 +66,12 @@ const menuItems = [
     newTab: true, // новый флаг
     icon: <BookOpen size={18} />,
   },
-  {
-    label: t('navbar.services'),
-    link: '/services',
-    newTab: true, // новый флаг
-    icon: <Wrench size={18} />,
-  },
+  // {
+  //   label: t('navbar.services'),
+  //   link: '/services',
+  //   newTab: true, // новый флаг
+  //   icon: <Wrench size={18} />,
+  // },
 ];
   const hasNestedCategory = (category, currentCategory) => {
     if (!category || !currentCategory) return false;
