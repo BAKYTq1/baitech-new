@@ -11,6 +11,8 @@ import FullProductCard from './FullProductCard';
 import Card from '../ui/card/Card';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { searchProducts, buildCategoryNameMap, buildBrandNameMap } from "@/lib/products/search";
+import { useSearchProductsPool } from '@/lib/products/hooks/useSearchProductsPool'
 
 const CATALOG_TEXTS = {
   ru: {
@@ -55,15 +57,6 @@ const getPaginationItems = (currentPage, totalPages) => {
   if (currentPage <= 4) return [1, 2, 3, 4, 'ellipsis', totalPages];
   if (currentPage >= totalPages - 3) return [1, 'ellipsis', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
   return [1, 'ellipsis', currentPage - 1, currentPage, currentPage + 1, 'ellipsis', totalPages];
-};
-
-const matchesProductSearch = (product, search) => {
-  const normalizedSearch = search.trim().toLowerCase();
-  if (!normalizedSearch) return true;
-
-  const name = String(product.name || '').toLowerCase();
-  const article = String(product.article || '').toLowerCase();
-  return name.includes(normalizedSearch) || article.includes(normalizedSearch);
 };
 
 // ─── Mobile Filter Bottom Sheet ───────────────────────────────────────────────
@@ -357,6 +350,7 @@ export default function CatalogPage() {
   const [priceRange, setPriceRange] = useState({ min: PRICE_MIN_LIMIT, max: DEFAULT_PRICE_MAX_LIMIT });
   const [categoryBrands, setCategoryBrands] = useState([]);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const isUserPriceChange = useRef(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -371,6 +365,8 @@ export default function CatalogPage() {
   const maxParam = searchParams.get('max_price');
 
   const { brands: allBrands, categories } = useProducts();
+  const categoriesById = useMemo(() => buildCategoryNameMap(categories), [categories]);
+  const brandsById = useMemo(() => buildBrandNameMap(allBrands), [allBrands]); 
 
   const { products: allProducts, totalCount, isLoading, isFetching } = useProducts({
     page: currentPage,
@@ -378,17 +374,11 @@ export default function CatalogPage() {
     brand: bnd || "",
   });
 
-  const { data: allSearchProducts = [], isLoading: isAllSearchLoading, isFetching: isAllSearchFetching } = useQuery({
-    queryKey: ['products', 'catalog-search-all-pages', { category: cat || "", brand: bnd || "" }],
-    queryFn: () => productApi.getAllPages({
-      category: cat || "",
-      brand: bnd || "",
-    }),
-    enabled: Boolean(query),
-    select: (data) => data?.results || (Array.isArray(data) ? data : []),
-    retry: false,
-    staleTime: 5 * 60 * 1000,
-  });
+  const { data: allSearchProducts = [], isLoading: isAllSearchLoading, isFetching: isAllSearchFetching } = useSearchProductsPool({
+  category: cat || '',
+  brand: bnd || '',
+  enabled: Boolean(query),
+})
 
   const prevFiltersRef = useRef({ cat, bnd, query });
   useEffect(() => {
@@ -400,10 +390,10 @@ export default function CatalogPage() {
     }
   }, [cat, bnd, query]);
 
-  const searchedProducts = useMemo(
-    () => allSearchProducts.filter((product) => matchesProductSearch(product, query)),
-    [allSearchProducts, query]
-  );
+const searchedProducts = useMemo(
+  () => searchProducts(allSearchProducts, query, { categoriesById, brandsById }),
+  [allSearchProducts, query, categoriesById, brandsById]
+);
   const paginatedSearchProducts = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     return searchedProducts.slice(start, start + ITEMS_PER_PAGE);
@@ -499,15 +489,14 @@ export default function CatalogPage() {
   const visibleProducts = useMemo(() => {
     const min = minPriceFilter === null || minPriceFilter === '' ? null : Number(minPriceFilter);
     const max = maxPriceFilter === null || maxPriceFilter === '' ? null : Number(maxPriceFilter);
-    const normalizedQuery = query.toLowerCase();
+
     return displayProducts.filter((product) => {
       const price = Number(product.price);
-      const name = String(product.name || '').toLowerCase();
-      const article = String(product.article || '').toLowerCase();
+
       if (Number.isNaN(price)) return false;
       if (min !== null && !Number.isNaN(min) && price < min) return false;
       if (max !== null && !Number.isNaN(max) && price > max) return false;
-      if (normalizedQuery && !name.includes(normalizedQuery) && !article.includes(normalizedQuery)) return false;
+
       return true;
     });
   }, [query, displayProducts, minPriceFilter, maxPriceFilter]);
@@ -541,31 +530,36 @@ export default function CatalogPage() {
     router.push('/catalog');
   };
 
-  const handleMinPriceChange = (event) => {
-    const nextMin = Number(event.target.value);
-    setPriceRange((prev) => ({ ...prev, min: clampPrice(nextMin, PRICE_MIN_LIMIT, prev.max - PRICE_STEP) }));
-  };
+const handleMinPriceChange = (event) => {
+  isUserPriceChange.current = true;
+  const nextMin = Number(event.target.value);
+  setPriceRange((prev) => ({ ...prev, min: clampPrice(nextMin, PRICE_MIN_LIMIT, prev.max - PRICE_STEP) }));
+};
 
-  const handleMaxPriceChange = (event) => {
-    const nextMax = Number(event.target.value);
-    setPriceRange((prev) => ({ ...prev, max: clampPrice(nextMax, prev.min + PRICE_STEP, sliderMaxPrice) }));
-  };
+const handleMaxPriceChange = (event) => {
+  isUserPriceChange.current = true;
+  const nextMax = Number(event.target.value);
+  setPriceRange((prev) => ({ ...prev, max: clampPrice(nextMax, prev.min + PRICE_STEP, sliderMaxPrice) }));
+};
 
-  useEffect(() => {
-    const nextMinParam = priceRange.min > PRICE_MIN_LIMIT ? String(priceRange.min) : null;
-    const nextMaxParam = priceRange.max < sliderMaxPrice ? String(priceRange.max) : null;
-    const isSameAsUrl = (nextMinParam ?? null) === (minParam ?? null) && (nextMaxParam ?? null) === (maxParam ?? null);
-    if (isSameAsUrl) return;
-    const timeoutId = setTimeout(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (nextMinParam) params.set('min_price', nextMinParam); else params.delete('min_price');
-      if (nextMaxParam) params.set('max_price', nextMaxParam); else params.delete('max_price');
-      const queryString = params.toString();
-      router.replace(queryString ? `?${queryString}` : '/catalog', { scroll: false });
-      setCurrentPage(1);
-    }, 600);
-    return () => clearTimeout(timeoutId);
-  }, [priceRange.min, priceRange.max, sliderMaxPrice, minParam, maxParam, searchParams, router]);
+useEffect(() => {
+  if (!isUserPriceChange.current) return;
+  isUserPriceChange.current = false;
+
+  const nextMinParam = priceRange.min > PRICE_MIN_LIMIT ? String(priceRange.min) : null;
+  const nextMaxParam = priceRange.max < sliderMaxPrice ? String(priceRange.max) : null;
+  const isSameAsUrl = (nextMinParam ?? null) === (minParam ?? null) && (nextMaxParam ?? null) === (maxParam ?? null);
+  if (isSameAsUrl) return;
+  const timeoutId = setTimeout(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (nextMinParam) params.set('min_price', nextMinParam); else params.delete('min_price');
+    if (nextMaxParam) params.set('max_price', nextMaxParam); else params.delete('max_price');
+    const queryString = params.toString();
+    router.replace(queryString ? `?${queryString}` : '/catalog', { scroll: false });
+    setCurrentPage(1);
+  }, 600);
+  return () => clearTimeout(timeoutId);
+}, [priceRange.min, priceRange.max, sliderMaxPrice, minParam, maxParam, searchParams, router]);
 
   const handlePageChange = (page) => {
     if (page < 1 || page > totalPages) return;

@@ -9,13 +9,15 @@ import { IoLanguageOutline } from 'react-icons/io5'
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa'
 import Link from 'next/link'
 import ModalAuth from '../ui/modalauth/ModalAuth'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '@/lib/cart/hooks/hooks'
 import { useSiteSettings } from '@/lib/settings/hook'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { productApi } from '@/lib/products/api/useProducts'
+import { useSearchProductsPool } from '@/lib/products/hooks/useSearchProductsPool'
+import { searchProducts, buildCategoryNameMap, buildBrandNameMap } from '@/lib/products/search'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -46,26 +48,30 @@ export default function Header() {
     return () => clearTimeout(timeoutId)
   }, [searchQuery])
 
-  const normalizeListResponse = (data) => {
-    if (Array.isArray(data)) return data
-    if (Array.isArray(data?.results)) return data.results
-    return []
-  }
+const normalizeListResponse = (data) => {
+  if (Array.isArray(data)) return data
+  if (Array.isArray(data?.results)) return data.results
+  return []
+}
 
-  const { data: searchProductsData = [], isFetching: isSearchingProducts } = useQuery({
-    queryKey: ['products', 'header-search-all-pages'],
-    queryFn: () => productApi.getAllPages(),
-    enabled: debouncedSearchQuery.length > 0,
-    select: normalizeListResponse,
-    retry: false,
-    staleTime: 5 * 60 * 1000,
-  })
+  const { data: searchProductsData = [], isFetching: isSearchingProducts } = useSearchProductsPool()
 
   const { data: categories = [] } = useQuery({
     queryKey: ['categories'],
     queryFn: productApi.getCategories,
     select: normalizeListResponse,
   })
+
+  const { data: brands = [] } = useQuery({
+  queryKey: ['brands'],
+  queryFn: productApi.getBrands,
+  select: normalizeListResponse,
+})
+
+  const categoriesById = useMemo(() => buildCategoryNameMap(categories), [categories])
+  const brandsById = useMemo(() => buildBrandNameMap(brands), [brands])
+
+  
 
   useEffect(() => {
     const checkAuth = () => {
@@ -195,16 +201,11 @@ export default function Header() {
     return acc
   }
 
-  const normalizedSearch = searchQuery.trim().toLowerCase()
-  const suggestionProducts = normalizedSearch
-    ? searchProductsData
-      .filter((product) => {
-        const name = String(product?.name || '').toLowerCase()
-        const article = String(product?.article || '').toLowerCase()
-        return name.includes(normalizedSearch) || article.includes(normalizedSearch)
-      })
-      .slice(0, 6)
-    : []
+  const normalizedSearch = searchQuery.trim()
+
+    const suggestionProducts = normalizedSearch
+  ? searchProducts(searchProductsData, normalizedSearch, { categoriesById, brandsById }).slice(0, 6)
+  : []
 
   const suggestionCategories = normalizedSearch
     ? [...new Set(flattenCategories(categories))]

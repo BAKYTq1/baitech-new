@@ -19,10 +19,13 @@
   max-width: 1380px;
   margin: auto;
   color: var(--ink);
-  padding: 15px 20px 70px 15px;   
+  padding: 15px 20px 70px 15px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  @media (max-width:768px) {
-  padding: 15px 15px 40px 15px;   
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 15px 15px 40px 15px;
   }
 }
 
@@ -42,6 +45,10 @@
 
 /* --- Carousel --- */
 
+.carouselWrap {
+  position: relative;
+}
+
 .viewport {
   overflow: hidden;
   width: 100%;
@@ -57,7 +64,7 @@
 
 .track {
   display: flex;
-  gap: 20px;
+  gap: clamp(10px, 2vw + 4px, 30px);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -74,15 +81,16 @@
 
 .item {
   position: relative;
-  flex: 0 0 clamp(120px, 18vw, 190px);
+  flex: 0 0 clamp(175px, 11.7vw + 107px, 260px);
   aspect-ratio: 4 / 3;
   background: white;
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: clamp(8px, 1.5vw, 14px);
+  padding: clamp(10px, 2vw, 16px);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   overflow: hidden;
 }
+
 .item:hover {
   box-shadow: 5px 5px 5px 5px rgba(3, 3, 3, 0.37);
 }
@@ -122,21 +130,8 @@
     transition: none;
   }
 }
-.carouselWrap {
-  position: relative;
-}
 
-.viewport {
-  overflow: hidden;
-  width: 100%;
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-}
-
-.viewport.dragging {
-  cursor: grabbing;
-}
+/* --- Arrows --- */
 
 .arrowBtn {
   position: absolute;
@@ -155,7 +150,10 @@
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: background 0.15s ease, transform 0.15s ease;
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+  .arrowBtn {
     width: 32px;
     height: 32px;
   }
@@ -176,12 +174,10 @@
 
 .arrowLeft {
   left: -20px;
-
 }
 
 .arrowRight {
   right: -20px;
-
 }
 
 @media (max-width: 1300px) {
@@ -192,6 +188,7 @@
     right: -10px;
   }
 }
+
 @media (max-width: 768px) {
   .arrowLeft {
     left: -5px;
