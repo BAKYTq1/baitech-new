@@ -11,9 +11,71 @@
     "pcComponents": "PC Components",
     "videoSurveillance": "Video Surveillance",
     "solutions": "Solutions",
-    "courses": "Courses",
+    "courses": "Security Systems Training",
     "services": "Services"
   },
+  "coursesPage": {
+  "back": "Back",
+  "badge": "ONLINE COURSE",
+  "heroTitleStart": "Become a",
+  "heroTitleGreen": "video surveillance",
+  "heroTitleHighlight": "SPECIALIST",
+  "heroTitleEnd": "in 1 month",
+  "heroSubtitle": "Learn to install systems like a pro and start earning for real!",
+  "ctaButtonUpper": "I WANT TO JOIN",
+  "ctaButton": "I want to join",
+  "topicsTitleLine1": "What topics will",
+  "topicsTitleLine2": "we cover?",
+  "topics": [
+    { "title": "Design", "text": "Learn to choose the right equipment for real-world tasks" },
+    { "title": "Installation", "text": "Learn how to install a system without mistakes" },
+    { "title": "Configuration", "text": "Get comfortable configuring modern systems" },
+    { "title": "Maintenance", "text": "Learn how to maintain a system and fix it when it breaks" },
+    { "title": "Finding clients", "text": "Learn how to find your first clients, promote your services, and get orders for installing and maintaining video surveillance systems." }
+  ],
+  "formatCardTitle": "Course format",
+  "formatItems": [
+    "4-week training program.",
+    "Video lessons with theory and practice.",
+    "Homework assignments with feedback.",
+    "A private community for discussion and shared experience."
+  ],
+  "resultCardTitle": "What you'll get",
+  "resultItems": [
+    "A solid understanding of video surveillance systems",
+    "Hands-on practical experience.",
+    "Knowledge covering every stage of installing a VSS.",
+    "Readiness for professional work."
+  ],
+  "storyTitleLine1": "A student's story: from beginner to first",
+  "storyTitleLine2": "installation",
+  "storyOpenBtn": "Open",
+  "storyModalTitle": "Video coming soon",
+  "storyModalText": "This student story video isn't available right now. We're preparing it for publication — check back here a little later.",
+  "featuresSectionTitle": "What will you get from the course?",
+  "features": [
+    { "title": "Mostly hands-on practice", "text": "80% of classes are hands-on practice with real equipment" },
+    { "title": "Personal guidance", "text": "Experts support you at every stage of learning" },
+    { "title": "Modern technology", "text": "Up-to-date equipment and working methods" },
+    { "title": "Real results", "text": "Right after the course — 9 out of 10 of our graduates successfully start working in their new specialty" }
+  ],
+  "programSectionTitle": "Course program",
+  "lessonLabel": "Lesson",
+  "modules": [
+    { "title": "Module 1. Fundamentals of local networks", "lessons": ["Fundamentals of computer networks", "Network equipment and router configuration"] },
+    { "title": "Module 2. Analog video surveillance", "lessons": ["Fundamentals of analog systems", "Cables, power, and connection types"] },
+    { "title": "Module 3. IP video surveillance", "lessons": ["Fundamentals of IP cameras", "Connecting and configuring an IP camera", "Manufacturer software and its capabilities", "Resetting and recovering IP camera passwords"] },
+    { "title": "Module 4. Site survey, equipment selection, and project documentation", "lessons": ["Site survey and measurement, equipment selection, cost estimation, contract preparation, and system handover"] },
+    { "title": "Module 5. Participating in video surveillance system tenders", "lessons": ["What a tender is and how to take part in one"] }
+  ],
+  "reviewsSectionTitle": "Reviews from our students",
+  "reviews": [
+    { "name": "Azamat", "text": "I'm glad I chose real professionals for this course. The instructors are very experienced and responsive, always happy to help even after the course ends. By the way, I earned back the cost of the course during the course itself." },
+    { "name": "Eldar", "text": "I took the course to fill gaps in configuring complex recorders and analytics. The material is delivered excellently — no filler, straight to the point. I picked up a bunch of tricks that now save me time on installations." },
+    { "name": "Kairat", "text": "I really liked the course. Everything is explained clearly without unnecessary theory. The practical part was especially useful: setup, configuration, and hands-on work with the equipment." },
+    { "name": "Alex", "text": "I thought for a long time about whether to join, but in the end I don't regret it. The instructors are practitioners who teach only what's actually needed on real job sites. It's great that the instructor still stays in touch and gives advice." }
+  ]
+},
   "features": {
     "freeDelivery": {
       "title": "Free Delivery",
@@ -484,8 +546,8 @@
   },
   "courseDetails": {
     "home": "Home",
-    "courses": "Courses",
-    "title": "Video Surveillance Systems Courses",
+    "courses": "Security Systems Training",
+    "title": "Video Surveillance Systems Education",
     "description": "Learn video surveillance systems from scratch! This course is for those who want a new profession or additional income. No fluff — only what is really needed for work. Learn to install, configure, and maintain modern video surveillance systems from scratch.",
     "programTitle": "Course program:",
     "program": [

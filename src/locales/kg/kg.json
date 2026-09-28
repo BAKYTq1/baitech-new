@@ -11,8 +11,137 @@
     "pcComponents": "Компьютер комплектүүлөрү",
     "videoSurveillance": "Видеобайкоо",
     "solutions": "Чечимдер",
-    "courses": "Курстар",
+    "courses": "Коопсуздук системалары боюнча окутуу",
     "services": "Услугалар"
+  },
+  "coursesPage": {
+    "back": "Артка",
+    "badge": "ОНЛАЙН КУРС",
+    "heroTitleStart": "1 айда",
+    "heroTitleGreen": "",
+    "heroTitleHighlight": "ВИДЕОКӨЗӨМӨЛ",
+    "heroTitleEnd": "боюнча адис бол!",
+    "heroSubtitle": "Профессионалдай орнотууну үйрөнүп, чындап акча таба баштаңыз!",
+    "ctaButtonUpper": "КУРСКА ЖАЗЫЛАМ",
+    "ctaButton": "Курска жазылам",
+    "topicsTitleLine1": "Кандай темаларды",
+    "topicsTitleLine2": "карайбыз?",
+    "topics": [
+      {
+        "title": "Долбоорлоо",
+        "text": "Реалдуу тапшырмалар үчүн жабдууну тандап алууну үйрөнөсүз"
+      },
+      {
+        "title": "Монтаж",
+        "text": "Тутумду каталарсыз кантип орнотууну билесиз"
+      },
+      {
+        "title": "Тууралоо",
+        "text": "Заманбап тутумдарды тууралоону үйрөнөсүз"
+      },
+      {
+        "title": "Тейлөө",
+        "text": "Тутумду кантип тейлөөнү жана бузулганда кантип калыбына келтирүүнү үйрөнөсүз"
+      },
+      {
+        "title": "Кардарларды кантип табуу керек",
+        "text": "Биринчи кардарларды табууну, өз кызматтарыңызды жарнамалоону жана видеокөзөмөл тутумдарын орнотуу жана тейлөө боюнча заказдарды алууну үйрөнөсүз."
+      }
+    ],
+    "formatCardTitle": "Окутуу форматы",
+    "formatItems": [
+      "Окутуу мөөнөтү 4 жума.",
+      "Теория жана практика менен видео сабактар.",
+      "Пикир-кайтарым менен үй тапшырмалары.",
+      "Баарлашуу жана тажрыйба алмашуу үчүн жабык коомчулук."
+    ],
+    "resultCardTitle": "Сиз эмне аласыз",
+    "resultItems": [
+      "Видеокөзөмөл тутумдарын түшүнүү",
+      "Практикалык тажрыйба.",
+      "ВКТ орнотуунун бардык этаптары боюнча билим.",
+      "Кесипкөй иштөөгө даярдык."
+    ],
+    "storyTitleLine1": "Окуучунун таржымалы: жаңы башталгычтан биринчи",
+    "storyTitleLine2": "монтажга чейин",
+    "storyOpenBtn": "Ачуу",
+    "storyModalTitle": "Видео жакында жайгаштырылат",
+    "storyModalText": "Учурда окуучунун таржымалы жөнүндөгү видео жеткиликтүү эмес. Аны жарыялоого даярдап жатабыз — бир аздан кийин кайра кайрылыңыз.",
+    "featuresSectionTitle": "Курстан эмне аласыз?",
+    "features": [
+      {
+        "title": "Максималдуу практика",
+        "text": "Сабактардын 80%ы — реалдуу жабдууда практика"
+      },
+      {
+        "title": "Жеке коштоо",
+        "text": "Эксперттер окутуунун ар бир этабында жардам берет"
+      },
+      {
+        "title": "Заманбап технологиялар",
+        "text": "Жабдуулар жана актуалдуу иштөө ыкмалары"
+      },
+      {
+        "title": "Реалдуу натыйжалар",
+        "text": "Окуудан кийин эле — бүтүрүүчүлөрдүн 10дон 9у жаңы адистиги боюнча ийгиликтүү иштей башташат"
+      }
+    ],
+    "programSectionTitle": "Курстун программасы",
+    "lessonLabel": "Сабак",
+    "modules": [
+      {
+        "title": "1-модуль. Локалдык тармактардын негиздери",
+        "lessons": [
+          "Компьютердик тармактардын негиздери",
+          "Тармак жабдуулары жана роутерди тууралоо"
+        ]
+      },
+      {
+        "title": "2-модуль. Аналогдук видеокөзөмөл",
+        "lessons": [
+          "Аналогдук тутумдун негиздери",
+          "Кабелдер, электр менен камсыздоо жана туташуу түрлөрү"
+        ]
+      },
+      {
+        "title": "3-модуль. IP-видеокөзөмөл",
+        "lessons": [
+          "IP-камералардын негиздери",
+          "IP-камераны туташтыруу жана тууралоо",
+          "Өндүрүүчүлөрдүн программалык камсыздоосу жана анын мүмкүнчүлүктөрү",
+          "IP-камералардын сырсөздөрүн баштапкы абалга келтирүү жана калыбына келтирүү"
+        ]
+      },
+      {
+        "title": "4-модуль. Объектини өлчөө, жабдууну тандоо жана долбоорду тариздөө",
+        "lessons": [
+          "Объектини кароо жана өлчөө, жабдууну тандоо, сметаны эсептөө жана түзүү, келишим түзүү жана тутумду тапшыруу"
+        ]
+      },
+      {
+        "title": "5-модуль. Видеокөзөмөл тутумдары боюнча тендерлерге катышуу",
+        "lessons": ["Тендер деген эмне жана ага кантип катышуу керек"]
+      }
+    ],
+    "reviewsSectionTitle": "Биздин студенттердин пикирлери",
+    "reviews": [
+      {
+        "name": "Азамат",
+        "text": "Окутуу үчүн так профессионалдарды тандаганыма кубанычтамын. Мугалимдер абдан тажрыйбалуу жана боорукер, окуудан кийин деле жардам берүүгө ар дайым даяр. Айтмакчы, курстун наркын окуу учурунда эле кайтарып алдым."
+      },
+      {
+        "name": "Эльдар",
+        "text": "Татаал видеорегистраторлорду жана аналитиканы тууралоодогу боштуктарды жоюу үчүн курс алдым. Материалдын берилиши — таза бешке, бош сөз жок, баары так иш боюнча. Монтаждоодо азыр убакытты үнөмдөгөн көптөгөн ыкмаларды таптым."
+      },
+      {
+        "name": "Кайрат",
+        "text": "Курс жагды. Баары түшүнүктүү жана ашыкча теориясыз түшүндүрүлөт. Айрыкча пайдалуу болгону — практика: жабдууну орнотуу, тууралоо жана иштетүү."
+      },
+      {
+        "name": "Алекс",
+        "text": "Барам-барбаймын деп көп ойлондум, бирок акырында өкүнгөн жокмун. Мугалимдер практиктер, объектилерде чындап керек болгон нерселерди гана беришет. Мугалимдин азырга чейин байланышта болуп, кеңеш берип жатканы сонун."
+      }
+    ]
   },
   "features": {
     "freeDelivery": {
@@ -157,11 +286,7 @@
     "categories": {
       "ledScreens": {
         "title": "LED-экрандар жана маалыматтык киосктар",
-        "brands": [
-          "Unilumin",
-          "Absen",
-          "Novastar"
-        ]
+        "brands": ["Unilumin", "Absen", "Novastar"]
       },
       "interactivePanels": {
         "title": "Интерактивдүү жана сенсордук панелдер",
@@ -183,26 +308,15 @@
       },
       "networking": {
         "title": "Алсыз агымдагы жана СКС-системалар",
-        "brands": [
-          "TP-Link",
-          "Ubiquiti",
-          "D-Link"
-        ]
+        "brands": ["TP-Link", "Ubiquiti", "D-Link"]
       },
       "accessControl": {
         "title": "Киришти башкаруу, турникеттер",
-        "brands": [
-          "ZKTeco",
-          "Hikvision Access Control",
-          "Dahua Access Control"
-        ]
+        "brands": ["ZKTeco", "Hikvision Access Control", "Dahua Access Control"]
       },
       "smartLocks": {
         "title": "Смарт-кулпулар жана акылдуу чечимдер",
-        "brands": [
-          "Smart Lock (RFID, биометрия)",
-          "TTLock / Tuya Smart"
-        ]
+        "brands": ["Smart Lock (RFID, биометрия)", "TTLock / Tuya Smart"]
       }
     },
     "conclusion": "Биз кардардын милдеттерине жараша жабдууну жеке тандайбыз — бюджеттик чечимдерден тартып ири объекттер үчүн профессионалдык системаларга чейин. Бардык жеткирүүлөр техникалык колдоо, кепилдик жана сервистик тейлөө менен коштолот."
@@ -293,7 +407,7 @@
       "bonusesText": "бонустар",
       "bonusHistory": "Бонустардын тарыхы",
       "noBonuses": "Тилекке каршы,\nазыркы учурда сизде\nжеткиликтүү\nбонустар жок.",
-       "empty": "Сизде азырынча бонус жок"
+      "empty": "Сизде азырынча бонус жок"
     },
     "logout": {
       "title": "Аккаунттан чыгууга ишенесизби?",
@@ -484,8 +598,8 @@
   },
   "courseDetails": {
     "home": "Башкы бет",
-    "courses": "Курстар",
-    "title": "Видео байкоо системалары боюнча курстар",
+    "courses": "Коопсуздук системалары боюнча окутуу",
+    "title": "Видео байкоо системалары боюнча окутуу",
     "description": "Видео байкоо системаларын нөлдөн үйрөнүңүз! Бул курс жаңы кесип алууну же кошумча киреше тапкысы келгендер үчүн. Болбосо керексиз маалымат жок — жумуш үчүн чындап керек болгон нерселер гана. Заманауи видео байкоо системаларын орнотуу, жөнгө салуу жана тейлөө менен үйрөтөбүз.",
     "programTitle": "Курстун программасы:",
     "program": [
@@ -686,12 +800,12 @@
     }
   },
   "brands": {
-  "hivideo": "Коопсуздук системалары",
-  "dahua": "Видео байкоо",
-  "linkff": "Тармак жабдуулары",
-  "hikvision": "Коопсуздук системалары",
-  "ajax": "Күзөт системалары"
-},
+    "hivideo": "Коопсуздук системалары",
+    "dahua": "Видео байкоо",
+    "linkff": "Тармак жабдуулары",
+    "hikvision": "Коопсуздук системалары",
+    "ajax": "Күзөт системалары"
+  },
   "order": {
     "number": "Буйрутма №{{number}}",
     "date": "Таризделген {{date}}",
@@ -700,62 +814,62 @@
     "total2": "Total: {{price}} сом",
     "quantity": "{{count}} дана"
   },
-"status": {
-  "on_the_way":       "Жолдо",
-  "delivered":        "Жеткирилди",
-  "in_stock":         "Кампада",
-  "returned":         "Кайтарылды",
-  "not_paid":         "Төлөнгөн жок",
-  "awaiting_payment": "Төлөм күтүлүүдө",
-  "paid_with_bonus": "Бонус менен төлөнгөн",
-  "pending":          "Иштетилүүдө",
-  "cancelled":        "Жокко чыгарылды"
-},
+  "status": {
+    "on_the_way": "Жолдо",
+    "delivered": "Жеткирилди",
+    "in_stock": "Кампада",
+    "returned": "Кайтарылды",
+    "not_paid": "Төлөнгөн жок",
+    "awaiting_payment": "Төлөм күтүлүүдө",
+    "paid_with_bonus": "Бонус менен төлөнгөн",
+    "pending": "Иштетилүүдө",
+    "cancelled": "Жокко чыгарылды"
+  },
   "calculator": {
-  "title": "Видеобайкоо калькулятору",
-  "subtitle": "Бир нече суроолорго жооп бериңиз — бул 1 мүнөттөн ашпайт",
-  "yourChoice": "Сиздин тандооңуз:",
-  "ready": "Даяр:",
-  "step1Title": "Объектинин түрүн тандаңыз",
-  "step2Title": "Камеранын түрү",
-  "step3Title": "Канча камера керек?",
-  "step3Desc": "Объект үчүн камералардын санын көрсөтүңүз",
-  "step4Title": "Архивдин тереңдиги",
-  "step5Title": "Монтаж жана орнотуу керекпи?",
-  "resultTitle": "Эсептөөнүн натыйжасы",
-  "house": "Үй/Дача",
-  "flat": "Батир",
-  "store": "Дүкөн",
-  "office": "Офис",
-  "wifi": "WiFi камералар",
-  "wifiDesc": "Зымсыз, оңой орнотуу",
-  "ip": "IP камералар",
-  "ipDesc": "Зымдуу, ишенимдүү байланыш",
-  "internal": "Ички камералар, дана",
-  "external": "Тышкы камералар, дана",
-  "internalShort": "Ичинде",
-  "externalShort": "Сыртта",
-  "archive": "Архив",
-  "days": "күн",
-  "installYes": "Ооба, керек",
-  "installNo": "Жок, өзүм орнотом",
-  "calculate": "Эсептөө →",
-  "calculating": "Эсептелүүдө...",
-  "back": "← Артка",
-  "next": "Кийинки →",
-  "recalculate": "Кайра эсептөө",
-  "cameras": "Камералар",
-  "cable": "Кабел",
-  "recorder": "Регистратор/HDD",
-  "installation": "Монтаж",
-  "total": "Жыйынтык",
-  "equipment": "Жабдуулардын тизмеси",
-  "storage": "Сактагыч керек",
-  "downloadExcel": "Сметаны Excel форматында жүктөө",
-  "error": "Эсептөөдө ката кетти. Кайра аракет кылыңыз.",
-  "article": "Арт"
-},
-"infrastruktura": {
+    "title": "Видеобайкоо калькулятору",
+    "subtitle": "Бир нече суроолорго жооп бериңиз — бул 1 мүнөттөн ашпайт",
+    "yourChoice": "Сиздин тандооңуз:",
+    "ready": "Даяр:",
+    "step1Title": "Объектинин түрүн тандаңыз",
+    "step2Title": "Камеранын түрү",
+    "step3Title": "Канча камера керек?",
+    "step3Desc": "Объект үчүн камералардын санын көрсөтүңүз",
+    "step4Title": "Архивдин тереңдиги",
+    "step5Title": "Монтаж жана орнотуу керекпи?",
+    "resultTitle": "Эсептөөнүн натыйжасы",
+    "house": "Үй/Дача",
+    "flat": "Батир",
+    "store": "Дүкөн",
+    "office": "Офис",
+    "wifi": "WiFi камералар",
+    "wifiDesc": "Зымсыз, оңой орнотуу",
+    "ip": "IP камералар",
+    "ipDesc": "Зымдуу, ишенимдүү байланыш",
+    "internal": "Ички камералар, дана",
+    "external": "Тышкы камералар, дана",
+    "internalShort": "Ичинде",
+    "externalShort": "Сыртта",
+    "archive": "Архив",
+    "days": "күн",
+    "installYes": "Ооба, керек",
+    "installNo": "Жок, өзүм орнотом",
+    "calculate": "Эсептөө →",
+    "calculating": "Эсептелүүдө...",
+    "back": "← Артка",
+    "next": "Кийинки →",
+    "recalculate": "Кайра эсептөө",
+    "cameras": "Камералар",
+    "cable": "Кабел",
+    "recorder": "Регистратор/HDD",
+    "installation": "Монтаж",
+    "total": "Жыйынтык",
+    "equipment": "Жабдуулардын тизмеси",
+    "storage": "Сактагыч керек",
+    "downloadExcel": "Сметаны Excel форматында жүктөө",
+    "error": "Эсептөөдө ката кетти. Кайра аракет кылыңыз.",
+    "article": "Арт"
+  },
+  "infrastruktura": {
     "dataStorage": {
       "breadcrumb": {
         "solutions": "Чечимдер",
@@ -884,7 +998,7 @@
         "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
       }
     },
-     "dataNetworks": {
+    "dataNetworks": {
       "breadcrumb": {
         "solutions": "Чечимдер",
         "infrastructure": "Инфраструктура"
@@ -1003,7 +1117,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "controlMonitoring": {
+  "controlMonitoring": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "electricalEquipment": "Электр жабдуулары",
@@ -1086,26 +1200,26 @@
     "advantages": {
       "title": "Орусиянын ACROS иштеп чыгуусунун негизги артыкчылыктары"
     },
-   "acrosAdvantages": [
-  {
-    "label": "Ар бир колдонуучу ролу үчүн укуктарды орнотуу менен көп деңгээлдүү кирүү",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='16' cy='12' r='6' stroke='#173B73' stroke-width='1.5'/><path d='M4 38c0-7 5.5-11 12-11s12 4 12 11' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><rect x='28' y='22' width='16' height='12' rx='2' stroke='#173B73' stroke-width='1.5'/><path d='M31 22v-3a5 5 0 0 1 10 0v3' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='36' cy='28' r='2' fill='#173B73'/><line x1='36' y1='30' x2='36' y2='33' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
-  },
-  {
-    "label": "GSM, 3G/4G/GPRS/LTE, Ethernet, кубат линиясы аркылуу маалымат берүү, 868/915 МГц радиоканалды камтыган ар кандай байланыш стандарттары боюнча иштөө",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><path d='M4 18a20 20 0 0 1 40 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M10 24a14 14 0 0 1 28 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M16 30a8 8 0 0 1 16 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='24' cy='36' r='3' fill='#173B73'/></svg>"
-  },
-  {
-    "label": "ГЛОНАСС/GPS колдонуу менен геоинформациялык системаны куруу мүмкүнчүлүгү",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='24' cy='22' r='12' stroke='#173B73' stroke-width='1.5'/><ellipse cx='24' cy='22' rx='12' ry='5' stroke='#173B73' stroke-width='1.5' stroke-dasharray='3 3'/><line x1='24' y1='10' x2='24' y2='34' stroke='#173B73' stroke-width='1.5'/><circle cx='24' cy='22' r='3' fill='#173B73'/><path d='M32 8l4-4M36 8h4v4' stroke='#173B73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='38' cy='6' r='2' fill='#173B73'/><path d='M24 34v6' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M18 40h12' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
-  }
-],
+    "acrosAdvantages": [
+      {
+        "label": "Ар бир колдонуучу ролу үчүн укуктарды орнотуу менен көп деңгээлдүү кирүү",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='16' cy='12' r='6' stroke='#173B73' stroke-width='1.5'/><path d='M4 38c0-7 5.5-11 12-11s12 4 12 11' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><rect x='28' y='22' width='16' height='12' rx='2' stroke='#173B73' stroke-width='1.5'/><path d='M31 22v-3a5 5 0 0 1 10 0v3' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='36' cy='28' r='2' fill='#173B73'/><line x1='36' y1='30' x2='36' y2='33' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
+      },
+      {
+        "label": "GSM, 3G/4G/GPRS/LTE, Ethernet, кубат линиясы аркылуу маалымат берүү, 868/915 МГц радиоканалды камтыган ар кандай байланыш стандарттары боюнча иштөө",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><path d='M4 18a20 20 0 0 1 40 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M10 24a14 14 0 0 1 28 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M16 30a8 8 0 0 1 16 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='24' cy='36' r='3' fill='#173B73'/></svg>"
+      },
+      {
+        "label": "ГЛОНАСС/GPS колдонуу менен геоинформациялык системаны куруу мүмкүнчүлүгү",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='24' cy='22' r='12' stroke='#173B73' stroke-width='1.5'/><ellipse cx='24' cy='22' rx='12' ry='5' stroke='#173B73' stroke-width='1.5' stroke-dasharray='3 3'/><line x1='24' y1='10' x2='24' y2='34' stroke='#173B73' stroke-width='1.5'/><circle cx='24' cy='22' r='3' fill='#173B73'/><path d='M32 8l4-4M36 8h4v4' stroke='#173B73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='38' cy='6' r='2' fill='#173B73'/><path d='M24 34v6' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M18 40h12' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
+      }
+    ],
     "footer": {
       "title": "Чачыранды түзмөктөрдөн бирдиктүү байланыш экосистемасына өтүңүз",
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-    "industrialLighting": {
+  "industrialLighting": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "electricalEquipment": "Электр жабдуулары",
@@ -1163,7 +1277,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "cableSystems": {
+  "cableSystems": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "electricalEquipment": "Электр жабдуулары",
@@ -1198,15 +1312,42 @@
     "adaptTitle": "Чечимдерди ылайыкташтырабыз",
     "adaptSubtitle": "долбооруңуздун конкреттүү талаптарына",
     "products": [
-      { "label": "Кабель тутумдары", "img": "https://arman-engineering.ru/upload/iblock/montazh-1.jpg" },
-      { "label": "Тирек конструкциялары", "img": "https://arman-engineering.ru/upload/iblock/montazh-2.jpg" },
-      { "label": "Өрткө туруктуу кабель линиялары", "img": "https://arman-engineering.ru/upload/iblock/montazh-3.jpg" },
-      { "label": "Түтүк өткөргүчтөрдүн тиректери жана бекитүүлөрү", "img": "https://arman-engineering.ru/upload/iblock/montazh-4.jpg" },
-      { "label": "Вентиляциянын тиректери жана бекитүүлөрү", "img": "https://arman-engineering.ru/upload/iblock/montazh-5.jpg" },
-      { "label": "Тейлөө үчүн монтаждык комплекттер", "img": "https://arman-engineering.ru/upload/iblock/montazh-6.jpg" },
-      { "label": "Гидравлика / пневматика системалары үчүн бекитүүлөр", "img": "https://arman-engineering.ru/upload/iblock/montazh-7.jpg" },
-      { "label": "Кабель бекитүү системалары", "img": "https://arman-engineering.ru/upload/iblock/montazh-8.jpg" },
-      { "label": "Тейлөө аянтчалары", "img": "https://arman-engineering.ru/upload/iblock/montazh-9.jpg" }
+      {
+        "label": "Кабель тутумдары",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-1.jpg"
+      },
+      {
+        "label": "Тирек конструкциялары",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-2.jpg"
+      },
+      {
+        "label": "Өрткө туруктуу кабель линиялары",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-3.jpg"
+      },
+      {
+        "label": "Түтүк өткөргүчтөрдүн тиректери жана бекитүүлөрү",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-4.jpg"
+      },
+      {
+        "label": "Вентиляциянын тиректери жана бекитүүлөрү",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-5.jpg"
+      },
+      {
+        "label": "Тейлөө үчүн монтаждык комплекттер",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-6.jpg"
+      },
+      {
+        "label": "Гидравлика / пневматика системалары үчүн бекитүүлөр",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-7.jpg"
+      },
+      {
+        "label": "Кабель бекитүү системалары",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-8.jpg"
+      },
+      {
+        "label": "Тейлөө аянтчалары",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-9.jpg"
+      }
     ],
     "metalTitle": "Металлдан жасалган продукциялар",
     "metalSubtitle": "Көпчүлүк өнөр жай жана курулуш милдеттери үчүн далилденген чечимдер",
@@ -1511,7 +1652,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-    "mountingSystems": {
+  "mountingSystems": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "electricalEquipment": "Электр жабдуулары",
@@ -1546,15 +1687,42 @@
     "adaptTitle": "Чечимдерди ылайыкташтырабыз",
     "adaptSubtitle": "долбооруңуздун конкреттүү талаптарына",
     "products": [
-      { "label": "Кабель тутумдары", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_1.png" },
-      { "label": "Тирек конструкциялары", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_9.png" },
-      { "label": "Өрткө туруктуу кабель линиялары", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_8.png" },
-      { "label": "Түтүк өткөргүчтөрдүн тиректери жана бекитүүлөрү", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_7.png" },
-      { "label": "Вентиляциянын тиректери жана бекитүүлөрү", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_6.png" },
-      { "label": "Тейлөө үчүн монтаждык комплекттер", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_5.png" },
-      { "label": "Гидравлика / пневматика системалары үчүн бекитүүлөр", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_4.png" },
-      { "label": "Кабель бекитүү системалары", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_3.png" },
-      { "label": "Тейлөө аянтчалары", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_2.png" }
+      {
+        "label": "Кабель тутумдары",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_1.png"
+      },
+      {
+        "label": "Тирек конструкциялары",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_9.png"
+      },
+      {
+        "label": "Өрткө туруктуу кабель линиялары",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_8.png"
+      },
+      {
+        "label": "Түтүк өткөргүчтөрдүн тиректери жана бекитүүлөрү",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_7.png"
+      },
+      {
+        "label": "Вентиляциянын тиректери жана бекитүүлөрү",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_6.png"
+      },
+      {
+        "label": "Тейлөө үчүн монтаждык комплекттер",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_5.png"
+      },
+      {
+        "label": "Гидравлика / пневматика системалары үчүн бекитүүлөр",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_4.png"
+      },
+      {
+        "label": "Кабель бекитүү системалары",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_3.png"
+      },
+      {
+        "label": "Тейлөө аянтчалары",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_2.png"
+      }
     ],
     "metalTitle": "Металлдан жасалган продукциялар",
     "metalSubtitle": "Көпчүлүк өнөр жай жана курулуш милдеттери үчүн далилденген чечимдер",
@@ -1609,7 +1777,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "soUsta": {
+  "soUsta": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "securitySystems": "Комплекстүү коопсуздук системалары",
@@ -1697,7 +1865,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "skud": {
+  "skud": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "securitySystems": "Комплекстүү коопсуздук системалары",
@@ -1763,11 +1931,7 @@
       {
         "label": "Окугуч:",
         "text": "идентификатордун кодун окуп, контроллерго өткөрүп берүүчү түзүлүш. Окугучтардын үч түрү бар:",
-        "items": [
-          "контакттуу;",
-          "контактсыз;",
-          "биометриялык."
-        ]
+        "items": ["контакттуу;", "контактсыз;", "биометриялык."]
       },
       {
         "label": "Контроллер:",
@@ -1808,7 +1972,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "securityAlarm": {
+  "securityAlarm": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "securitySystems": "Комплекстүү коопсуздук системалары",
@@ -1890,7 +2054,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "videoSurveillance": {
+  "videoSurveillance": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "securitySystems": "Комплекстүү коопсуздук системалары",
@@ -1907,9 +2071,18 @@
     "headerTitle": "Видеокөзөмөлдү инциденттердин алдын алуу куралына айландырабыз",
     "headerSubtitle": "Маалыматтарды топтоо ордуна предиктивдик аналитика",
     "advantages": [
-      { "text": "Беттерди жана буюмдарды автоматтык анализдөө жана таануу", "icon": "analysis" },
-      { "text": "Чексиз камералар жана жазмаларга алыстан жетүү", "icon": "cameras" },
-      { "text": "Жабдууларды толук алмаштырбастан жаңыртабыз", "icon": "modernize" }
+      {
+        "text": "Беттерди жана буюмдарды автоматтык анализдөө жана таануу",
+        "icon": "analysis"
+      },
+      {
+        "text": "Чексиз камералар жана жазмаларга алыстан жетүү",
+        "icon": "cameras"
+      },
+      {
+        "text": "Жабдууларды толук алмаштырбастан жаңыртабыз",
+        "icon": "modernize"
+      }
     ],
     "benefitsTitle": "Видеокөзөмөл комплекстүү коопсуздук системаларынын бир бөлүгү катары",
     "benefitsSubtitle": "Бизнес үчүн натыйжаларды алып келет",
@@ -1978,7 +2151,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "fireSafety": {
+  "fireSafety": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "securitySystems": "Комплекстүү коопсуздук системалары",
@@ -2033,9 +2206,7 @@
       },
       {
         "label": "Кол өрт извещателдери (өрт тынчсыздандыруу баскычтары):",
-        "items": [
-          "Адамга кол менен «Өрт» сигналын берүүгө мүмкүндүк берет."
-        ]
+        "items": ["Адамга кол менен «Өрт» сигналын берүүгө мүмкүндүк берет."]
       },
       {
         "label": "Борборлоштурулган башкаруу жабдуулары (кабыл алуу-көзөмөл аппаратурасы):",
@@ -2125,9 +2296,7 @@
       },
       {
         "label": "Эскертүү каражаттары:",
-        "items": [
-          "өрт чыккандыгы жөнүндө маалымат берүүнү камсыздайт."
-        ]
+        "items": ["өрт чыккандыгы жөнүндө маалымат берүүнү камсыздайт."]
       }
     ],
     "footer": {
@@ -2135,7 +2304,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "wirelessCommunication": {
+  "wirelessCommunication": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "industrialCommunication": "Өнөр жай байланышы жана эскертүү",
@@ -2222,7 +2391,7 @@
       "subtitle": "Долбоордун наркын эсептеп, ишке ашыруунун каалаган этабында кошулабыз"
     }
   },
-   "industrialCommunication": {
+  "industrialCommunication": {
     "breadcrumb": {
       "solutions": "Чечимдер",
       "industrialCommunication": "Өнөр жай байланышы жана эскертүү",
@@ -2237,8 +2406,14 @@
     ],
     "durabilityTitle": "Armtel системасы катуу өнөр жай шарттарына туруктуу",
     "durabilityItems": [
-      { "icon": "ex", "text": "1 жана 2 зоналар үчүн жарылуудан корголгон аткаруу" },
-      { "icon": "chemistry", "text": "Химияга жана абразивдерге туруктуу корпустар" },
+      {
+        "icon": "ex",
+        "text": "1 жана 2 зоналар үчүн жарылуудан корголгон аткаруу"
+      },
+      {
+        "icon": "chemistry",
+        "text": "Химияга жана абразивдерге туруктуу корпустар"
+      },
       { "icon": "shield", "text": "Корпустун жогорку даражадагы коргоосу" },
       { "icon": "audio", "text": "Активдүү жана пассивдүү ызы-чууну басуу" }
     ],
@@ -2246,18 +2421,39 @@
     "dispatchSubtitle": "Кызматкерлер менен жетекчилик ортосунда ыкчам маалымат алмашууну камсыздайт",
     "dispatchImageAlt": "Диспетчердик байланыш схемасы",
     "dispatchItems": [
-      { "label": "Кандай гана масштаб:", "text": "цехтен өндүрүш комплекстерине чейин" },
-      { "label": "Ар кандай милдеттер үчүн байланыш форматтары:", "text": "конференц, селектор, циркуляр" },
-      { "label": "Көп функциялуу пульттор:", "text": "кошумча модулдар, программалануучу баскычтар, приоритеттүү чалуулар, жарык индикациясы" },
-      { "label": "Тышкы байланыш системалары менен интеграция:", "text": "телефония, радиобайланыш, эскертүү" }
+      {
+        "label": "Кандай гана масштаб:",
+        "text": "цехтен өндүрүш комплекстерине чейин"
+      },
+      {
+        "label": "Ар кандай милдеттер үчүн байланыш форматтары:",
+        "text": "конференц, селектор, циркуляр"
+      },
+      {
+        "label": "Көп функциялуу пульттор:",
+        "text": "кошумча модулдар, программалануучу баскычтар, приоритеттүү чалуулар, жарык индикациясы"
+      },
+      {
+        "label": "Тышкы байланыш системалары менен интеграция:",
+        "text": "телефония, радиобайланыш, эскертүү"
+      }
     ],
     "operationalTitle": "Оперативдик-технологиялык байланыш",
     "operationalSubtitle": "Татаал шарттарда иштин үзгүлтүксүздүгүн жана коопсуздугун камсыздайт",
     "operationalImageAlt": "Оперативдик-технологиялык байланыш схемасы",
     "operationalItems": [
-      { "label": "Абоненттердин кепилденген туташуусу:", "text": "блоктобой турган коммутация талаасы бар коммутаторлорго негизделген система" },
-      { "label": "Татаал шарттарга туруктуулук:", "text": "сүйлөшүү түзүлүштөрү жана үн күчөткүчтөр атайын аткарууда" },
-      { "label": "Үзгүлтүксүз интеграция:", "text": "үндөткүч байланыш жана эскертүү бир интерфейсте" }
+      {
+        "label": "Абоненттердин кепилденген туташуусу:",
+        "text": "блоктобой турган коммутация талаасы бар коммутаторлорго негизделген система"
+      },
+      {
+        "label": "Татаал шарттарга туруктуулук:",
+        "text": "сүйлөшүү түзүлүштөрү жана үн күчөткүчтөр атайын аткарууда"
+      },
+      {
+        "label": "Үзгүлтүксүз интеграция:",
+        "text": "үндөткүч байланыш жана эскертүү бир интерфейсте"
+      }
     ],
     "standardsTitle": "Armtel-Info бардык зарыл ченемдик талаптарга жооп берет",
     "standards": [
@@ -2267,59 +2463,101 @@
     ],
     "catalogTitle": "Системалардын жашоо циклинин толук башкаруусу",
     "catalogButton": "Armtel каталогу (.pdf)",
-"products": [
-  {
-    "title": "Жарылуудан корголгон сүйлөшүү түзүлүшү DWEx",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_1.jpg",
-    "imageWidth": "w-32",
-    "ex": true,
-    "description": "1 жана 2 зоналарга ылайыктуу\n1Ex d e ib IIC N6 Gb\nEx tb IIIC T85°C Db",
-    "specs": [
-      { "label": "Катуу шарттарга туруктуулук", "text": "-60°C дан +70°C га чейин" },
-      { "label": "Активдүү ызы-чууну басуу", "text": "Сүйлөшүүнү тазалоо үчүн санарип үн тазалоо" },
-      { "label": "Чаң жана суу коргоосу", "text": "Чаңдан, кумдан, суудан жана муздан коргоо" },
-      { "label": "Химиялык таасирден коргоо", "text": "Кислоталарга, щёлочко, аммиакка, спиртке туруктуулук" }
-    ]
-  },
-  {
-    "title": "Жарылуудан корголгон рупордук үн күчөткүч AR-25Ex",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_2.jpg",
-    "imageWidth": "w-40",
-    "ex": true,
-    "description": "1 жана 2, 20, 21, 22\n1Ex d e mb IIB T4 Gb\nEx tb mb IIIC T135°C Db",
-    "specs": [
-      { "label": "Суук климатка туруктуулук", "text": "ГОСТ 15150-69 (ХЛ1) ылайык" },
-      { "label": "Ачык аянтта колдонуу", "text": "Кырауга, мүзгө жана конденсатка туруктуулук" },
-      { "label": "Чаң жана суу коргоосу", "text": "Чаңдан, кумдан, суудан жана муздан коргоо" },
-      { "label": "Ийкемдүү орнотуулар", "text": "Ар кандай акустикалык милдеттерге ыңгайлашат" }
-    ]
-  },
-  {
-    "title": "Интеграцияланган байланыш панели TOP-PAD-IP2",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_3.jpg",
-    "imageWidth": "w-48",
-    "ex": false,
-    "description": "",
-    "specs": [
-      { "label": "Чаң жана суу коргоосу", "text": "Өнөр жай чаңынан жана булганычтан коргоо" },
-      { "label": "Ишенимдүүлүк", "text": "Байланышты резервдөө үчүн 2 Ethernet порт" },
-      { "label": "Ийкемдүү конфигурация", "text": "274 виртуалдык баскычка чейин, 84 физикалыкка чейин" },
-      { "label": "HD үн сапаты", "text": "14 кГц га чейин жыштык" }
-    ]
-  },
-  {
-    "title": "Жарык-үн сигнализациясы үчүн түзүлүш",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_4.jpg",
-    "imageWidth": "w-32",
-    "ex": false,
-    "description": "",
-    "specs": [
-      { "label": "Суук климатка туруктуулук", "text": "ГОСТ 15150-69 (ХЛ1) ылайык" },
-      { "label": "Ачык аянтта колдонуу", "text": "Кырауга, мүзгө жана конденсатка туруктуулук" },
-      { "label": "Чаң жана суу коргоосу", "text": "Чаңдан, кумдан, суудан жана муздан коргоо" }
-    ]
-  }
-],
+    "products": [
+      {
+        "title": "Жарылуудан корголгон сүйлөшүү түзүлүшү DWEx",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_1.jpg",
+        "imageWidth": "w-32",
+        "ex": true,
+        "description": "1 жана 2 зоналарга ылайыктуу\n1Ex d e ib IIC N6 Gb\nEx tb IIIC T85°C Db",
+        "specs": [
+          {
+            "label": "Катуу шарттарга туруктуулук",
+            "text": "-60°C дан +70°C га чейин"
+          },
+          {
+            "label": "Активдүү ызы-чууну басуу",
+            "text": "Сүйлөшүүнү тазалоо үчүн санарип үн тазалоо"
+          },
+          {
+            "label": "Чаң жана суу коргоосу",
+            "text": "Чаңдан, кумдан, суудан жана муздан коргоо"
+          },
+          {
+            "label": "Химиялык таасирден коргоо",
+            "text": "Кислоталарга, щёлочко, аммиакка, спиртке туруктуулук"
+          }
+        ]
+      },
+      {
+        "title": "Жарылуудан корголгон рупордук үн күчөткүч AR-25Ex",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_2.jpg",
+        "imageWidth": "w-40",
+        "ex": true,
+        "description": "1 жана 2, 20, 21, 22\n1Ex d e mb IIB T4 Gb\nEx tb mb IIIC T135°C Db",
+        "specs": [
+          {
+            "label": "Суук климатка туруктуулук",
+            "text": "ГОСТ 15150-69 (ХЛ1) ылайык"
+          },
+          {
+            "label": "Ачык аянтта колдонуу",
+            "text": "Кырауга, мүзгө жана конденсатка туруктуулук"
+          },
+          {
+            "label": "Чаң жана суу коргоосу",
+            "text": "Чаңдан, кумдан, суудан жана муздан коргоо"
+          },
+          {
+            "label": "Ийкемдүү орнотуулар",
+            "text": "Ар кандай акустикалык милдеттерге ыңгайлашат"
+          }
+        ]
+      },
+      {
+        "title": "Интеграцияланган байланыш панели TOP-PAD-IP2",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_3.jpg",
+        "imageWidth": "w-48",
+        "ex": false,
+        "description": "",
+        "specs": [
+          {
+            "label": "Чаң жана суу коргоосу",
+            "text": "Өнөр жай чаңынан жана булганычтан коргоо"
+          },
+          {
+            "label": "Ишенимдүүлүк",
+            "text": "Байланышты резервдөө үчүн 2 Ethernet порт"
+          },
+          {
+            "label": "Ийкемдүү конфигурация",
+            "text": "274 виртуалдык баскычка чейин, 84 физикалыкка чейин"
+          },
+          { "label": "HD үн сапаты", "text": "14 кГц га чейин жыштык" }
+        ]
+      },
+      {
+        "title": "Жарык-үн сигнализациясы үчүн түзүлүш",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/solutions_communications_armtel_product_4.jpg",
+        "imageWidth": "w-32",
+        "ex": false,
+        "description": "",
+        "specs": [
+          {
+            "label": "Суук климатка туруктуулук",
+            "text": "ГОСТ 15150-69 (ХЛ1) ылайык"
+          },
+          {
+            "label": "Ачык аянтта колдонуу",
+            "text": "Кырауга, мүзгө жана конденсатка туруктуулук"
+          },
+          {
+            "label": "Чаң жана суу коргоосу",
+            "text": "Чаңдан, кумдан, суудан жана муздан коргоо"
+          }
+        ]
+      }
+    ],
     "softwareTitle": "Туура орнотуу жана иштетүү үчүн программалык камсыздоо",
     "softwareSubtitle": "Armtel системасынын бардык компоненттери бирдиктүү корголгон чөйрөдө иштейт — программалык камсыздоонун шайкеш келбөө коркунучу же ар кандай системалардын туташкан жериндеги алсыздыктар жок.",
     "softwareItems": [
@@ -2470,5 +2708,5 @@
     }
   },
   "OurPartners": "Биздин өнөктөштөр",
-  "ball":"балл"
+  "ball": "балл"
 }
