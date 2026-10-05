@@ -3,17 +3,21 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import NavItem from "../../components/navitem/NavItem";
 import { Suspense } from "react";
+import FloatingCalculator from "../../components/FloatingCalculator/FloatingCalculator";
 
 export default function MainLayout({ children }) {
   return (
     <>
-      <Header />
       <Suspense fallback={null}>
-        <NavItem/>
+        <Header />
       </Suspense>
-        <FloatingButton/>
+      <Suspense fallback={null}>
+        <NavItem />
+      </Suspense>
+      <FloatingButton />
+      <FloatingCalculator />
       {children}
-      <Footer/>
+      <Footer />
     </>
   );
 }

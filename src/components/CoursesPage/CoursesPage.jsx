@@ -6,36 +6,50 @@ import Image from "next/image";
 import { ArrowLeft, Check, X, Plus, Phone, Mail } from "lucide-react";
 import styles from "./CoursesPage.module.scss";
 import team from "./img/team.jpeg";
+import Azamat from "./img/Azamat.png";
 import eldar from "./img/eldar.png";
 import kairat from "./img/kairat.png";
 import alex from "./img/alex.png";
+import img1 from "./img/img1.png";
+import img2 from "./img/img2.png";
+import { useSheetConfig, safeLink } from "./useSheetConfig";
 
 const WHATSAPP_LINK_1 = "https://wa.me/996505406805";
 const WHATSAPP_LINK_2 = "https://wa.me/996558000222";
 const INSTAGRAM_LINK = "https://www.instagram.com/baitech.kg/";
 
 // Аватарки — привязаны к индексу отзыва в JSON (0: Азамат, 1: Эльдар, 2: Кайрат, 3: Алекс)
-const REVIEW_AVATARS = [
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop",
-  eldar,
-  kairat,
-  alex,
-];
+const REVIEW_AVATARS = [Azamat, eldar, kairat, alex];
 
 export default function CoursesPage() {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { config: sheet, loaded } = useSheetConfig();
+  const lang = (i18n.language || "ru").slice(0, 2);
+
+  const heroBtn = {
+    text: sheet.herobutton?.[lang] || t("coursesPage.ctaButtonUpper"),
+    link: safeLink(sheet.herobutton?.link, WHATSAPP_LINK_1),
+  };
+  const topicsBtn = {
+    text: sheet.topicsbutton?.[lang] || t("coursesPage.ctaButton"),
+    link: safeLink(sheet.topicsbutton?.link, WHATSAPP_LINK_1),
+  };
   const [openModules, setOpenModules] = useState(new Set([0]));
   const [isStoryOpen, setIsStoryOpen] = useState(false);
 
-const asArray = (value) => (Array.isArray(value) ? value : []);
+  const asArray = (value) => (Array.isArray(value) ? value : []);
 
-const topics = asArray(t("coursesPage.topics", { returnObjects: true }));
-const formatItems = asArray(t("coursesPage.formatItems", { returnObjects: true }));
-const resultItems = asArray(t("coursesPage.resultItems", { returnObjects: true }));
-const features = asArray(t("coursesPage.features", { returnObjects: true }));
-const modules = asArray(t("coursesPage.modules", { returnObjects: true }));
-const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
+  const topics = asArray(t("coursesPage.topics", { returnObjects: true }));
+  const formatItems = asArray(
+    t("coursesPage.formatItems", { returnObjects: true }),
+  );
+  const resultItems = asArray(
+    t("coursesPage.resultItems", { returnObjects: true }),
+  );
+  const features = asArray(t("coursesPage.features", { returnObjects: true }));
+  const modules = asArray(t("coursesPage.modules", { returnObjects: true }));
+  const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
 
   const toggleModule = (index) => {
     setOpenModules((prev) => {
@@ -59,6 +73,7 @@ const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
     <div className={styles.page}>
       {/* Hero-блок */}
       <section className={styles.heroSection}>
+        <Image src={img1} alt="" fill priority className={styles.heroBgImage} />
         <div className={`${styles.heroBackWrapper} container`}>
           <button
             type="button"
@@ -83,14 +98,25 @@ const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
             {t("coursesPage.heroTitleEnd")}
           </h1>
           <p className={styles.heroSubtitle}>{t("coursesPage.heroSubtitle")}</p>
-          <a
-            href={WHATSAPP_LINK_1}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.greenBtn}
-          >
-            {t("coursesPage.ctaButtonUpper")}
-          </a>
+          {loaded ? (
+            <a
+              href={heroBtn.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.greenBtn}
+            >
+              {heroBtn.text}
+            </a>
+          ) : (
+            <span
+              className={`${styles.greenBtn} ${styles.btnSkeleton}`}
+              aria-hidden="true"
+            >
+              <i />
+              <i />
+              <i />
+            </span>
+          )}
         </div>
       </section>
 
@@ -115,14 +141,25 @@ const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
               </div>
 
               <div className={styles.topicsCta}>
-                <a
-                  href={WHATSAPP_LINK_1}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.greenBtn}
-                >
-                  {t("coursesPage.ctaButton")}
-                </a>
+                {loaded ? (
+                  <a
+                    href={topicsBtn.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.greenBtn}
+                  >
+                    {topicsBtn.text}
+                  </a>
+                ) : (
+                  <span
+                    className={`${styles.greenBtn} ${styles.btnSkeleton}`}
+                    aria-hidden="true"
+                  >
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                )}
               </div>
             </div>
 
@@ -183,20 +220,23 @@ const reviews = asArray(t("coursesPage.reviews", { returnObjects: true }));
 
       {/* История */}
       <section className={styles.storySection}>
-        <div className={styles.storyOverlay}></div>
         <Image
-          src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=1200&auto=format&fit=crop"
+          src={img2}
           alt="История ученика"
           fill
           className={styles.storyBgImage}
           unoptimized
         />
+
+        <div className={styles.storyOverlay}></div>
+
         <div className={styles.storyContent}>
           <h2 className={styles.storyTitle}>
             {t("coursesPage.storyTitleLine1")}
             <br />
             {t("coursesPage.storyTitleLine2")}
           </h2>
+
           <button
             type="button"
             onClick={() => setIsStoryOpen(true)}

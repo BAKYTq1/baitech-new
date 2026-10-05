@@ -18,8 +18,8 @@ import Image from 'next/image';
 
 // Какие бренды показывать для каждой категории
 const CATEGORY_BRANDS = {
-  all:   ['ajax', 'dahua', 'msi', 'pantum', 'linkff'], // главная
-  video: ['ajax', 'dahua', 'hikvision', 'hivideo', ],   // Видеонаблюдение
+  all:   ['ajax', 'dahua', 'hikvision', 'pantum', 'linkff'], // главная
+  video: ['ajax', 'dahua', 'hikvision', 'hivideo ', 'linkff'],   // Видеонаблюдение
   pc:    ['tplink', 'canon', 'msi', 'pantum', 'linkff'],                  // Комплектующие ПК
 };
 

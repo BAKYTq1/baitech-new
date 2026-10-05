@@ -1,14 +1,19 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import { IoCartOutline, IoCart, IoClose } from "react-icons/io5";
 import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import './ProductCard.scss';
+import "./ProductCard.scss";
 import { productApi } from "@/lib/products/api/useProducts";
 import { useTranslation } from "react-i18next";
-import { useCart, useCreateCartItem, useDeleteCartItem } from "@/lib/cart/hooks/hooks";
+import {
+  useCart,
+  useCreateCartItem,
+  useDeleteCartItem,
+} from "@/lib/cart/hooks/hooks";
 import { useSiteSettings } from "@/lib/settings/hook";
+import { useQuery } from "@tanstack/react-query";
 
 const HIGH_PRICE_LIMIT = 100000;
 const PRODUCT_PLACEHOLDER = "/product-placeholder.svg";
@@ -40,20 +45,25 @@ const buildWhatsAppLink = (whatsapp, phone, message) => {
 };
 
 const ProductCard = ({ productId }) => {
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(null);
   const [count, setCount] = useState(1);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const { t } = useTranslation();
   const { settings } = useSiteSettings();
 
+  const { data: product, isLoading: loading } = useQuery({
+    queryKey: ["product", productId],
+    queryFn: () => productApi.getById(productId),
+    enabled: !!productId,
+  });
+
   const { data: cartItems } = useCart();
   const { mutate: addToCart, isPending: isAdding } = useCreateCartItem();
   const { mutate: deleteFromCart, isPending: isDeleting } = useDeleteCartItem();
 
   const cartItem = cartItems?.find(
-    (item) => item.product?.id === product?.id || item.product_id === product?.id
+    (item) =>
+      item.product?.id === product?.id || item.product_id === product?.id,
   );
   const isInCart = !!cartItem;
   const isAvailable = product?.is_available;
@@ -65,33 +75,14 @@ const ProductCard = ({ productId }) => {
   }, [cartItem]);
 
   useEffect(() => {
-    let isMounted = true;
+    if (!product) return;
+    const imgs =
+      product.existing_images?.map((img) => img.image).filter(Boolean) || [];
+    setActiveImage(imgs[0] || PRODUCT_PLACEHOLDER);
+  }, [product]);
 
-    const fetchProduct = async () => {
-      try {
-        const data = await productApi.getById(productId);
-        if (!isMounted) return;
-
-        setProduct(data);
-        const images = data.existing_images?.map((img) => img.image).filter(Boolean) || [];
-        setActiveImage(images[0] || PRODUCT_PLACEHOLDER);
-      } catch (err) {
-        console.error("Ошибка загрузки товара:", err);
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    if (productId) fetchProduct();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [productId]);
-
-  const images = product?.existing_images?.map((img) => img.image).filter(Boolean) || [];
+  const images =
+    product?.existing_images?.map((img) => img.image).filter(Boolean) || [];
   const displayImages = images.length > 0 ? images : [PRODUCT_PLACEHOLDER];
   const currentImage = activeImage || displayImages[0];
 
@@ -107,13 +98,18 @@ const ProductCard = ({ productId }) => {
   const formattedPrice = Number.isFinite(parsedPrice)
     ? parsedPrice.toLocaleString()
     : product?.price || "0";
-  const isHighPrice = Number.isFinite(parsedPrice) && parsedPrice >= HIGH_PRICE_LIMIT;
+  const isHighPrice =
+    Number.isFinite(parsedPrice) && parsedPrice >= HIGH_PRICE_LIMIT;
   // Товар без цены (или с ценой 0) продаётся только за бонусные баллы
   const isBonusOnly = !(parsedPrice > 0);
   const whatsappMessage = isHighPrice
     ? `Здравствуйте! Интересует товар: ${product?.name || "-"}, артикул: ${product?.article || "-"}.`
     : `Здравствуйте! Интересует товар: ${product?.name || "-"}, артикул: ${product?.article || "-"}, цена: ${formattedPrice} сом.`;
-  const whatsappLink = buildWhatsAppLink(settings?.whatsapp, settings?.phone, whatsappMessage);
+  const whatsappLink = buildWhatsAppLink(
+    settings?.whatsapp,
+    settings?.phone,
+    whatsappMessage,
+  );
 
   const handleCartClick = () => {
     if (!product?.id) return;
@@ -136,7 +132,10 @@ const ProductCard = ({ productId }) => {
   };
 
   if (loading) return <div className="loader"></div>;
-  if (!product) return <div className="product text-center">{t('productCard.notFound')}</div>;
+  if (!product)
+    return (
+      <div className="product text-center">{t("productCard.notFound")}</div>
+    );
 
   return (
     <>
@@ -150,32 +149,54 @@ const ProductCard = ({ productId }) => {
                 onClick={() => setActiveImage(img)}
                 type="button"
               >
-                <Image src={img} alt={`${productName} preview`} width={82} height={82} />
+                <Image
+                  src={img}
+                  alt={`${productName} preview`}
+                  width={82}
+                  height={82}
+                />
               </button>
             ))}
           </div>
 
           <div className="product__image">
-            <Image src={currentImage} alt={productName} width={471} height={471} />
+            <Image
+              src={currentImage}
+              alt={productName}
+              width={471}
+              height={471}
+            />
           </div>
         </div>
 
         <div className="product__info">
-          <h1>{t('productCard.article')}: {product.article || "-"}</h1>
+          <h1>
+            {t("productCard.article")}: {product.article || "-"}
+          </h1>
           <p className="product__desc">{productName}</p>
-          <p className="product__descip line-clamp-3" title={productDescription}>
+          <p
+            className="product__descip line-clamp-3"
+            title={productDescription}
+          >
             {shortDescription}
           </p>
           {isHighPrice ? (
-            <div className="product__contact-title">{t("card.contactForPrice")}</div>
+            <div className="product__contact-title">
+              {t("card.contactForPrice")}
+            </div>
           ) : isBonusOnly ? (
             <div className="product__price product__price--bonus">
-              {product.bonus_price || 0} {t('productCard.bonusPoints', t('ball'))}
+              {product.bonus_price || 0}{" "}
+              {t("productCard.bonusPoints", t("ball"))}
             </div>
           ) : (
             <>
-              <div className="product__price">{formattedPrice} {t('productCard.currency')}</div>
-              <div className="product__bonus">{product.bonus || 0} {t('productCard.bonuses')}</div>
+              <div className="product__price">
+                {formattedPrice} {t("productCard.currency")}
+              </div>
+              <div className="product__bonus">
+                {product.bonus || 0} {t("productCard.bonuses")}
+              </div>
             </>
           )}
 
@@ -195,24 +216,39 @@ const ProductCard = ({ productId }) => {
             ) : isAvailable ? (
               <>
                 <div className="counter">
-                  <button onClick={decrement} type="button">-</button>
+                  <button onClick={decrement} type="button">
+                    -
+                  </button>
                   <span>{count}</span>
-                  <button onClick={increment} type="button">+</button>
+                  <button onClick={increment} type="button">
+                    +
+                  </button>
                 </div>
 
                 <button
                   className="add-to-cart"
                   onClick={handleCartClick}
                   disabled={isAdding || isDeleting}
-                  style={{ backgroundColor: isInCart ? '#0E2E5B' : '', color: isInCart ? '#FFFFFF' : '' }}
+                  style={{
+                    backgroundColor: isInCart ? "#0E2E5B" : "",
+                    color: isInCart ? "#FFFFFF" : "",
+                  }}
                 >
-                  {isInCart ? <IoCart size={20} /> : <IoCartOutline size={20} />}
-                  {t('productCard.addToCart')}
+                  {isInCart ? (
+                    <IoCart size={20} />
+                  ) : (
+                    <IoCartOutline size={20} />
+                  )}
+                  {t("productCard.addToCart")}
                 </button>
               </>
             ) : (
               <a
-                href={whatsappLink ?? settings?.whatsapp ?? `tel:${settings?.phone ?? ""}`}
+                href={
+                  whatsappLink ??
+                  settings?.whatsapp ??
+                  `tel:${settings?.phone ?? ""}`
+                }
                 target="_blank"
                 rel="noreferrer"
                 className="product-card__availability-btn"
@@ -224,7 +260,11 @@ const ProductCard = ({ productId }) => {
 
           {!isAvailable && !isHighPrice && (
             <a
-              href={whatsappLink ?? settings?.whatsapp ?? `tel:${settings?.phone ?? ""}`}
+              href={
+                whatsappLink ??
+                settings?.whatsapp ??
+                `tel:${settings?.phone ?? ""}`
+              }
               target="_blank"
               rel="noreferrer"
               className="product-card__whatsapp"

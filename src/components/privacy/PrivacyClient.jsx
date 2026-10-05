@@ -1,8 +1,8 @@
 "use client";
 
-import Link from 'next/link';
-import './Privacy.scss';
-import { useTranslation } from 'react-i18next';
+import "./Privacy.scss";
+import { useTranslation } from "react-i18next";
+import Breadcrumb from "../product/ui/Breadcrumb/Breadcrumb.jsx";
 
 const PrivacyClient = () => {
   const { t } = useTranslation();
@@ -10,28 +10,31 @@ const PrivacyClient = () => {
   return (
     <div className="privacy-container">
       <div className="wrapper-1220">
-        <nav className="breadcrumb">
-          <Link href="/">{t('privacy.breadcrumbs.home')}</Link> / <span>{t('privacy.breadcrumbs.current')}</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: t("privacy.breadcrumbs.home"), path: "/" },
+            { label: t("privacy.breadcrumbs.current"), path: "" },
+          ]}
+        />
 
-        <h1 className="page-title">{t('privacy.title')}</h1>
+        <h1 className="page-title">{t("privacy.title")}</h1>
 
-        <p className="intro">{t('privacy.intro')}</p>
+        <p className="intro">{t("privacy.intro")}</p>
 
-        <h3 className="sub-heading">
-          {t('privacy.subHeading')}
-        </h3>
+        <h3 className="sub-heading">{t("privacy.subHeading")}</h3>
 
         <ul className="privacy-list">
-          {t('privacy.list', { returnObjects: true }).map((item, index) => (
+          {t("privacy.list", { returnObjects: true }).map((item, index) => (
             <li key={index}>{item}</li>
           ))}
         </ul>
 
         <div className="privacy-footer">
-          {t('privacy.footer', { returnObjects: true }).map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {t("privacy.footer", { returnObjects: true }).map(
+            (paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ),
+          )}
         </div>
       </div>
     </div>

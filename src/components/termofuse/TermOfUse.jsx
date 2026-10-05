@@ -1,9 +1,9 @@
 "use client";
 
-import React from 'react';
-import './TermsOfUse.scss';
-import { useTranslation } from 'react-i18next';
-import Link from 'next/link';
+import React from "react";
+import "./TermsOfUse.scss";
+import { useTranslation } from "react-i18next";
+import Breadcrumb from "../product/ui/Breadcrumb/Breadcrumb.jsx";
 
 const TermsOfUse = () => {
   const { t } = useTranslation();
@@ -11,50 +11,52 @@ const TermsOfUse = () => {
   return (
     <section className="terms-page">
       <div className="container-1220">
-        
-        {/* Навигация */}
-        <nav className="breadcrumbs">
-          <Link href="/">{t('termsOfUse.breadcrumbs.home')}</Link>
-          <span className="sep">/</span>
-          <span className="active">{t('termsOfUse.breadcrumbs.current')}</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: t("termsOfUse.breadcrumbs.home"), path: "/" },
+            { label: t("termsOfUse.breadcrumbs.current"), path: "" },
+          ]}
+        />
 
         {/* Башкы заголовок */}
-        <h1 className="title-h1">{t('termsOfUse.title')}</h1>
+        <h1 className="title-h1">{t("termsOfUse.title")}</h1>
 
         {/* Киришүү текст */}
-        <p className="desc-intro">
-          {t('termsOfUse.intro')}
-        </p>
+        <p className="desc-intro">{t("termsOfUse.intro")}</p>
 
         {/* Эки колонкалуу тизмелер */}
         <div className="terms-grid">
           <div className="terms-col">
-            <h2 className="title-h2">{t('termsOfUse.administration.title')}</h2>
+            <h2 className="title-h2">{t("termsOfUse.administration.title")}</h2>
             <ul className="terms-list">
-              {t('termsOfUse.administration.list', { returnObjects: true }).map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
+              {t("termsOfUse.administration.list", { returnObjects: true }).map(
+                (item, index) => (
+                  <li key={index}>{item}</li>
+                ),
+              )}
             </ul>
           </div>
 
           <div className="terms-col">
-            <h2 className="title-h2">{t('termsOfUse.users.title')}</h2>
+            <h2 className="title-h2">{t("termsOfUse.users.title")}</h2>
             <ul className="terms-list">
-              {t('termsOfUse.users.list', { returnObjects: true }).map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
+              {t("termsOfUse.users.list", { returnObjects: true }).map(
+                (item, index) => (
+                  <li key={index}>{item}</li>
+                ),
+              )}
             </ul>
           </div>
         </div>
 
         {/* Корутунду эскертүүлөр */}
         <div className="footer-notice">
-          {t('termsOfUse.footer', { returnObjects: true }).map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          {t("termsOfUse.footer", { returnObjects: true }).map(
+            (paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ),
+          )}
         </div>
-
       </div>
     </section>
   );

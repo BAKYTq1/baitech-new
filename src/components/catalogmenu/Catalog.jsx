@@ -1,11 +1,11 @@
-'use client';
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './CatalogMenu.module.scss';
-import { ChevronRight, Loader2 } from 'lucide-react';
-import { useProducts } from '@/lib/products/hooks/hooks';
-import { productApi } from '@/lib/products/api/useProducts';
-import { CATEGORY_ICONS, DEFAULT_CATEGORY_ICON } from './Categoryicons';
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import styles from "./CatalogMenu.module.scss";
+import { ChevronRight, Loader2 } from "lucide-react";
+import { useProducts } from "@/lib/products/hooks/hooks";
+import { productApi } from "@/lib/products/api/useProducts";
+import { CATEGORY_ICONS, DEFAULT_CATEGORY_ICON } from "./Categoryicons";
 
 export default function Catalog({ onClose }) {
   const router = useRouter();
@@ -21,17 +21,26 @@ export default function Catalog({ onClose }) {
   const hideTimer = useRef(null);
   const currentCategory = activeCategory ?? categories?.[0] ?? null;
 
-  const fetchBrandsForSub = useCallback(async (sub) => {
-    try {
-      const data = await productApi.getByCategory(sub.name);
-      const products = data.results || data;
-      const brandIds = [...new Set(products.map((p) => p.brand))];
-      return (allBrands || []).filter((brand) => brandIds.includes(brand.id));
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  }, [allBrands]);
+  const fetchBrandsForSub = useCallback(
+    async (sub) => {
+      try {
+        const data = await productApi.getByCategory(sub.name);
+        const products = data.results || data;
+        const brandIds = [...new Set(products.map((p) => p.brand))];
+        return (allBrands || []).filter((brand) => brandIds.includes(brand.id));
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    },
+    [allBrands],
+  );
+
+  const handleParentMouseEnter = (item) => {
+    clearTimeout(hideTimer.current);
+    setHoveredSub(item);
+    setSubBrands([]);
+  };
 
   // Предзагружаем бренды только для "листовых" элементов:
   // — подкатегорий (уровень 2) БЕЗ своих детей
@@ -39,15 +48,24 @@ export default function Catalog({ onClose }) {
   useEffect(() => {
     const preloadBrands = async () => {
       const subcategories = currentCategory?.subcategories || [];
-      const leafSubs = subcategories.filter((sub) => !sub.subcategories?.length);
-      const allChildren = subcategories.flatMap((sub) => sub.subcategories || []);
+      const leafSubs = subcategories.filter(
+        (sub) => !sub.subcategories?.length,
+      );
+      const allChildren = subcategories.flatMap(
+        (sub) => sub.subcategories || [],
+      );
       const allItems = [...leafSubs, ...allChildren];
-      const missingSubs = allItems.filter((item) => !(item.id in brandsBySubId));
+      const missingSubs = allItems.filter(
+        (item) => !(item.id in brandsBySubId),
+      );
 
       if (missingSubs.length === 0) return;
 
       const loadedEntries = await Promise.all(
-        missingSubs.map(async (item) => [item.id, await fetchBrandsForSub(item)])
+        missingSubs.map(async (item) => [
+          item.id,
+          await fetchBrandsForSub(item),
+        ]),
       );
 
       setBrandsBySubId((prev) => ({
@@ -117,7 +135,9 @@ export default function Catalog({ onClose }) {
 
   const handleBrandClick = (sub, brandId) => {
     onClose();
-    router.push(`/catalog?category=${encodeURIComponent(sub.name)}&brand=${brandId}`);
+    router.push(
+      `/catalog?category=${encodeURIComponent(sub.name)}&brand=${brandId}`,
+    );
   };
 
   if (isLoading) {
@@ -143,7 +163,7 @@ export default function Catalog({ onClose }) {
           {categories?.map((category) => (
             <button
               key={category.id}
-              className={`${styles.navButton} ${currentCategory?.id === category.id ? styles.active : ''}`}
+              className={`${styles.navButton} ${currentCategory?.id === category.id ? styles.active : ""}`}
               onMouseEnter={() => setActiveCategory(category)}
               onClick={() => handleCategoryClick(category)}
             >
@@ -168,12 +188,14 @@ export default function Catalog({ onClose }) {
                       const hasChildren = sub.subcategories?.length > 0;
                       // Попап брендов у уровня 2 показываем только если у sub НЕТ своих детей —
                       // иначе за бренды отвечают уже дочерние под-подкатегории
-                      const hasBrands = !hasChildren && (brandsBySubId[sub.id] || []).length > 0;
+                      const hasBrands =
+                        !hasChildren &&
+                        (brandsBySubId[sub.id] || []).length > 0;
 
                       return (
                         <div key={sub.id} className={styles.subGroup}>
                           <button
-                            className={`${styles.subTitle} ${hoveredSub?.id === sub.id ? styles.subTitleActive : ''}`}
+                            className={`${styles.subTitle} ${hoveredSub?.id === sub.id ? styles.subTitleActive : ""}`}
                             onMouseEnter={() => {
                               if (!hasChildren) handleSubMouseEnter(sub);
                             }}
@@ -182,7 +204,10 @@ export default function Catalog({ onClose }) {
                           >
                             {sub.name}
                             {hasBrands && (
-                              <ChevronRight size={13} className={styles.subChevron} />
+                              <ChevronRight
+                                size={13}
+                                className={styles.subChevron}
+                              />
                             )}
 
                             {hoveredSub?.id === sub.id && hasBrands && (
@@ -194,7 +219,10 @@ export default function Catalog({ onClose }) {
                               >
                                 {isBrandsLoading ? (
                                   <div className={styles.popupLoader}>
-                                    <Loader2 size={16} className={styles.spinner} />
+                                    <Loader2
+                                      size={16}
+                                      className={styles.spinner}
+                                    />
                                   </div>
                                 ) : (
                                   <ul className={styles.brandsList}>
@@ -202,7 +230,12 @@ export default function Catalog({ onClose }) {
                                       <li key={brand.id}>
                                         <button
                                           className={styles.brandItem}
-                                          onClick={() => handleBrandClick(hoveredSub, brand.id)}
+                                          onClick={() =>
+                                            handleBrandClick(
+                                              hoveredSub,
+                                              brand.id,
+                                            )
+                                          }
                                         >
                                           {brand.name}
                                         </button>
@@ -217,48 +250,84 @@ export default function Catalog({ onClose }) {
                           {sub.subcategories?.length > 0 && (
                             <ul className={styles.subList}>
                               {sub.subcategories.map((child) => {
-                                const childHasBrands = (brandsBySubId[child.id] || []).length > 0;
+                                const grandChildren = child.subcategories || [];
+                                const hasGrand = grandChildren.length > 0;
+                                const childHasBrands =
+                                  !hasGrand &&
+                                  (brandsBySubId[child.id] || []).length > 0;
+                                const hasPopup = hasGrand || childHasBrands;
 
                                 return (
-                                  <li key={child.id} className={styles.subGroup1}>
+                                  <li
+                                    key={child.id}
+                                    className={styles.subGroup1}
+                                  >
                                     <button
-                                      className={`${styles.subItem} ${hoveredSub?.id === child.id ? styles.subItemActive : ''}`}
-                                      onMouseEnter={() => handleSubMouseEnter(child)}
+                                      className={`${styles.subItem} ${hoveredSub?.id === child.id ? styles.subItemActive : ""}`}
+                                      onMouseEnter={() =>
+                                        hasGrand
+                                          ? handleParentMouseEnter(child)
+                                          : handleSubMouseEnter(child)
+                                      }
                                       onMouseLeave={handleSubMouseLeave}
-                                      onClick={() => handleSubcategoryClick(child)}
+                                      onClick={() =>
+                                        handleSubcategoryClick(child)
+                                      }
                                     >
                                       {child.name}
-                                      {childHasBrands && (
-                                        <ChevronRight size={12} className={styles.subChevron} />
+                                      {hasPopup && (
+                                        <ChevronRight
+                                          size={12}
+                                          className={styles.subChevron}
+                                        />
                                       )}
 
-                                      {hoveredSub?.id === child.id && childHasBrands && (
-                                        <div
-                                          className={styles.brandsPopup}
-                                          onMouseEnter={handlePopupMouseEnter}
-                                          onMouseLeave={handlePopupMouseLeave}
-                                          onClick={(e) => e.stopPropagation()}
-                                        >
-                                          {isBrandsLoading ? (
-                                            <div className={styles.popupLoader}>
-                                              <Loader2 size={16} className={styles.spinner} />
-                                            </div>
-                                          ) : (
+                                      {hoveredSub?.id === child.id &&
+                                        hasPopup && (
+                                          <div
+                                            className={styles.brandsPopup}
+                                            onMouseEnter={handlePopupMouseEnter}
+                                            onMouseLeave={handlePopupMouseLeave}
+                                            onClick={(e) => e.stopPropagation()}
+                                          >
                                             <ul className={styles.brandsList}>
-                                              {subBrands.map((brand) => (
-                                                <li key={brand.id}>
-                                                  <button
-                                                    className={styles.brandItem}
-                                                    onClick={() => handleBrandClick(hoveredSub, brand.id)}
-                                                  >
-                                                    {brand.name}
-                                                  </button>
-                                                </li>
-                                              ))}
+                                              {hasGrand
+                                                ? grandChildren.map((g) => (
+                                                    <li key={g.id}>
+                                                      <button
+                                                        className={
+                                                          styles.brandItem
+                                                        }
+                                                        onClick={() =>
+                                                          handleSubcategoryClick(
+                                                            g,
+                                                          )
+                                                        }
+                                                      >
+                                                        {g.name}
+                                                      </button>
+                                                    </li>
+                                                  ))
+                                                : subBrands.map((brand) => (
+                                                    <li key={brand.id}>
+                                                      <button
+                                                        className={
+                                                          styles.brandItem
+                                                        }
+                                                        onClick={() =>
+                                                          handleBrandClick(
+                                                            child,
+                                                            brand.id,
+                                                          )
+                                                        }
+                                                      >
+                                                        {brand.name}
+                                                      </button>
+                                                    </li>
+                                                  ))}
                                             </ul>
-                                          )}
-                                        </div>
-                                      )}
+                                          </div>
+                                        )}
                                     </button>
                                   </li>
                                 );
