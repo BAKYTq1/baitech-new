@@ -1,47 +1,39 @@
-'use client'
+"use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Partners.module.css";
 
 // Логотипы скопированы в ./logos — замените импорты (или проп `logos`) на свои.
-import logo01 from "../../../assets/svg/1partner.svg";
-import logo02 from "../../../assets/svg/2partner.svg";
 import logo03 from "../../../assets/svg/3.svg";
 import logo04 from "../../../assets/svg/4.svg";
 import logo05 from "../../../assets/svg/5.svg";
 import logo06 from "../../../assets/svg/6.svg";
 import logo07 from "../../../assets/svg/7.svg";
-import logo08 from "../../../assets/svg/8.svg";
-import logo09 from "../../../assets/svg/9.svg";
-import logo10 from "../../../assets/svg/10.svg";
-import logo11 from "../../../assets/svg/11.svg";
+import logo08 from "../../../assets/svg/8.jpg";
+import logo10 from "../../../assets/svg/10.jpg";
+import logo11 from "../../../assets/svg/11.jpg";
 import logo12 from "../../../assets/svg/12.svg";
-import logo13 from "../../../assets/svg/13.svg";
-import logo14 from "../../../assets/svg/14.svg";
-import logo15 from "../../../assets/svg/15.svg";
+import logo14 from "../../../assets/svg/14.jpg";
+import logo15 from "../../../assets/svg/15.jpg";
 import logo16 from "../../../assets/svg/16.svg";
 import logo17 from "../../../assets/svg/17.svg";
-import logo18 from "../../../assets/svg/18.svg";
+import logo18 from "../../../assets/svg/18.gif";
 import logo19 from "../../../assets/svg/19.svg";
 import { useTranslation } from "react-i18next";
 
 const DEFAULT_PARTNERS = [
-  { src: logo01, name: "Партнёр 1" },
-  { src: logo02, name: "Партнёр 2" },
   { src: logo03, name: "Партнёр 3" },
   { src: logo04, name: "Партнёр 4" },
   { src: logo05, name: "Партнёр 5" },
   { src: logo06, name: "Партнёр 6" },
   { src: logo07, name: "Партнёр 7" },
   { src: logo08, name: "Партнёр 8" },
-  { src: logo09, name: "Партнёр 9" },
   { src: logo10, name: "Партнёр 10" },
   { src: logo11, name: "Партнёр 11" },
-  { src: logo12, name: "Партнёр 12" },
-  { src: logo13, name: "Партнёр 13" },
+  { src: logo12, name: "Партнёр 12", scale: 2.0 },
   { src: logo14, name: "Партнёр 14" },
-  { src: logo15, name: "Партнёр 15" },
-  { src: logo16, name: "Партнёр 16" },
+  { src: logo15, name: "Партнёр 15", fit: "contain", scale: 0.7 },
+  { src: logo16, name: "Партнёр 16", scale: 1.2 },
   { src: logo17, name: "Партнёр 17" },
   { src: logo18, name: "Партнёр 18" },
   { src: logo19, name: "Партнёр 19" },
@@ -60,7 +52,7 @@ const AUTOPLAY_MS = 3000;
  */
 export default function Partners({ partners = DEFAULT_PARTNERS }) {
   const count = partners.length;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   // Render the list 3x so we can scroll indefinitely in either direction
   // and silently "rewind" once we drift into the outer copies.
@@ -71,7 +63,7 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
         ...partner,
         key: `${copyIndex}-${i}`,
         hidden: copyIndex !== 1, // only the middle copy is exposed to a11y tree
-      }))
+      })),
     );
   }, [partners]);
 
@@ -96,7 +88,8 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
     function measure() {
       if (!firstItemRef.current || !trackRef.current) return;
       const width = firstItemRef.current.getBoundingClientRect().width;
-      const gap = parseFloat(getComputedStyle(trackRef.current).columnGap || "0") || 0;
+      const gap =
+        parseFloat(getComputedStyle(trackRef.current).columnGap || "0") || 0;
       setStep(width + gap);
     }
     measure();
@@ -141,8 +134,11 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
     if (setWidth === 0) return value;
     if (value <= -2 * setWidth || value > 0) {
       setTransitionOn(false);
-      const corrected = value <= -2 * setWidth ? value + setWidth : value - setWidth;
-      requestAnimationFrame(() => requestAnimationFrame(() => setTransitionOn(true)));
+      const corrected =
+        value <= -2 * setWidth ? value + setWidth : value - setWidth;
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setTransitionOn(true)),
+      );
       return corrected;
     }
     return value;
@@ -213,8 +209,20 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
             aria-label="Предыдущие партнёры"
             onClick={goPrev}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
 
@@ -260,6 +268,12 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
                     fill
                     sizes="(max-width: 600px) 40vw, (max-width: 1000px) 22vw, 190px"
                     draggable={false}
+                    style={{
+                      objectFit: partner.fit || "cover",
+                      transform: partner.scale
+                        ? `scale(${partner.scale})`
+                        : undefined,
+                    }}
                   />
                 </li>
               ))}
@@ -272,8 +286,20 @@ export default function Partners({ partners = DEFAULT_PARTNERS }) {
             aria-label="Следующие партнёры"
             onClick={goNext}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 18l6-6-6-6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
         </div>

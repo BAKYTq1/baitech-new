@@ -1,81 +1,161 @@
 {
   "header": {
-    "search": "Search",
     "contact": "Contacts",
     "phones": "Phones",
     "address": "Address",
     "socials": "Social Media"
   },
+
+  "searchPlaceholder": {
+    "search": "Search",
+    "among": "among",
+    "products": "products:",
+    "hints": [
+      "M8 bolt",
+      "article 12345",
+      "Bosch brand",
+      "gloves",
+      "cable 3×2.5"
+    ]
+  },
+
   "navbar": {
     "catalog": "Catalog",
     "pcComponents": "PC Components",
     "videoSurveillance": "Video Surveillance",
     "solutions": "Solutions",
-    "courses": "Security Systems Training",
+    "courses": "BaiTech Academy",
     "services": "Services"
   },
   "coursesPage": {
-  "back": "Back",
-  "badge": "ONLINE COURSE",
-  "heroTitleStart": "Become a",
-  "heroTitleGreen": "video surveillance",
-  "heroTitleHighlight": "SPECIALIST",
-  "heroTitleEnd": "in 1 month",
-  "heroSubtitle": "Learn to install systems like a pro and start earning for real!",
-  "ctaButtonUpper": "I WANT TO JOIN",
-  "ctaButton": "I want to join",
-  "topicsTitleLine1": "What topics will",
-  "topicsTitleLine2": "we cover?",
-  "topics": [
-    { "title": "Design", "text": "Learn to choose the right equipment for real-world tasks" },
-    { "title": "Installation", "text": "Learn how to install a system without mistakes" },
-    { "title": "Configuration", "text": "Get comfortable configuring modern systems" },
-    { "title": "Maintenance", "text": "Learn how to maintain a system and fix it when it breaks" },
-    { "title": "Finding clients", "text": "Learn how to find your first clients, promote your services, and get orders for installing and maintaining video surveillance systems." }
-  ],
-  "formatCardTitle": "Course format",
-  "formatItems": [
-    "4-week training program.",
-    "Video lessons with theory and practice.",
-    "Homework assignments with feedback.",
-    "A private community for discussion and shared experience."
-  ],
-  "resultCardTitle": "What you'll get",
-  "resultItems": [
-    "A solid understanding of video surveillance systems",
-    "Hands-on practical experience.",
-    "Knowledge covering every stage of installing a VSS.",
-    "Readiness for professional work."
-  ],
-  "storyTitleLine1": "A student's story: from beginner to first",
-  "storyTitleLine2": "installation",
-  "storyOpenBtn": "Open",
-  "storyModalTitle": "Video coming soon",
-  "storyModalText": "This student story video isn't available right now. We're preparing it for publication — check back here a little later.",
-  "featuresSectionTitle": "What will you get from the course?",
-  "features": [
-    { "title": "Mostly hands-on practice", "text": "80% of classes are hands-on practice with real equipment" },
-    { "title": "Personal guidance", "text": "Experts support you at every stage of learning" },
-    { "title": "Modern technology", "text": "Up-to-date equipment and working methods" },
-    { "title": "Real results", "text": "Right after the course — 9 out of 10 of our graduates successfully start working in their new specialty" }
-  ],
-  "programSectionTitle": "Course program",
-  "lessonLabel": "Lesson",
-  "modules": [
-    { "title": "Module 1. Fundamentals of local networks", "lessons": ["Fundamentals of computer networks", "Network equipment and router configuration"] },
-    { "title": "Module 2. Analog video surveillance", "lessons": ["Fundamentals of analog systems", "Cables, power, and connection types"] },
-    { "title": "Module 3. IP video surveillance", "lessons": ["Fundamentals of IP cameras", "Connecting and configuring an IP camera", "Manufacturer software and its capabilities", "Resetting and recovering IP camera passwords"] },
-    { "title": "Module 4. Site survey, equipment selection, and project documentation", "lessons": ["Site survey and measurement, equipment selection, cost estimation, contract preparation, and system handover"] },
-    { "title": "Module 5. Participating in video surveillance system tenders", "lessons": ["What a tender is and how to take part in one"] }
-  ],
-  "reviewsSectionTitle": "Reviews from our students",
-  "reviews": [
-    { "name": "Azamat", "text": "I'm glad I chose real professionals for this course. The instructors are very experienced and responsive, always happy to help even after the course ends. By the way, I earned back the cost of the course during the course itself." },
-    { "name": "Eldar", "text": "I took the course to fill gaps in configuring complex recorders and analytics. The material is delivered excellently — no filler, straight to the point. I picked up a bunch of tricks that now save me time on installations." },
-    { "name": "Kairat", "text": "I really liked the course. Everything is explained clearly without unnecessary theory. The practical part was especially useful: setup, configuration, and hands-on work with the equipment." },
-    { "name": "Alex", "text": "I thought for a long time about whether to join, but in the end I don't regret it. The instructors are practitioners who teach only what's actually needed on real job sites. It's great that the instructor still stays in touch and gives advice." }
-  ]
-},
+    "back": "Back",
+    "badge": "ONLINE COURSE",
+    "heroTitleStart": "Become a",
+    "heroTitleGreen": "video surveillance",
+    "heroTitleHighlight": "SPECIALIST",
+    "heroTitleEnd": "in 1 month",
+    "heroSubtitle": "Learn to install systems like a pro and start earning for real!",
+    "ctaButtonUpper": "I WANT TO JOIN",
+    "ctaButton": "I want to join",
+    "topicsTitleLine1": "What topics will",
+    "topicsTitleLine2": "we cover?",
+    "topics": [
+      {
+        "title": "Design",
+        "text": "Learn to choose the right equipment for real-world tasks"
+      },
+      {
+        "title": "Installation",
+        "text": "Learn how to install a system without mistakes"
+      },
+      {
+        "title": "Configuration",
+        "text": "Get comfortable configuring modern systems"
+      },
+      {
+        "title": "Maintenance",
+        "text": "Learn how to maintain a system and fix it when it breaks"
+      },
+      {
+        "title": "Finding clients",
+        "text": "Learn how to find your first clients, promote your services, and get orders for installing and maintaining video surveillance systems."
+      }
+    ],
+    "formatCardTitle": "Course format",
+    "formatItems": [
+      "4-week training program.",
+      "Video lessons with theory and practice.",
+      "Homework assignments with feedback.",
+      "A private community for discussion and shared experience."
+    ],
+    "resultCardTitle": "What you'll get",
+    "resultItems": [
+      "A solid understanding of video surveillance systems",
+      "Hands-on practical experience.",
+      "Knowledge covering every stage of installing a VSS.",
+      "Readiness for professional work."
+    ],
+    "storyTitleLine1": "A student's story: from beginner to first",
+    "storyTitleLine2": "installation",
+    "storyOpenBtn": "Open",
+    "storyModalTitle": "Video coming soon",
+    "storyModalText": "This student story video isn't available right now. We're preparing it for publication — check back here a little later.",
+    "featuresSectionTitle": "What will you get from the course?",
+    "features": [
+      {
+        "title": "Mostly hands-on practice",
+        "text": "80% of classes are hands-on practice with real equipment"
+      },
+      {
+        "title": "Personal guidance",
+        "text": "Experts support you at every stage of learning"
+      },
+      {
+        "title": "Modern technology",
+        "text": "Up-to-date equipment and working methods"
+      },
+      {
+        "title": "Real results",
+        "text": "Right after the course — 9 out of 10 of our graduates successfully start working in their new specialty"
+      }
+    ],
+    "programSectionTitle": "Course program",
+    "lessonLabel": "Lesson",
+    "modules": [
+      {
+        "title": "Module 1. Fundamentals of local networks",
+        "lessons": [
+          "Fundamentals of computer networks",
+          "Network equipment and router configuration"
+        ]
+      },
+      {
+        "title": "Module 2. Analog video surveillance",
+        "lessons": [
+          "Fundamentals of analog systems",
+          "Cables, power, and connection types"
+        ]
+      },
+      {
+        "title": "Module 3. IP video surveillance",
+        "lessons": [
+          "Fundamentals of IP cameras",
+          "Connecting and configuring an IP camera",
+          "Manufacturer software and its capabilities",
+          "Resetting and recovering IP camera passwords"
+        ]
+      },
+      {
+        "title": "Module 4. Site survey, equipment selection, and project documentation",
+        "lessons": [
+          "Site survey and measurement, equipment selection, cost estimation, contract preparation, and system handover"
+        ]
+      },
+      {
+        "title": "Module 5. Participating in video surveillance system tenders",
+        "lessons": ["What a tender is and how to take part in one"]
+      }
+    ],
+    "reviewsSectionTitle": "Reviews from our students",
+    "reviews": [
+      {
+        "name": "Azamat",
+        "text": "I'm glad I chose real professionals for this course. The instructors are very experienced and responsive, always happy to help even after the course ends. By the way, I earned back the cost of the course during the course itself."
+      },
+      {
+        "name": "Eldar",
+        "text": "I took the course to fill gaps in configuring complex recorders and analytics. The material is delivered excellently — no filler, straight to the point. I picked up a bunch of tricks that now save me time on installations."
+      },
+      {
+        "name": "Kairat",
+        "text": "I really liked the course. Everything is explained clearly without unnecessary theory. The practical part was especially useful: setup, configuration, and hands-on work with the equipment."
+      },
+      {
+        "name": "Alex",
+        "text": "I thought for a long time about whether to join, but in the end I don't regret it. The instructors are practitioners who teach only what's actually needed on real job sites. It's great that the instructor still stays in touch and gives advice."
+      }
+    ]
+  },
   "features": {
     "freeDelivery": {
       "title": "Free Delivery",
@@ -219,11 +299,7 @@
     "categories": {
       "ledScreens": {
         "title": "LED Screens and Information Kiosks",
-        "brands": [
-          "Unilumin",
-          "Absen",
-          "Novastar"
-        ]
+        "brands": ["Unilumin", "Absen", "Novastar"]
       },
       "interactivePanels": {
         "title": "Interactive and Touch Panels",
@@ -245,26 +321,15 @@
       },
       "networking": {
         "title": "Low-Current and Structured Cabling Systems",
-        "brands": [
-          "TP-Link",
-          "Ubiquiti",
-          "D-Link"
-        ]
+        "brands": ["TP-Link", "Ubiquiti", "D-Link"]
       },
       "accessControl": {
         "title": "Access Control Systems, Turnstiles",
-        "brands": [
-          "ZKTeco",
-          "Hikvision Access Control",
-          "Dahua Access Control"
-        ]
+        "brands": ["ZKTeco", "Hikvision Access Control", "Dahua Access Control"]
       },
       "smartLocks": {
         "title": "Smart Locks and Smart Solutions",
-        "brands": [
-          "Smart Lock (RFID, biometrics)",
-          "TTLock / Tuya Smart"
-        ]
+        "brands": ["Smart Lock (RFID, biometrics)", "TTLock / Tuya Smart"]
       }
     },
     "conclusion": "We select equipment individually based on client needs — from budget solutions to professional systems for large facilities. All deliveries are accompanied by technical support, warranty and service maintenance."
@@ -350,7 +415,7 @@
     "bonuses": {
       "title": "Your bonuses",
       "history": "History",
-        "available": "Available bonuses",
+      "available": "Available bonuses",
       "currency": "som",
       "bonusesText": "bonuses",
       "bonusHistory": "Bonus History",
@@ -722,7 +787,7 @@
       "submitButton": "Place Order",
       "paymentMethod": "Payment method",
       "payWithBonus": "With bonus points ({{balance}})",
-       "noBonus": "You have no bonus points"
+      "noBonus": "You have no bonus points"
     },
     "success": {
       "title": "Order Information",
@@ -748,13 +813,13 @@
     }
   },
   "brands": {
-  "hivideo": "Security systems",
-  "dahua": "Video surveillance",
-  "linkff": "Network equipment",
-  "hikvision": "Security systems",
-  "ajax": "Alarm systems"
-},
-"order": {
+    "hivideo": "Security systems",
+    "dahua": "Video surveillance",
+    "linkff": "Network equipment",
+    "hikvision": "Security systems",
+    "ajax": "Alarm systems"
+  },
+  "order": {
     "number": "Order #{{number}}",
     "date": "Placed on {{date}}",
     "status": "Status",
@@ -762,62 +827,62 @@
     "total2": "Total: {{price}} som",
     "quantity": "{{count}} pcs."
   },
- "status": {
-  "on_the_way":       "In Transit",
-  "delivered":        "Delivered",
-  "in_stock":         "In Stock",
-  "returned":         "Returned",
-  "not_paid":         "Not Paid",
-  "awaiting_payment": "Awaiting Payment",
-  "paid_with_bonus": "Paid with Bonuses",
-  "pending":          "Pending",
-  "cancelled":        "Cancelled"
-},
+  "status": {
+    "on_the_way": "In Transit",
+    "delivered": "Delivered",
+    "in_stock": "In Stock",
+    "returned": "Returned",
+    "not_paid": "Not Paid",
+    "awaiting_payment": "Awaiting Payment",
+    "paid_with_bonus": "Paid with Bonuses",
+    "pending": "Pending",
+    "cancelled": "Cancelled"
+  },
   "calculator": {
-  "title": "Video Surveillance Calculator",
-  "subtitle": "Answer a few questions — it will take no more than 1 minute",
-  "yourChoice": "Your choice:",
-  "ready": "Done:",
-  "step1Title": "Select object type",
-  "step2Title": "Camera type",
-  "step3Title": "How many cameras do you need?",
-  "step3Desc": "Specify the number of cameras for your object",
-  "step4Title": "Archive depth",
-  "step5Title": "Do you need installation and setup?",
-  "resultTitle": "Calculation result",
-  "house": "House/Cottage",
-  "flat": "Apartment",
-  "store": "Store",
-  "office": "Office",
-  "wifi": "WiFi cameras",
-  "wifiDesc": "Wireless, easy installation",
-  "ip": "IP cameras",
-  "ipDesc": "Wired, reliable connection",
-  "internal": "Indoor cameras, pcs.",
-  "external": "Outdoor cameras, pcs.",
-  "internalShort": "Indoor",
-  "externalShort": "Outdoor",
-  "archive": "Archive",
-  "days": "days",
-  "installYes": "Yes, needed",
-  "installNo": "No, I'll install myself",
-  "calculate": "Calculate →",
-  "calculating": "Calculating...",
-  "back": "← Back",
-  "next": "Next →",
-  "recalculate": "Recalculate",
-  "cameras": "Cameras",
-  "cable": "Cable",
-  "recorder": "Recorder/HDD",
-  "installation": "Installation",
-  "total": "Total",
-  "equipment": "Equipment list",
-  "storage": "Storage required",
-  "downloadExcel": "Download estimate in Excel",
-  "error": "Calculation error. Please try again.",
-  "article": "Art"
-},
- "infrastruktura": {
+    "title": "Video Surveillance Calculator",
+    "subtitle": "Answer a few questions — it will take no more than 1 minute",
+    "yourChoice": "Your choice:",
+    "ready": "Done:",
+    "step1Title": "Select object type",
+    "step2Title": "Camera type",
+    "step3Title": "How many cameras do you need?",
+    "step3Desc": "Specify the number of cameras for your object",
+    "step4Title": "Archive depth",
+    "step5Title": "Do you need installation and setup?",
+    "resultTitle": "Calculation result",
+    "house": "House/Cottage",
+    "flat": "Apartment",
+    "store": "Store",
+    "office": "Office",
+    "wifi": "WiFi cameras",
+    "wifiDesc": "Wireless, easy installation",
+    "ip": "IP cameras",
+    "ipDesc": "Wired, reliable connection",
+    "internal": "Indoor cameras, pcs.",
+    "external": "Outdoor cameras, pcs.",
+    "internalShort": "Indoor",
+    "externalShort": "Outdoor",
+    "archive": "Archive",
+    "days": "days",
+    "installYes": "Yes, needed",
+    "installNo": "No, I'll install myself",
+    "calculate": "Calculate →",
+    "calculating": "Calculating...",
+    "back": "← Back",
+    "next": "Next →",
+    "recalculate": "Recalculate",
+    "cameras": "Cameras",
+    "cable": "Cable",
+    "recorder": "Recorder/HDD",
+    "installation": "Installation",
+    "total": "Total",
+    "equipment": "Equipment list",
+    "storage": "Storage required",
+    "downloadExcel": "Download estimate in Excel",
+    "error": "Calculation error. Please try again.",
+    "article": "Art"
+  },
+  "infrastruktura": {
     "dataStorage": {
       "breadcrumb": {
         "solutions": "Solutions",
@@ -946,7 +1011,7 @@
         "subtitle": "We will calculate the project cost and join at any stage of implementation"
       }
     },
-      "dataNetworks": {
+    "dataNetworks": {
       "breadcrumb": {
         "solutions": "Solutions",
         "infrastructure": "Infrastructure"
@@ -1065,7 +1130,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "controlMonitoring": {
+  "controlMonitoring": {
     "breadcrumb": {
       "solutions": "Solutions",
       "electricalEquipment": "Electrical Equipment",
@@ -1148,26 +1213,26 @@
     "advantages": {
       "title": "Key advantages of the Russian ACROS development"
     },
-   "acrosAdvantages": [
-  {
-    "label": "Multi-level access with role-based permissions for each user",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='16' cy='12' r='6' stroke='#173B73' stroke-width='1.5'/><path d='M4 38c0-7 5.5-11 12-11s12 4 12 11' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><rect x='28' y='22' width='16' height='12' rx='2' stroke='#173B73' stroke-width='1.5'/><path d='M31 22v-3a5 5 0 0 1 10 0v3' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='36' cy='28' r='2' fill='#173B73'/><line x1='36' y1='30' x2='36' y2='33' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
-  },
-  {
-    "label": "Support for various communication standards including GSM, 3G/4G/GPRS/LTE, Ethernet, powerline and 868/915 MHz radio channel",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><path d='M4 18a20 20 0 0 1 40 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M10 24a14 14 0 0 1 28 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M16 30a8 8 0 0 1 16 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='24' cy='36' r='3' fill='#173B73'/></svg>"
-  },
-  {
-    "label": "Ability to build a geoinformation system using GLONASS/GPS",
-    "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='24' cy='22' r='12' stroke='#173B73' stroke-width='1.5'/><ellipse cx='24' cy='22' rx='12' ry='5' stroke='#173B73' stroke-width='1.5' stroke-dasharray='3 3'/><line x1='24' y1='10' x2='24' y2='34' stroke='#173B73' stroke-width='1.5'/><circle cx='24' cy='22' r='3' fill='#173B73'/><path d='M32 8l4-4M36 8h4v4' stroke='#173B73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='38' cy='6' r='2' fill='#173B73'/><path d='M24 34v6' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M18 40h12' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
-  }
-],
+    "acrosAdvantages": [
+      {
+        "label": "Multi-level access with role-based permissions for each user",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='16' cy='12' r='6' stroke='#173B73' stroke-width='1.5'/><path d='M4 38c0-7 5.5-11 12-11s12 4 12 11' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><rect x='28' y='22' width='16' height='12' rx='2' stroke='#173B73' stroke-width='1.5'/><path d='M31 22v-3a5 5 0 0 1 10 0v3' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='36' cy='28' r='2' fill='#173B73'/><line x1='36' y1='30' x2='36' y2='33' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
+      },
+      {
+        "label": "Support for various communication standards including GSM, 3G/4G/GPRS/LTE, Ethernet, powerline and 868/915 MHz radio channel",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><path d='M4 18a20 20 0 0 1 40 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M10 24a14 14 0 0 1 28 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M16 30a8 8 0 0 1 16 0' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><circle cx='24' cy='36' r='3' fill='#173B73'/></svg>"
+      },
+      {
+        "label": "Ability to build a geoinformation system using GLONASS/GPS",
+        "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' fill='none'><circle cx='24' cy='22' r='12' stroke='#173B73' stroke-width='1.5'/><ellipse cx='24' cy='22' rx='12' ry='5' stroke='#173B73' stroke-width='1.5' stroke-dasharray='3 3'/><line x1='24' y1='10' x2='24' y2='34' stroke='#173B73' stroke-width='1.5'/><circle cx='24' cy='22' r='3' fill='#173B73'/><path d='M32 8l4-4M36 8h4v4' stroke='#173B73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='38' cy='6' r='2' fill='#173B73'/><path d='M24 34v6' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/><path d='M18 40h12' stroke='#173B73' stroke-width='1.5' stroke-linecap='round'/></svg>"
+      }
+    ],
     "footer": {
       "title": "Move from disparate devices to a unified communication ecosystem",
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "industrialLighting": {
+  "industrialLighting": {
     "breadcrumb": {
       "solutions": "Solutions",
       "electricalEquipment": "Electrical Equipment",
@@ -1225,7 +1290,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "cableSystems": {
+  "cableSystems": {
     "breadcrumb": {
       "solutions": "Solutions",
       "electricalEquipment": "Electrical Equipment",
@@ -1260,15 +1325,42 @@
     "adaptTitle": "Adapting solutions",
     "adaptSubtitle": "to the specific requirements of your project",
     "products": [
-      { "label": "Cable Support Systems", "img": "https://arman-engineering.ru/upload/iblock/montazh-1.jpg" },
-      { "label": "Support Structures", "img": "https://arman-engineering.ru/upload/iblock/montazh-2.jpg" },
-      { "label": "Fire-Resistant Cable Lines", "img": "https://arman-engineering.ru/upload/iblock/montazh-3.jpg" },
-      { "label": "Pipeline Supports and Mounts", "img": "https://arman-engineering.ru/upload/iblock/montazh-4.jpg" },
-      { "label": "Ventilation Supports and Mounts", "img": "https://arman-engineering.ru/upload/iblock/montazh-5.jpg" },
-      { "label": "Installation Kits for Maintenance", "img": "https://arman-engineering.ru/upload/iblock/montazh-6.jpg" },
-      { "label": "Mounts for Hydraulic/Pneumatic Systems", "img": "https://arman-engineering.ru/upload/iblock/montazh-7.jpg" },
-      { "label": "Cable Mounting Systems", "img": "https://arman-engineering.ru/upload/iblock/montazh-8.jpg" },
-      { "label": "Service Platforms", "img": "https://arman-engineering.ru/upload/iblock/montazh-9.jpg" }
+      {
+        "label": "Cable Support Systems",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-1.jpg"
+      },
+      {
+        "label": "Support Structures",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-2.jpg"
+      },
+      {
+        "label": "Fire-Resistant Cable Lines",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-3.jpg"
+      },
+      {
+        "label": "Pipeline Supports and Mounts",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-4.jpg"
+      },
+      {
+        "label": "Ventilation Supports and Mounts",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-5.jpg"
+      },
+      {
+        "label": "Installation Kits for Maintenance",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-6.jpg"
+      },
+      {
+        "label": "Mounts for Hydraulic/Pneumatic Systems",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-7.jpg"
+      },
+      {
+        "label": "Cable Mounting Systems",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-8.jpg"
+      },
+      {
+        "label": "Service Platforms",
+        "img": "https://arman-engineering.ru/upload/iblock/montazh-9.jpg"
+      }
     ],
     "metalTitle": "Metal Products",
     "metalSubtitle": "Proven solutions for most industrial and construction tasks",
@@ -1573,7 +1665,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "mountingSystems": {
+  "mountingSystems": {
     "breadcrumb": {
       "solutions": "Solutions",
       "electricalEquipment": "Electrical Equipment",
@@ -1608,15 +1700,42 @@
     "adaptTitle": "Adapting solutions",
     "adaptSubtitle": "to the specific requirements of your project",
     "products": [
-      { "label": "Cable Support Systems", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_1.png" },
-      { "label": "Support Structures", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_9.png" },
-      { "label": "Fire-Resistant Cable Lines", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_8.png" },
-      { "label": "Pipeline Supports and Mounts", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_7.png" },
-      { "label": "Ventilation Supports and Mounts", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_6.png" },
-      { "label": "Installation Kits for Maintenance", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_5.png" },
-      { "label": "Mounts for Hydraulic/Pneumatic Systems", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_4.png" },
-      { "label": "Cable Mounting Systems", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_3.png" },
-      { "label": "Service Platforms", "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_2.png" }
+      {
+        "label": "Cable Support Systems",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_1.png"
+      },
+      {
+        "label": "Support Structures",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_9.png"
+      },
+      {
+        "label": "Fire-Resistant Cable Lines",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_8.png"
+      },
+      {
+        "label": "Pipeline Supports and Mounts",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_7.png"
+      },
+      {
+        "label": "Ventilation Supports and Mounts",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_6.png"
+      },
+      {
+        "label": "Installation Kits for Maintenance",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_5.png"
+      },
+      {
+        "label": "Mounts for Hydraulic/Pneumatic Systems",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_4.png"
+      },
+      {
+        "label": "Cable Mounting Systems",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_3.png"
+      },
+      {
+        "label": "Service Platforms",
+        "img": "https://arman-engineering.ru/assets/images/sections/solutions/elektrooborudovanie/elektrooborudovanie_kabel_2.png"
+      }
     ],
     "metalTitle": "Metal Products",
     "metalSubtitle": "Proven solutions for most industrial and construction tasks",
@@ -1671,7 +1790,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "soUsta": {
+  "soUsta": {
     "breadcrumb": {
       "solutions": "Solutions",
       "securitySystems": "Integrated Security Systems",
@@ -1825,11 +1944,7 @@
       {
         "label": "Reader:",
         "text": "a device that reads the identifier code and transmits it to the controller. There are three types of readers:",
-        "items": [
-          "contact;",
-          "contactless;",
-          "biometric."
-        ]
+        "items": ["contact;", "contactless;", "biometric."]
       },
       {
         "label": "Controller:",
@@ -1932,11 +2047,7 @@
       {
         "label": "Alarm transmission devices:",
         "text": "ensure transmission of alarm messages to the security console through:",
-        "items": [
-          "GSM channel;",
-          "radio channel;",
-          "wired lines."
-        ]
+        "items": ["GSM channel;", "radio channel;", "wired lines."]
       },
       {
         "label": "Auxiliary equipment:",
@@ -1952,7 +2063,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-   "videoSurveillance": {
+  "videoSurveillance": {
     "breadcrumb": {
       "solutions": "Solutions",
       "securitySystems": "Integrated Security Systems",
@@ -1969,9 +2080,18 @@
     "headerTitle": "Turning video surveillance into an incident prevention tool",
     "headerSubtitle": "Predictive analytics instead of data accumulation",
     "advantages": [
-      { "text": "Automatic analysis and recognition of faces and objects", "icon": "analysis" },
-      { "text": "Unlimited number of cameras and remote access to recordings", "icon": "cameras" },
-      { "text": "Upgrade without complete equipment replacement", "icon": "modernize" }
+      {
+        "text": "Automatic analysis and recognition of faces and objects",
+        "icon": "analysis"
+      },
+      {
+        "text": "Unlimited number of cameras and remote access to recordings",
+        "icon": "cameras"
+      },
+      {
+        "text": "Upgrade without complete equipment replacement",
+        "icon": "modernize"
+      }
     ],
     "benefitsTitle": "Video surveillance as part of integrated security systems",
     "benefitsSubtitle": "Delivers business benefits",
@@ -2040,7 +2160,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "fireSafety": {
+  "fireSafety": {
     "breadcrumb": {
       "solutions": "Solutions",
       "securitySystems": "Integrated Security Systems",
@@ -2095,9 +2215,7 @@
       },
       {
         "label": "Manual fire call points (fire alarm buttons):",
-        "items": [
-          "Allow a person to manually trigger a 'Fire' signal."
-        ]
+        "items": ["Allow a person to manually trigger a 'Fire' signal."]
       },
       {
         "label": "Centralized control equipment (control panel):",
@@ -2187,9 +2305,7 @@
       },
       {
         "label": "Notification devices:",
-        "items": [
-          "provide information about fire occurrence."
-        ]
+        "items": ["provide information about fire occurrence."]
       }
     ],
     "footer": {
@@ -2197,7 +2313,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-   "wirelessCommunication": {
+  "wirelessCommunication": {
     "breadcrumb": {
       "solutions": "Solutions",
       "industrialCommunication": "Industrial Communication and Notification",
@@ -2249,7 +2365,7 @@
       "calc": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-   "telephoneCommunication": {
+  "telephoneCommunication": {
     "breadcrumb": {
       "solutions": "Solutions",
       "industrialCommunication": "Industrial Communication and Notification",
@@ -2477,7 +2593,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-   "objectNotification": {
+  "objectNotification": {
     "breadcrumb": {
       "solutions": "Solutions",
       "industrialCommunication": "Industrial Communication and Notification",
@@ -2696,7 +2812,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-   "industrialCommunication": {
+  "industrialCommunication": {
     "breadcrumb": {
       "solutions": "Solutions",
       "industrialCommunication": "Industrial Communication and Notification",
@@ -2712,7 +2828,10 @@
     "durabilityTitle": "Armtel system is resistant to harsh industrial conditions",
     "durabilityItems": [
       { "icon": "ex", "text": "Explosion-proof design for zones 1 and 2" },
-      { "icon": "chemistry", "text": "Housings resistant to chemicals and abrasives" },
+      {
+        "icon": "chemistry",
+        "text": "Housings resistant to chemicals and abrasives"
+      },
       { "icon": "shield", "text": "High degree of enclosure protection" },
       { "icon": "audio", "text": "Active and passive noise reduction" }
     ],
@@ -2720,18 +2839,39 @@
     "dispatchSubtitle": "Provides instant information exchange between employees and management",
     "dispatchImageAlt": "Dispatch communication diagram",
     "dispatchItems": [
-      { "label": "Any scale:", "text": "from workshop to production complexes" },
-      { "label": "Communication formats for different tasks:", "text": "conference, selector, circular" },
-      { "label": "Multifunctional consoles:", "text": "additional modules, programmable keys, priority calls, light indication" },
-      { "label": "Integration with external communication systems:", "text": "telephony, radio communication, notification" }
+      {
+        "label": "Any scale:",
+        "text": "from workshop to production complexes"
+      },
+      {
+        "label": "Communication formats for different tasks:",
+        "text": "conference, selector, circular"
+      },
+      {
+        "label": "Multifunctional consoles:",
+        "text": "additional modules, programmable keys, priority calls, light indication"
+      },
+      {
+        "label": "Integration with external communication systems:",
+        "text": "telephony, radio communication, notification"
+      }
     ],
     "operationalTitle": "Operational-Technological Communication",
     "operationalSubtitle": "Ensures continuity and safety of work in difficult conditions",
     "operationalImageAlt": "Operational-technological communication diagram",
     "operationalItems": [
-      { "label": "Guaranteed subscriber connection:", "text": "system based on switches with non-blocking switching field" },
-      { "label": "Resistance to difficult conditions:", "text": "intercom devices and loudspeakers in special design" },
-      { "label": "Seamless integration:", "text": "public address and notification in a single interface" }
+      {
+        "label": "Guaranteed subscriber connection:",
+        "text": "system based on switches with non-blocking switching field"
+      },
+      {
+        "label": "Resistance to difficult conditions:",
+        "text": "intercom devices and loudspeakers in special design"
+      },
+      {
+        "label": "Seamless integration:",
+        "text": "public address and notification in a single interface"
+      }
     ],
     "standardsTitle": "Armtel-Info complies with all necessary regulatory requirements",
     "standards": [
@@ -2740,60 +2880,102 @@
       "Order of the Ministry of Emergency Situations of Russia and the Ministry of Digital Development dated 07/31/2020 No. 578/365 \"On approval of the Regulation on public notification systems\""
     ],
     "catalogTitle": "Full life cycle management of systems",
-   "catalogButton": "Armtel Catalog (.pdf)",
-"products": [
-  {
-    "title": "Explosion-proof intercom device DWEx",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_2.png",
-    "imageWidth": "w-32",
-    "ex": true,
-    "description": "Suitable for zones 1 and 2\n1Ex d e ib IIC N6 Gb\nEx tb IIIC T85°C Db",
-    "specs": [
-      { "label": "Resistance to harsh conditions", "text": "From -60°C to +70°C" },
-      { "label": "Active noise suppression", "text": "Digital sound cleaning for clear speech and echo suppression" },
-      { "label": "Dust and moisture protection", "text": "Protection from dust, sand, water and icing" },
-      { "label": "Chemical protection", "text": "Resistance to acids, alkalis, ammonia, alcohol" }
-    ]
-  },
-  {
-    "title": "Explosion-proof horn loudspeaker AR-25Ex",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_4.png",
-    "imageWidth": "w-40",
-    "ex": true,
-    "description": "Zones 1, 2, 20, 21, 22\n1Ex d e mb IIB T4 Gb\nEx tb mb IIIC T135°C Db",
-    "specs": [
-      { "label": "Cold climate resistance", "text": "Complies with GOST 15150-69 (HL1)" },
-      { "label": "Outdoor operation", "text": "Resistance to frost, ice and condensation" },
-      { "label": "Dust and moisture protection", "text": "Protection from dust, sand, water and icing" },
-      { "label": "Flexible settings", "text": "Adapts to various acoustic tasks" }
-    ]
-  },
-  {
-    "title": "Integrated communication panel TOP-PAD-IP2",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_1.png",
-    "imageWidth": "w-48",
-    "ex": false,
-    "description": "",
-    "specs": [
-      { "label": "Dust and moisture protection", "text": "Protection from industrial dust and contamination" },
-      { "label": "Fault tolerance", "text": "2 Ethernet ports for communication redundancy" },
-      { "label": "Flexible configuration", "text": "Up to 274 virtual buttons, up to 84 physical" },
-      { "label": "HD audio quality", "text": "Frequency up to 14 kHz" }
-    ]
-  },
-  {
-    "title": "Light and sound signaling device",
-    "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_3.png",
-    "imageWidth": "w-32",
-    "ex": false,
-    "description": "",
-    "specs": [
-      { "label": "Cold climate resistance", "text": "Complies with GOST 15150-69 (HL1)" },
-      { "label": "Outdoor operation", "text": "Resistance to frost, ice and condensation" },
-      { "label": "Dust and moisture protection", "text": "Protection from dust, sand, water and icing" }
-    ]
-  }
-],
+    "catalogButton": "Armtel Catalog (.pdf)",
+    "products": [
+      {
+        "title": "Explosion-proof intercom device DWEx",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_2.png",
+        "imageWidth": "w-32",
+        "ex": true,
+        "description": "Suitable for zones 1 and 2\n1Ex d e ib IIC N6 Gb\nEx tb IIIC T85°C Db",
+        "specs": [
+          {
+            "label": "Resistance to harsh conditions",
+            "text": "From -60°C to +70°C"
+          },
+          {
+            "label": "Active noise suppression",
+            "text": "Digital sound cleaning for clear speech and echo suppression"
+          },
+          {
+            "label": "Dust and moisture protection",
+            "text": "Protection from dust, sand, water and icing"
+          },
+          {
+            "label": "Chemical protection",
+            "text": "Resistance to acids, alkalis, ammonia, alcohol"
+          }
+        ]
+      },
+      {
+        "title": "Explosion-proof horn loudspeaker AR-25Ex",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_4.png",
+        "imageWidth": "w-40",
+        "ex": true,
+        "description": "Zones 1, 2, 20, 21, 22\n1Ex d e mb IIB T4 Gb\nEx tb mb IIIC T135°C Db",
+        "specs": [
+          {
+            "label": "Cold climate resistance",
+            "text": "Complies with GOST 15150-69 (HL1)"
+          },
+          {
+            "label": "Outdoor operation",
+            "text": "Resistance to frost, ice and condensation"
+          },
+          {
+            "label": "Dust and moisture protection",
+            "text": "Protection from dust, sand, water and icing"
+          },
+          {
+            "label": "Flexible settings",
+            "text": "Adapts to various acoustic tasks"
+          }
+        ]
+      },
+      {
+        "title": "Integrated communication panel TOP-PAD-IP2",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_1.png",
+        "imageWidth": "w-48",
+        "ex": false,
+        "description": "",
+        "specs": [
+          {
+            "label": "Dust and moisture protection",
+            "text": "Protection from industrial dust and contamination"
+          },
+          {
+            "label": "Fault tolerance",
+            "text": "2 Ethernet ports for communication redundancy"
+          },
+          {
+            "label": "Flexible configuration",
+            "text": "Up to 274 virtual buttons, up to 84 physical"
+          },
+          { "label": "HD audio quality", "text": "Frequency up to 14 kHz" }
+        ]
+      },
+      {
+        "title": "Light and sound signaling device",
+        "image": "https://arman-engineering.ru/assets/images/sections/solutions/svyaz/armtel_product_3.png",
+        "imageWidth": "w-32",
+        "ex": false,
+        "description": "",
+        "specs": [
+          {
+            "label": "Cold climate resistance",
+            "text": "Complies with GOST 15150-69 (HL1)"
+          },
+          {
+            "label": "Outdoor operation",
+            "text": "Resistance to frost, ice and condensation"
+          },
+          {
+            "label": "Dust and moisture protection",
+            "text": "Protection from dust, sand, water and icing"
+          }
+        ]
+      }
+    ],
     "softwareTitle": "Software for correct configuration and operation",
     "softwareSubtitle": "All components of the Armtel system work in a single secure environment — there is no risk of software incompatibility or vulnerabilities at the interfaces of different systems.",
     "softwareItems": [
@@ -2833,7 +3015,7 @@
       "subtitle": "We will calculate the cost of the project and connect at any stage of implementation"
     }
   },
-    "newsDetail": {
+  "newsDetail": {
     "backButton": "Back to News",
     "notFound": {
       "title": "News not found",
@@ -2846,7 +3028,7 @@
     "categoryBadge": "News",
     "locale": "en-US"
   },
- "diller": {
+  "diller": {
     "title": "Partnership with Baitech",
     "description": "Partnership with Baitech is an opportunity to strengthen your market position and attract new customers. Baitech successfully operates in the field of video surveillance and computer components, having established itself as a reliable supplier and stable business partner. Since its first days, the company has focused on cooperation with trusted manufacturers that ensure high product quality and professional support.",
     "advantages": {

@@ -1,243 +1,376 @@
-﻿'use client'
-import './style.scss'
-import Image from 'next/image'
-import logo from '../../../assets/svg/logo.svg'
-import { FiSearch, FiUser, FiPhone, FiMail, FiMapPin, FiChevronDown } from 'react-icons/fi'
-import { HiOutlineShoppingCart } from 'react-icons/hi'
-import { IoCartOutline, IoClose } from 'react-icons/io5'
-import { IoLanguageOutline } from 'react-icons/io5'
-import { FaWhatsapp, FaInstagram } from 'react-icons/fa'
-import Link from 'next/link'
-import ModalAuth from '../ui/modalauth/ModalAuth'
-import { useEffect, useRef, useState, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
-import { useCart } from '@/lib/cart/hooks/hooks'
-import { useSiteSettings } from '@/lib/settings/hook'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { productApi } from '@/lib/products/api/useProducts'
-import { useSearchProductsPool } from '@/lib/products/hooks/useSearchProductsPool'
-import { searchProducts, buildCategoryNameMap, buildBrandNameMap } from '@/lib/products/search'
+﻿"use client";
+import "./style.scss";
+import Image from "next/image";
+import logo from "../../../assets/svg/logo.svg";
+import {
+  FiSearch,
+  FiUser,
+  FiPhone,
+  FiMail,
+  FiMapPin,
+  FiChevronDown,
+} from "react-icons/fi";
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { IoCartOutline, IoClose } from "react-icons/io5";
+import { IoLanguageOutline } from "react-icons/io5";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
+import Link from "next/link";
+import ModalAuth from "../ui/modalauth/ModalAuth";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import { useCart } from "@/lib/cart/hooks/hooks";
+import { useSiteSettings } from "@/lib/settings/hook";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { productApi } from "@/lib/products/api/useProducts";
+import { useSearchProductsPool } from "@/lib/products/hooks/useSearchProductsPool";
+import {
+  searchProducts,
+  buildCategoryNameMap,
+  buildBrandNameMap,
+} from "@/lib/products/search";
+
+const TOTAL_PRODUCTS = 100000;
+const INTRO_MS = 3600;
+const HINT_MS = 1600;
+
+const HINTS_BY_LANG = {
+  ru: [
+    "Wi-Fi камера",
+    "артикул 12345",
+    "бренд DAHUA",
+    "серверный Шкаф",
+    "Монитор 34 дюйма",
+  ],
+  en: [
+    "Wi-Fi camera",
+    "article 12345",
+    "DAHUA brand",
+    "Server cabinet",
+    "34-inch monitor",
+  ],
+  ky: [
+    "Wi-Fi камера",
+    "артикул 12345",
+    "DAHUA бренди",
+    "Сервердик шкаф",
+    "34 дюймдук монитор",
+  ],
+};
+
+function AnimatedSearchPlaceholder({ hidden }) {
+  const { t, i18n } = useTranslation();
+
+  const lang = (i18n.resolvedLanguage || i18n.language || "ru").split("-")[0];
+  const hints = HINTS_BY_LANG[lang] || HINTS_BY_LANG.ru;
+
+  const [step, setStep] = useState(-1);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const id = setTimeout(
+      () => setStep((s) => (s + 1 >= hints.length ? -1 : s + 1)),
+      step === -1 ? INTRO_MS : HINT_MS,
+    );
+    return () => clearTimeout(id);
+  }, [step, hints.length]);
+
+  useEffect(() => {
+    if (step !== -1) return;
+    setCount(0);
+    const delay = 700;
+    const duration = 1200;
+    const start = performance.now();
+    let raf;
+    const tick = (now) => {
+      const p = Math.min(Math.max((now - start - delay) / duration, 0), 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setCount(Math.round(TOTAL_PRODUCTS * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [step]);
+
+  return (
+    <span className={`sp ${hidden ? "sp--hidden" : ""}`} aria-hidden="true">
+      {step === -1 ? (
+        <span className="sp__intro">
+          <span className="sp__word" style={{ animationDelay: "0ms" }}>
+            {t("searchPlaceholder.search")}
+          </span>
+          <span className="sp__word" style={{ animationDelay: "300ms" }}>
+            {t("searchPlaceholder.among")}
+          </span>
+          <span
+            className="sp__word sp__num"
+            style={{ animationDelay: "600ms" }}
+          >
+            <span className="sp__ghost">100&nbsp;000+</span>
+            <span>{count.toLocaleString("ru-RU")}+</span>
+          </span>
+          <span className="sp__word" style={{ animationDelay: "900ms" }}>
+            {t("searchPlaceholder.products")}
+          </span>
+        </span>
+      ) : (
+        <span className="sp__hint" key={step}>
+          {hints[step]}
+        </span>
+      )}
+    </span>
+  );
+}
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isAuth, setIsAuth] = useState(false)
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false)
-  const [isContactsOpen, setIsContactsOpen] = useState(false)
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
-  const modalRef = useRef(null)
-  const langMenuRef = useRef(null)
-  const contactsRef = useRef(null)
-  const desktopSearchRef = useRef(null)
-  const mobileSearchRef = useRef(null)
-  const router = useRouter()
-  const { t, i18n } = useTranslation()
-  const { data: items = [] } = useCart()
-  const { settings, isLoading } = useSiteSettings()
-  const queryClient = useQueryClient()
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isContactsOpen, setIsContactsOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const searchParams = useSearchParams();
+  const urlQuery = searchParams.get("query") || "";
+
+  // Текст в поиске всегда соответствует адресу страницы
+  useEffect(() => {
+    setSearchQuery(urlQuery);
+    setIsSearchOpen(false);
+    setIsMobileSearchOpen(false);
+  }, [pathname, urlQuery]);
+
+  const modalRef = useRef(null);
+  const langMenuRef = useRef(null);
+  const contactsRef = useRef(null);
+  const desktopSearchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
+  const { t, i18n } = useTranslation();
+  const { data: items = [] } = useCart();
+  const { settings, isLoading } = useSiteSettings();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setDebouncedSearchQuery(searchQuery.trim())
-    }, 300)
+      setDebouncedSearchQuery(searchQuery.trim());
+    }, 300);
 
-    return () => clearTimeout(timeoutId)
-  }, [searchQuery])
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
-const normalizeListResponse = (data) => {
-  if (Array.isArray(data)) return data
-  if (Array.isArray(data?.results)) return data.results
-  return []
-}
+  const normalizeListResponse = (data) => {
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.results)) return data.results;
+    return [];
+  };
 
-  const { data: searchProductsData = [], isFetching: isSearchingProducts } = useSearchProductsPool()
+  const { data: searchProductsData = [], isFetching: isSearchingProducts } =
+    useSearchProductsPool();
 
   const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: productApi.getCategories,
     select: normalizeListResponse,
-  })
+  });
 
   const { data: brands = [] } = useQuery({
-  queryKey: ['brands'],
-  queryFn: productApi.getBrands,
-  select: normalizeListResponse,
-})
+    queryKey: ["brands"],
+    queryFn: productApi.getBrands,
+    select: normalizeListResponse,
+  });
 
-  const categoriesById = useMemo(() => buildCategoryNameMap(categories), [categories])
-  const brandsById = useMemo(() => buildBrandNameMap(brands), [brands])
-
-  
+  const categoriesById = useMemo(
+    () => buildCategoryNameMap(categories),
+    [categories],
+  );
+  const brandsById = useMemo(() => buildBrandNameMap(brands), [brands]);
 
   useEffect(() => {
     const checkAuth = () => {
       const userToken =
-        localStorage.getItem('access_token') ||
-        localStorage.getItem('accessToken') ||
-        localStorage.getItem('accesToken') ||
-        localStorage.getItem('acces_token')
-      setIsAuth(!!userToken)
-    }
+        localStorage.getItem("access_token") ||
+        localStorage.getItem("accessToken") ||
+        localStorage.getItem("accesToken") ||
+        localStorage.getItem("acces_token");
+      setIsAuth(!!userToken);
+    };
 
-    checkAuth()
-    window.addEventListener('storage', checkAuth)
-    window.addEventListener('authChange', checkAuth)
+    checkAuth();
+    window.addEventListener("storage", checkAuth);
+    window.addEventListener("authChange", checkAuth);
 
     return () => {
-      window.removeEventListener('storage', checkAuth)
-      window.removeEventListener('authChange', checkAuth)
-    }
-  }, [])
+      window.removeEventListener("storage", checkAuth);
+      window.removeEventListener("authChange", checkAuth);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsOpen(false)
+        setIsOpen(false);
       }
       if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
-        setIsLangMenuOpen(false)
+        setIsLangMenuOpen(false);
       }
       if (contactsRef.current && !contactsRef.current.contains(event.target)) {
-        setIsContactsOpen(false)
+        setIsContactsOpen(false);
       }
       const isOutsideDesktopSearch =
-        !desktopSearchRef.current || !desktopSearchRef.current.contains(event.target)
+        !desktopSearchRef.current ||
+        !desktopSearchRef.current.contains(event.target);
       const isOutsideMobileSearch =
-        !mobileSearchRef.current || !mobileSearchRef.current.contains(event.target)
+        !mobileSearchRef.current ||
+        !mobileSearchRef.current.contains(event.target);
 
       if (isOutsideDesktopSearch && isOutsideMobileSearch) {
-        setIsSearchOpen(false)
-        setIsMobileSearchOpen(false)
+        setIsSearchOpen(false);
+        setIsMobileSearchOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleUserClick = () => {
     if (isAuth) {
-      setIsOpen(!isOpen)
+      setIsOpen(!isOpen);
     } else {
-      router.push('/login')
+      router.push("/login");
     }
-  }
+  };
 
   const handleCartClick = (event) => {
     const token =
-      localStorage.getItem('access_token') ||
-      localStorage.getItem('accessToken') ||
-      localStorage.getItem('accesToken') ||
-      localStorage.getItem('acces_token')
+      localStorage.getItem("access_token") ||
+      localStorage.getItem("accessToken") ||
+      localStorage.getItem("accesToken") ||
+      localStorage.getItem("acces_token");
 
     if (!token) {
-      event.preventDefault()
-      setShowAuthModal(true)
+      event.preventDefault();
+      setShowAuthModal(true);
     }
-  }
+  };
 
   const changeLanguage = async (lng) => {
-    if (!lng) return
-    const normalizedCurrent = (i18n.resolvedLanguage || i18n.language || 'ru').split('-')[0]
+    if (!lng) return;
+    const normalizedCurrent = (
+      i18n.resolvedLanguage ||
+      i18n.language ||
+      "ru"
+    ).split("-")[0];
     if (normalizedCurrent === lng) {
-      setIsLangMenuOpen(false)
-      return
+      setIsLangMenuOpen(false);
+      return;
     }
 
-    localStorage.setItem('language', lng)
-    await i18n.changeLanguage(lng)
-    queryClient.invalidateQueries()
-    setIsLangMenuOpen(false)
-  }
+    localStorage.setItem("language", lng);
+    await i18n.changeLanguage(lng);
+    queryClient.invalidateQueries();
+    setIsLangMenuOpen(false);
+  };
 
   const getCurrentLanguage = () => {
-    const lang = (i18n.resolvedLanguage || i18n.language || localStorage.getItem('language') || 'ru').split('-')[0]
+    const lang = (
+      i18n.resolvedLanguage ||
+      i18n.language ||
+      localStorage.getItem("language") ||
+      "ru"
+    ).split("-")[0];
     switch (lang) {
-      case 'en':
-        return 'EN'
-      case 'ru':
-        return 'RU'
-      case 'ky':
-        return 'KG'
+      case "en":
+        return "EN";
+      case "ru":
+        return "RU";
+      case "ky":
+        return "KG";
       default:
-        return 'RU'
+        return "RU";
     }
-  }
+  };
 
   const languages = [
-    { code: 'ru', label: 'Русский' },
-    { code: 'en', label: 'English' },
-    { code: 'ky', label: 'Кыргызча' },
-  ]
+    { code: "ru", label: "Русский" },
+    { code: "en", label: "English" },
+    { code: "ky", label: "Кыргызча" },
+  ];
 
   const handleSearchSubmit = (event) => {
-    event.preventDefault()
-    const normalizedQuery = searchQuery.trim()
-    setIsSearchOpen(false)
-    setIsMobileSearchOpen(false)
+    event.preventDefault();
+    const normalizedQuery = searchQuery.trim();
+    setIsSearchOpen(false);
+    setIsMobileSearchOpen(false);
 
     if (!normalizedQuery) {
-      router.push('/catalog')
-      return
+      router.push("/catalog");
+      return;
     }
 
-    router.push(`/catalog?query=${encodeURIComponent(normalizedQuery)}`)
-  }
+    router.push(`/catalog?query=${encodeURIComponent(normalizedQuery)}`);
+  };
 
   const flattenCategories = (items, acc = []) => {
     items.forEach((category) => {
-      if (!category?.name) return
-      acc.push(category.name)
-      if (Array.isArray(category.subcategories) && category.subcategories.length > 0) {
-        flattenCategories(category.subcategories, acc)
+      if (!category?.name) return;
+      acc.push(category.name);
+      if (
+        Array.isArray(category.subcategories) &&
+        category.subcategories.length > 0
+      ) {
+        flattenCategories(category.subcategories, acc);
       }
-    })
-    return acc
-  }
+    });
+    return acc;
+  };
 
-  const normalizedSearch = searchQuery.trim()
+  const normalizedSearch = searchQuery.trim();
 
-    const suggestionProducts = normalizedSearch
-  ? searchProducts(searchProductsData, normalizedSearch, { categoriesById, brandsById }).slice(0, 6)
-  : []
+  const suggestionProducts = normalizedSearch
+    ? searchProducts(searchProductsData, normalizedSearch, {
+        categoriesById,
+        brandsById,
+      }).slice(0, 6)
+    : [];
 
   const suggestionCategories = normalizedSearch
     ? [...new Set(flattenCategories(categories))]
-      .filter((name) => String(name).toLowerCase().includes(normalizedSearch))
-      .slice(0, 4)
-    : []
+        .filter((name) => String(name).toLowerCase().includes(normalizedSearch))
+        .slice(0, 4)
+    : [];
 
-  const hasSuggestions = suggestionProducts.length > 0 || suggestionCategories.length > 0
+  const hasSuggestions =
+    suggestionProducts.length > 0 || suggestionCategories.length > 0;
 
   const handleProductSelect = (id) => {
-    setIsSearchOpen(false)
-    setIsMobileSearchOpen(false)
-    setSearchQuery('')
-    router.push(`/productdetail/${id}`)
-  }
+    setIsSearchOpen(false);
+    setIsMobileSearchOpen(false);
+    router.push(`/productdetail/${id}`);
+  };
 
   const handleCategorySelect = (name) => {
-    setIsSearchOpen(false)
-    setIsMobileSearchOpen(false)
-    setSearchQuery('')
-    router.push(`/catalog?category=${encodeURIComponent(name)}`)
-  }
+    setIsSearchOpen(false);
+    setIsMobileSearchOpen(false);
+    router.push(`/catalog?category=${encodeURIComponent(name)}`);
+  };
 
   const getCompanyMapUrl = () => {
-    const rawMapUrl = String(settings?.address || '').trim()
-    if (rawMapUrl.startsWith('http://') || rawMapUrl.startsWith('https://')) {
-      return rawMapUrl
+    const rawMapUrl = String(settings?.address || "").trim();
+    if (rawMapUrl.startsWith("http://") || rawMapUrl.startsWith("https://")) {
+      return rawMapUrl;
     }
 
-    const addressText = t('footer.address.street')
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}`
-  }
+    const addressText = t("footer.address.street");
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}`;
+  };
 
   const renderSearchDropdown = () => (
     <div className="header__search-dropdown">
@@ -256,7 +389,9 @@ const normalizeListResponse = (data) => {
                   onClick={() => handleProductSelect(product.id)}
                 >
                   <span className="search-item__main">{product.name}</span>
-                  <span className="search-item__meta">Артикул: {product.article || '-'}</span>
+                  <span className="search-item__meta">
+                    Артикул: {product.article || "-"}
+                  </span>
                 </button>
               ))}
             </div>
@@ -283,7 +418,7 @@ const normalizeListResponse = (data) => {
         <div className="search-empty">Ничего не найдено</div>
       )}
     </div>
-  )
+  );
 
   return (
     <header className="header">
@@ -297,10 +432,10 @@ const normalizeListResponse = (data) => {
 
           <div className="contacts-wrapper" ref={contactsRef}>
             <button
-              className={`header__contacts ${isContactsOpen ? 'active' : ''}`}
+              className={`header__contacts ${isContactsOpen ? "active" : ""}`}
               onClick={() => setIsContactsOpen(!isContactsOpen)}
             >
-              <span>{t('header.contact')}</span>
+              <span>{t("header.contact")}</span>
               <FiChevronDown className="arrow-icon" />
             </button>
 
@@ -308,13 +443,16 @@ const normalizeListResponse = (data) => {
               <div className="contacts-dropdown">
                 <div className="contacts-section">
                   <h3>
-                    <FiPhone /> {t('header.phones')}
+                    <FiPhone /> {t("header.phones")}
                   </h3>
                   <div className="contacts-list">
                     {isLoading ? (
                       <span className="footer__skeleton" />
                     ) : (
-                      <a href={`tel:${settings?.phone}`} className="contact-item">
+                      <a
+                        href={`tel:${settings?.phone}`}
+                        className="contact-item"
+                      >
                         <FiPhone />
                         <span>{settings?.phone}</span>
                       </a>
@@ -330,7 +468,10 @@ const normalizeListResponse = (data) => {
                     {isLoading ? (
                       <span className="footer__skeleton" />
                     ) : (
-                      <a href={`mailto:${settings?.email}`} className="contact-item">
+                      <a
+                        href={`mailto:${settings?.email}`}
+                        className="contact-item"
+                      >
                         <FiMail />
                         <span>{settings?.email}</span>
                       </a>
@@ -340,7 +481,7 @@ const normalizeListResponse = (data) => {
 
                 <div className="contacts-section">
                   <h3>
-                    <FiMapPin /> {t('header.address')}
+                    <FiMapPin /> {t("header.address")}
                   </h3>
                   <div className="contacts-list">
                     <a
@@ -353,14 +494,14 @@ const normalizeListResponse = (data) => {
                       {isLoading ? (
                         <span className="footer__skeleton" />
                       ) : (
-                        <span>{t('footer.address.street')}</span>
+                        <span>{t("footer.address.street")}</span>
                       )}
                     </a>
                   </div>
                 </div>
 
                 <div className="contacts-section">
-                  <h3>{t('header.socials')}</h3>
+                  <h3>{t("header.socials")}</h3>
                   <div className="contacts-social">
                     {settings?.whatsapp && (
                       <a
@@ -389,23 +530,29 @@ const normalizeListResponse = (data) => {
           </div>
         </div>
 
-        <form className="header__search header__search--desktop" onSubmit={handleSearchSubmit} ref={desktopSearchRef}>
+        <form
+          className="header__search header__search--desktop"
+          onSubmit={handleSearchSubmit}
+          ref={desktopSearchRef}
+        >
           <input
             type="text"
-            placeholder={t('header.search')}
+            placeholder=""
+            aria-label={t("header.search")}
             value={searchQuery}
             onChange={(event) => {
-              setSearchQuery(event.target.value)
-              setIsSearchOpen(true)
+              setSearchQuery(event.target.value);
+              setIsSearchOpen(true);
             }}
             onFocus={() => {
-              if (searchQuery.trim()) setIsSearchOpen(true)
+              if (searchQuery.trim()) setIsSearchOpen(true);
             }}
           />
+          <AnimatedSearchPlaceholder hidden={!!searchQuery} />
           <button
             type="submit"
             className="header__search-btn"
-            aria-label={t('header.search')}
+            aria-label={t("header.search")}
           >
             <FiSearch className="icon" />
           </button>
@@ -426,8 +573,12 @@ const normalizeListResponse = (data) => {
                           className="search-item"
                           onClick={() => handleProductSelect(product.id)}
                         >
-                          <span className="search-item__main">{product.name}</span>
-                          <span className="search-item__meta">Артикул: {product.article || '-'}</span>
+                          <span className="search-item__main">
+                            {product.name}
+                          </span>
+                          <span className="search-item__meta">
+                            Артикул: {product.article || "-"}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -443,8 +594,12 @@ const normalizeListResponse = (data) => {
                           className="search-item search-item--category"
                           onClick={() => handleCategorySelect(categoryName)}
                         >
-                          <span className="search-item__main">{categoryName}</span>
-                          <span className="search-item__meta">Перейти в каталог</span>
+                          <span className="search-item__main">
+                            {categoryName}
+                          </span>
+                          <span className="search-item__meta">
+                            Перейти в каталог
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -461,10 +616,10 @@ const normalizeListResponse = (data) => {
           <button
             type="button"
             className="mobile-search-toggle"
-            aria-label={t('header.search')}
+            aria-label={t("header.search")}
             onClick={() => {
-              setIsSearchOpen(false)
-              setIsMobileSearchOpen((prev) => !prev)
+              setIsSearchOpen(false);
+              setIsMobileSearchOpen((prev) => !prev);
             }}
           >
             <FiSearch />
@@ -478,7 +633,9 @@ const normalizeListResponse = (data) => {
             >
               <IoLanguageOutline />
               <span className="language-current">{getCurrentLanguage()}</span>
-              <FiChevronDown className={`arrow-icon ${isLangMenuOpen ? 'open' : ''}`} />
+              <FiChevronDown
+                className={`arrow-icon ${isLangMenuOpen ? "open" : ""}`}
+              />
             </button>
 
             {isLangMenuOpen && (
@@ -488,11 +645,24 @@ const normalizeListResponse = (data) => {
                     key={lang.code}
                     type="button"
                     onClick={() => changeLanguage(lang.code)}
-                    className={((i18n.resolvedLanguage || i18n.language || 'ru').split('-')[0] === lang.code) ? 'active' : ''}
+                    className={
+                      (i18n.resolvedLanguage || i18n.language || "ru").split(
+                        "-",
+                      )[0] === lang.code
+                        ? "active"
+                        : ""
+                    }
                   >
                     <span>{lang.label}</span>
-                    {((i18n.resolvedLanguage || i18n.language || 'ru').split('-')[0] === lang.code) && (
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    {(i18n.resolvedLanguage || i18n.language || "ru").split(
+                      "-",
+                    )[0] === lang.code && (
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
                         <path
                           d="M13.3332 4L5.99984 11.3333L2.6665 8"
                           stroke="currentColor"
@@ -507,6 +677,18 @@ const normalizeListResponse = (data) => {
               </div>
             )}
           </div>
+
+          {settings?.instagram && (
+            <a
+              href={settings.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header__instagram"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+          )}
 
           <Link href="/korzina" onClick={handleCartClick}>
             <div className="relative">
@@ -530,24 +712,29 @@ const normalizeListResponse = (data) => {
 
       {isMobileSearchOpen && (
         <div className="mobile-search-panel" ref={mobileSearchRef}>
-          <form className="header__search header__search--mobile" onSubmit={handleSearchSubmit}>
+          <form
+            className="header__search header__search--mobile"
+            onSubmit={handleSearchSubmit}
+          >
             <input
               type="text"
-              placeholder={t('header.search')}
+              placeholder=""
+              aria-label={t("header.search")}
               value={searchQuery}
               onChange={(event) => {
-                setSearchQuery(event.target.value)
-                setIsSearchOpen(true)
+                setSearchQuery(event.target.value);
+                setIsSearchOpen(true);
               }}
               onFocus={() => {
-                if (searchQuery.trim()) setIsSearchOpen(true)
+                if (searchQuery.trim()) setIsSearchOpen(true);
               }}
               autoFocus
             />
+            <AnimatedSearchPlaceholder hidden={!!searchQuery} />
             <button
               type="submit"
               className="header__search-btn"
-              aria-label={t('header.search')}
+              aria-label={t("header.search")}
             >
               <FiSearch className="icon" />
             </button>
@@ -557,7 +744,10 @@ const normalizeListResponse = (data) => {
       )}
 
       {showAuthModal && (
-        <div className="auth-modal__overlay" onClick={() => setShowAuthModal(false)}>
+        <div
+          className="auth-modal__overlay"
+          onClick={() => setShowAuthModal(false)}
+        >
           <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
             <button
               className="auth-modal__close"
@@ -569,27 +759,27 @@ const normalizeListResponse = (data) => {
             <div className="auth-modal__icon">
               <IoCartOutline size={48} />
             </div>
-            <h3 className="auth-modal__title">{t('auth.modal.title')}</h3>
-            <p className="auth-modal__text">{t('auth.modal.description')}</p>
+            <h3 className="auth-modal__title">{t("auth.modal.title")}</h3>
+            <p className="auth-modal__text">{t("auth.modal.description")}</p>
             <div className="auth-modal__actions">
               <Link
                 href="/register"
                 className="auth-modal__btn auth-modal__btn--primary"
                 onClick={() => setShowAuthModal(false)}
               >
-                {t('auth.modal.register')}
+                {t("auth.modal.register")}
               </Link>
               <Link
                 href="/login"
                 className="auth-modal__btn auth-modal__btn--secondary"
                 onClick={() => setShowAuthModal(false)}
               >
-                {t('auth.modal.login')}
+                {t("auth.modal.login")}
               </Link>
             </div>
           </div>
         </div>
       )}
     </header>
-  )
+  );
 }

@@ -1,17 +1,30 @@
 {
   "header": {
-    "search": "Издөө",
     "contact": "Байланыш",
     "phones": "Телефондор",
     "address": "Дарек",
     "socials": "Биз соцтармактарда"
   },
+
+  "searchPlaceholder": {
+    "search": "Издөө",
+    "among": "аралыгынан",
+    "products": "товар:",
+    "hints": [
+      "болт М8",
+      "артикул 12345",
+      "Bosch бренди",
+      "кол кап",
+      "кабель 3×2.5"
+    ]
+  },
+
   "navbar": {
     "catalog": "Каталог",
     "pcComponents": "Компьютер комплектүүлөрү",
     "videoSurveillance": "Видеобайкоо",
     "solutions": "Чечимдер",
-    "courses": "Коопсуздук системалары боюнча окутуу",
+    "courses": "Байтех Академиясы",
     "services": "Услугалар"
   },
   "coursesPage": {
@@ -19,7 +32,7 @@
     "badge": "ОНЛАЙН КУРС",
     "heroTitleStart": "1 айда",
     "heroTitleGreen": "",
-    "heroTitleHighlight": "ВИДЕОКӨЗӨМӨЛ",
+    "heroTitleHighlight": "Видеобайкоо",
     "heroTitleEnd": "боюнча адис бол!",
     "heroSubtitle": "Профессионалдай орнотууну үйрөнүп, чындап акча таба баштаңыз!",
     "ctaButtonUpper": "КУРСКА ЖАЗЫЛАМ",
@@ -62,7 +75,7 @@
       "ВКТ орнотуунун бардык этаптары боюнча билим.",
       "Кесипкөй иштөөгө даярдык."
     ],
-    "storyTitleLine1": "Окуучунун таржымалы: жаңы башталгычтан биринчи",
+    "storyTitleLine1": "Окуучунун окуясы: башталгычтан биринчиге чейин",
     "storyTitleLine2": "монтажга чейин",
     "storyOpenBtn": "Ачуу",
     "storyModalTitle": "Видео жакында жайгаштырылат",

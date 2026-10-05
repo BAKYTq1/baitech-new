@@ -1,13 +1,21 @@
 .about-company {
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
-  
+  font-family: "Montserrat", sans-serif;
+
   // Адаптивдүү ички боштуктар
   padding: 20px 15px;
-  @media (min-width: 768px) { padding: 20px; }
-  @media (min-width: 1200px) { padding: 0px 0px 60px 0px; }
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+  @media (min-width: 1200px) {
+    padding: 0px 0px 60px 0px;
+  }
 
   .content-wrapper {
     max-width: 1280px;
@@ -21,15 +29,32 @@
     font-size: 14px;
     color: #6b7280;
     margin-bottom: 30px;
-    
-    a { text-decoration: none; color: inherit; &:hover { color: #2563eb; } }
-    .current { color: #1e293b; font-weight: 500; }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        color: #2563eb;
+      }
+    }
+    .current {
+      color: #1e293b;
+      font-weight: 500;
+    }
+  }
+
+  .content-wrapper > nav {
+    margin-bottom: 30px;
   }
 
   .main-title {
     font-size: 24px;
-    @media (min-width: 768px) { font-size: 28px; }
-    @media (min-width: 1024px) { font-size: 32px; }
+    @media (min-width: 768px) {
+      font-size: 28px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 32px;
+    }
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 20px; // ТАК 20px
@@ -37,11 +62,15 @@
 
   .intro-text {
     margin-bottom: 35px;
-    @media (min-width: 1024px) { margin-bottom: 47px; } // ТАК 47px
-    
+    @media (min-width: 1024px) {
+      margin-bottom: 47px;
+    } // ТАК 47px
+
     p {
       font-size: 16px;
-      @media (min-width: 768px) { font-size: 18px; }
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
       color: #334155;
       line-height: 1.6;
     }
@@ -89,7 +118,9 @@
       flex: 1;
       h2 {
         font-size: 18px;
-        @media (min-width: 768px) { font-size: 20px; }
+        @media (min-width: 768px) {
+          font-size: 20px;
+        }
         font-weight: 700;
         margin-bottom: 15px;
         color: #1e293b;
@@ -99,11 +130,18 @@
         li {
           display: flex;
           font-size: 15px;
-          @media (min-width: 768px) { font-size: 16px; }
+          @media (min-width: 768px) {
+            font-size: 16px;
+          }
           color: #475569;
           margin-bottom: 8px;
           line-height: 1.4;
-          .bullet { color: #2563eb; font-weight: bold; margin-right: 10px; flex-shrink: 0; }
+          .bullet {
+            color: #2563eb;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+          }
         }
       }
     }
@@ -112,14 +150,18 @@
   .goal-section {
     .goal-title {
       font-size: 24px;
-      @media (min-width: 768px) { font-size: 28px; }
+      @media (min-width: 768px) {
+        font-size: 28px;
+      }
       font-weight: 700;
       margin-bottom: 20px;
       color: #1e293b;
     }
     .goal-highlight {
       font-size: 17px;
-      @media (min-width: 768px) { font-size: 18px; }
+      @media (min-width: 768px) {
+        font-size: 18px;
+      }
       font-weight: 600;
       color: #1e293b;
       margin-bottom: 20px;
@@ -133,7 +175,9 @@
     gap: 15px; // ТАК 15px
     p {
       font-size: 15px;
-      @media (min-width: 768px) { font-size: 16px; }
+      @media (min-width: 768px) {
+        font-size: 16px;
+      }
       color: #475569;
       line-height: 1.7;
     }

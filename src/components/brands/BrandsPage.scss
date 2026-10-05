@@ -1,11 +1,19 @@
 .brands-page {
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
-  padding: 30px 20px; 
-    @media (min-width: 768px) { padding: 20px; }
-  @media (min-width: 1200px) { padding: 0px 0px 60px 0px; }
+  font-family: "Montserrat", sans-serif;
+  padding: 30px 20px;
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+  @media (min-width: 1200px) {
+    padding: 0px 0px 60px 0px;
+  }
 
   .content-1220 {
     max-width: 1280px;
@@ -13,37 +21,53 @@
     width: 100%;
   }
 
+  .content-1220 > nav {
+    margin-bottom: 30px;
+  }
+
   .breadcrumbs {
     margin-bottom: 30px;
-    @media (min-width: 768px) { margin-bottom: 44px; }
-    
-    a { color: #00162ACC; text-decoration: none; font-size: 14px; }
+    @media (min-width: 768px) {
+      margin-bottom: 44px;
+    }
+
+    a {
+      color: #00162acc;
+      text-decoration: none;
+      font-size: 14px;
+    }
   }
 
   .title-h1 {
-    font-size: 22px; 
-    @media (min-width: 768px) { font-size: 24px; }
+    font-size: 22px;
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
     font-weight: 500;
     margin-bottom: 20px;
     line-height: 1.2;
-    color: #00162A;
+    color: #00162a;
   }
 
   .description-text {
     font-size: 16px;
-    @media (min-width: 768px) { font-size: 20px; }
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
     margin-bottom: 39px;
     line-height: 1.3;
-    color: #00162ACC;
+    color: #00162acc;
     font-weight: 500;
   }
 
   .title-h2 {
     font-size: 20px;
-    @media (min-width: 768px) { font-size: 24px; }
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
     font-weight: 500;
     margin-bottom: 20px;
-    color: #00162A;
+    color: #00162a;
   }
 
   .brands-grid {
@@ -51,7 +75,6 @@
     grid-template-columns: 1fr;
     gap: 30px;
     margin-bottom: 40px;
-
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
@@ -68,24 +91,28 @@
       display: flex;
       flex-direction: column;
       gap: 25px;
-      @media (min-width: 768px) { gap: 30px; }
+      @media (min-width: 768px) {
+        gap: 30px;
+      }
 
       .category {
         h3 {
           font-size: 16px;
-          font-weight: 600; 
+          font-weight: 600;
           margin-bottom: 12px;
-          color: #00162ACC;
+          color: #00162acc;
         }
         ul {
           list-style: none;
           li {
-            font-size: 15px; 
-            @media (min-width: 768px) { font-size: 16px; }
-            color: #00162ACC;
+            font-size: 15px;
+            @media (min-width: 768px) {
+              font-size: 16px;
+            }
+            color: #00162acc;
             font-weight: 400;
             margin-bottom: 6px;
-            white-space: normal; 
+            white-space: normal;
           }
         }
       }
@@ -96,15 +123,17 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    p { 
+    p {
       font-size: 15px;
-      @media (min-width: 768px) { font-size: 16px; }
-      line-height: 1.4; 
-      color: #00162ACC; 
-      font-weight: 400; 
+      @media (min-width: 768px) {
+        font-size: 16px;
+      }
+      line-height: 1.4;
+      color: #00162acc;
+      font-weight: 400;
     }
   }
   .conclusion-section p {
-  white-space: pre-line;
-}
+    white-space: pre-line;
+  }
 }

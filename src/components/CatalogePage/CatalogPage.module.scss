@@ -513,3 +513,72 @@
   cursor: pointer;
   &:hover { background: #132a4a; }
 }
+
+.breadcrumbLink {
+  color: #6b7280;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #005bff;
+  }
+}
+
+.breadcrumbCurrent {
+  color: #005bff;
+  font-weight: 600;
+}
+
+.breadcrumbSep {
+  color: #9ca3af;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 4px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.breadcrumbLink,
+.breadcrumbCurrent {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumbSep {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .breadcrumbs {
+    font-size: 12px;
+  }
+
+  .breadcrumbLink,
+  .breadcrumbCurrent {
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 350px) {
+  .breadcrumbs {
+    font-size: 11px;
+  }
+
+  .breadcrumbLink,
+  .breadcrumbCurrent {
+    max-width: 100px;
+  }
+}

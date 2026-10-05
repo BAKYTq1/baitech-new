@@ -111,6 +111,11 @@
   pointer-events: none; /* let drags on the tile pass through to the track */
 }
 
+.logo {
+  padding: 6px;
+  box-sizing: border-box;
+}
+
 /* .item:hover .logo {
   filter: grayscale(0) opacity(1);
 } */

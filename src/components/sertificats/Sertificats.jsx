@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import "./Certificates.scss";
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
 import Image from "next/image";
 import { useCertificat } from "@/lib/sertificats/hooks/hooks";
+import Breadcrumb from "../product/ui/Breadcrumb/Breadcrumb.jsx";
 
 const Certificates = () => {
   const { t } = useTranslation();
@@ -19,13 +19,12 @@ const Certificates = () => {
   return (
     <section className="certificates-page">
       <div className="container-1220">
-        <nav className="breadcrumbs">
-          <Link href="/">{t("certificates.breadcrumbs.home")}</Link>
-          <span className="sep">/</span>
-          <span className="active">
-            {t("certificates.breadcrumbs.current")}
-          </span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: t("certificates.breadcrumbs.home"), path: "/" },
+            { label: t("certificates.breadcrumbs.current"), path: "" },
+          ]}
+        />
 
         <h1 className="title-h1">{t("certificates.title")}</h1>
         <p className="desc-main">{t("certificates.description")}</p>

@@ -145,7 +145,7 @@ export default function NavItem() {
           item.isCatalog ? (
             <button
               key={index}
-              className={`${styles.navItem} ${open ? styles.navItemActive : ""}`}
+              className={`${styles.navItemCatalog} ${open ? styles.navItemActive : ""}`}
               onClick={() => setOpen((prev) => !prev)}
               type="button"
             >
