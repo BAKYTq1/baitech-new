@@ -11,6 +11,8 @@ import Card from "../ui/card/Card";
 import { useProducts } from "@/lib/products/hooks/hooks";
 import { useTranslation } from "react-i18next";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const CardSkeleton = () => (
   <div className="card-skeleton animate-pulse">
@@ -22,9 +24,14 @@ const CardSkeleton = () => (
   </div>
 );
 
-export function Recommendations({ categoryName }) {
+export function 
+Recommendations({ categoryName }) {
   const { t } = useTranslation();
-  const { products = [], isLoading, isError } = useProducts({ category: categoryName || '' });
+  const {
+    products = [],
+    isLoading,
+    isError,
+  } = useProducts({ category: categoryName || "" });
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -35,7 +42,9 @@ export function Recommendations({ categoryName }) {
       <div className="recommendations">
         <h2 className="recommendations__title">{t("recommendations.title")}</h2>
         <div className="recommendations__error">
-          <p className="text-center text-red-500 py-8">{t("recommendations.error")}</p>
+          <p className="text-center text-red-500 py-8">
+            {t("recommendations.error")}
+          </p>
         </div>
       </div>
     );
@@ -43,14 +52,36 @@ export function Recommendations({ categoryName }) {
 
   return (
     <div className="recommendations">
-      <h2 className="recommendations__title">
-        {categoryName ? categoryName : t("recommendations.title")}
-      </h2>
+      <div className="recommendations__head">
+        <h2 className="recommendations__title">
+          {categoryName ? categoryName : t("recommendations.title")}
+        </h2>
+
+        <Link
+          href={
+            categoryName
+              ? `/catalog?category=${encodeURIComponent(categoryName)}`
+              : "/catalog"
+          }
+          className="recommendations__all"
+        >
+          {t("recommendations.all", "Смотреть все")}
+          <ArrowRight size={18} />
+        </Link>
+      </div>
       <div className="recommendations-carousel">
-        <button ref={prevRef} className="recommendations__nav recommendations__nav--prev" aria-label="Previous products">
+        <button
+          ref={prevRef}
+          className="recommendations__nav recommendations__nav--prev"
+          aria-label="Previous products"
+        >
           <IoChevronBackOutline size={22} />
         </button>
-        <button ref={nextRef} className="recommendations__nav recommendations__nav--next" aria-label="Next products">
+        <button
+          ref={nextRef}
+          className="recommendations__nav recommendations__nav--next"
+          aria-label="Next products"
+        >
           <IoChevronForwardOutline size={22} />
         </button>
 
@@ -69,9 +100,21 @@ export function Recommendations({ categoryName }) {
           grabCursor
           breakpoints={{
             380: { slidesPerView: 1.5, spaceBetween: 8, centeredSlides: true },
-            640: { slidesPerView: 2.2, spaceBetween: 10, centeredSlides: false },
-            768: { slidesPerView: 3.2, spaceBetween: 18, centeredSlides: false },
-            1024: { slidesPerView: 3.2, spaceBetween: 20, centeredSlides: false },
+            640: {
+              slidesPerView: 2.2,
+              spaceBetween: 10,
+              centeredSlides: false,
+            },
+            768: {
+              slidesPerView: 3.2,
+              spaceBetween: 18,
+              centeredSlides: false,
+            },
+            1024: {
+              slidesPerView: 3.2,
+              spaceBetween: 20,
+              centeredSlides: false,
+            },
             1200: { slidesPerView: 4, spaceBetween: 20, centeredSlides: false },
           }}
           className="recommendationsSwiper"
@@ -83,7 +126,9 @@ export function Recommendations({ categoryName }) {
               </SwiperSlide>
             ))
           ) : recommendedProducts.length === 0 ? (
-            <div className="w-full text-center py-8 text-gray-500">Нет рекомендаций</div>
+            <div className="w-full text-center py-8 text-gray-500">
+              Нет рекомендаций
+            </div>
           ) : (
             recommendedProducts.map((product) => (
               <SwiperSlide key={product.id}>

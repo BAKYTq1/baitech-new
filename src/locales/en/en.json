@@ -181,7 +181,8 @@
   "recommendations": {
     "title": "Recommendations",
     "error": "Error loading recommendations",
-    "noProducts": "No recommendations available"
+    "noProducts": "No recommendations available",
+    "all": "View all"
   },
   "news": {
     "news": "News"
@@ -3056,6 +3057,26 @@
       "submitButton": "Submit"
     },
     "submitLog": "Submitted data:"
+  },
+  "popularBrands": {
+    "title": "Popular brands",
+    "prev": "Back",
+    "next": "Forward"
+  },
+  "productCategories": {
+    "title": "Product categories",
+    "all": "View all",
+    "items": "products",
+    "names": {
+      "video": "Video surveillance",
+      "alarm": "Security & fire alarms",
+      "network": "Network equipment",
+      "pc": "PC components",
+      "periphery": "PC peripherals",
+      "office": "Office equipment",
+      "power": "Power supplies",
+      "home": "Smart home gadgets"
+    }
   },
   "timeSync": {
     "breadcrumb": {

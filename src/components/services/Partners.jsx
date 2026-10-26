@@ -9,15 +9,14 @@ import logo04 from "../../../assets/svg/4.svg";
 import logo05 from "../../../assets/svg/5.svg";
 import logo06 from "../../../assets/svg/6.svg";
 import logo07 from "../../../assets/svg/7.svg";
-import logo08 from "../../../assets/svg/8.jpg";
-import logo10 from "../../../assets/svg/10.jpg";
+import logo08 from "../../../assets/svg/8.svg";
+import logo10 from "../../../assets/svg/10.svg";
 import logo11 from "../../../assets/svg/11.jpg";
 import logo12 from "../../../assets/svg/12.svg";
 import logo14 from "../../../assets/svg/14.jpg";
 import logo15 from "../../../assets/svg/15.jpg";
 import logo16 from "../../../assets/svg/16.svg";
 import logo17 from "../../../assets/svg/17.svg";
-import logo18 from "../../../assets/svg/18.gif";
 import logo19 from "../../../assets/svg/19.svg";
 import { useTranslation } from "react-i18next";
 
@@ -27,15 +26,14 @@ const DEFAULT_PARTNERS = [
   { src: logo05, name: "Партнёр 5" },
   { src: logo06, name: "Партнёр 6" },
   { src: logo07, name: "Партнёр 7" },
-  { src: logo08, name: "Партнёр 8" },
-  { src: logo10, name: "Партнёр 10" },
+  { src: logo08, name: "Партнёр 8", scale: 2.0 },
+  { src: logo10, name: "Партнёр 10", scale: 1.7 },
   { src: logo11, name: "Партнёр 11" },
   { src: logo12, name: "Партнёр 12", scale: 2.0 },
   { src: logo14, name: "Партнёр 14" },
   { src: logo15, name: "Партнёр 15", fit: "contain", scale: 0.7 },
   { src: logo16, name: "Партнёр 16", scale: 1.2 },
   { src: logo17, name: "Партнёр 17" },
-  { src: logo18, name: "Партнёр 18" },
   { src: logo19, name: "Партнёр 19" },
 ];
 

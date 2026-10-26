@@ -273,9 +273,7 @@ function Footer() {
 
       <div className="footer__bottom flex justify-around  items-center gap-5">
         <h3>Baitech © 2021</h3>
-        <a href="https://www.instagram.com/a1i.o6/" target="_blank">
-          a1i.06
-        </a>
+        
         <a
           className="border-b-[1px] border-b-[#0e2eff] leading-snug "
           href="https://baitech-it.vercel.app/"
