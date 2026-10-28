@@ -1,204 +1,233 @@
-/* Partners.module.css
-   Design tokens
-   ---------------------------------
-   ink      #14171A  primary text
-   muted    #6B7280  secondary text
-   bg       #FFFFFF  section background
-   surface  #F6F7F5  tile background
-   border   #E4E6E0  hairline borders
-   accent   #1F5C4E  deep pine — trust / stability
-*/
+/* Partners.module.css */
 
 .section {
-  --ink: #14171a;
-  --muted: #6b7280;
-  --bg: #ffffff;
-  --surface: #f6f7f5;
-  --border: #e4e6e0;
+  --ink: #1f2328;
+  --muted: #8a9099;
   --accent: #1f5c4e;
-  max-width: 1380px;
-  margin: auto;
+  --bg: #ffffff;
+
+  /* Десктоп */
+  --row-gap: 40px;
+  --item-gap: 48px;
+  --logo-size: 120px; /* диаметр круга */
+  --name-size: 20px;
+  --kind-size: 12px;
+
+  /* Отступы от краёв сайта */
+  --side: clamp(20px, 4vw, 48px);
+
+  width: calc(100% - 32px);
+  max-width: 1350px;
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  margin: 0 auto 50px;
+  padding: 28px var(--side) 60px;
+
+  background: var(--bg);
   color: var(--ink);
-  padding: 15px 20px 70px 15px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
+  overflow: hidden;
 
-@media (max-width: 768px) {
-  .section {
-    padding: 15px 15px 40px 15px;
-  }
-}
-
-.header {
-  text-align: left;
-  margin: 0 0 clamp(24px, 4vw, 40px);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
 .title {
-  font-size: clamp(26px, 3.6vw, 36px);
+  margin: 0 0 clamp(28px, 3vw, 40px);
+  padding: 0;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin: 0;
-  text-align: center;
+  color: #000;
+  text-align: left;
 }
 
-/* --- Carousel --- */
-
-.carouselWrap {
-  position: relative;
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--row-gap);
 }
 
-.viewport {
+/* Ряд с мягким исчезновением по краям */
+.row {
   overflow: hidden;
-  width: 100%;
-  padding: 10px 0px;
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-}
-
-.viewport.dragging {
-  cursor: grabbing;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 
 .track {
   display: flex;
-  gap: clamp(10px, 2vw + 4px, 30px);
-  list-style: none;
+  align-items: center;
+  width: max-content;
   margin: 0;
   padding: 0;
+  list-style: none;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   will-change: transform;
 }
 
-.track.animate {
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.track.noTransition {
-  transition: none;
-}
-
+/* Расстояние через padding, чтобы -50% совпадало ровно с одной копией */
 .item {
-  position: relative;
-  flex: 0 0 clamp(175px, 11.7vw + 107px, 260px);
-  aspect-ratio: 4 / 3;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: clamp(10px, 2vw, 16px);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: var(--item-gap);
 }
 
-.item:hover {
-  box-shadow: 5px 5px 5px 5px rgba(3, 3, 3, 0.37);
+/* Точка-разделитель перед каждым объектом */
+.dot {
+  width: 6px;
+  height: 6px;
+  margin-right: var(--item-gap);
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.toLeft {
+  animation-name: scrollLeft;
+}
+
+.toRight {
+  animation-name: scrollRight;
+}
+
+.row:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 .link {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  outline-offset: 3px;
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
 }
 
-.logo {
-  /* next/image with `fill` sets position:absolute; inset:0 aligns to the
-     tile's padding edge automatically, so no extra spacing rules needed here. */
-  object-fit: cover;
-  /* filter: grayscale(1) opacity(0.55); */
-  transition: filter 0.25s ease;
-  pointer-events: none; /* let drags on the tile pass through to the track */
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
-.logo {
-  padding: 6px;
-  box-sizing: border-box;
-}
-
-/* .item:hover .logo {
-  filter: grayscale(0) opacity(1);
-} */
-
-.empty {
-  text-align: left;
-  color: var(--muted);
-  padding: 24px 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track.animate {
-    transition: none;
-  }
-  .item,
-  .logo {
-    transition: none;
-  }
-}
-
-/* --- Arrows --- */
-
-.arrowBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+/* Одинаковый круг для всех логотипов — все выглядят ровно */
+.logoBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  margin-right: 18px;
+  padding: calc(var(--logo-size) * 0.14); /* отступ от края круга, чтобы углы логотипа не срезались */
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden; /* обрезает лишние поля при scale > 1 */
+  background: #fff;
+  border: 1px solid #eceef0;
   border-radius: 50%;
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
-  background: var(--bg, #fff);
-  color: var(--ink, #14171a);
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background 0.15s ease, transform 0.15s ease;
 }
 
-@media (max-width: 768px) {
-  .arrowBtn {
-    width: 32px;
-    height: 32px;
+.logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%; /* картинка тоже круглая */
+  pointer-events: none;
+}
+
+/* Подпись + название */
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kind {
+  font-size: var(--kind-size);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.name {
+  font-size: var(--name-size);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap; /* название в одну строку — ряды выглядят ровно */
+  transition: color 0.2s ease;
+}
+
+.item:hover .name {
+  color: var(--accent);
+}
+
+.empty {
+  padding: 24px 0;
+  color: var(--muted);
+}
+
+/* Планшет */
+@media (max-width: 1024px) {
+  .section {
+    --row-gap: 32px;
+    --item-gap: 36px;
+    --logo-size: 104px;
+    --name-size: 18px;
+    --kind-size: 11px;
+    --side: 20px;
+    border-radius: 0;
+  }
+  .title {
+    font-size: 17px;
   }
 }
 
-.arrowBtn:hover {
-  background: var(--surface, #f6f7f5);
-}
+/* Телефон */
+@media (max-width: 600px) {
+  .section {
+    --row-gap: 24px;
+    --item-gap: 24px;
+    --logo-size: 84px;
+    --name-size: 16px;
+    --kind-size: 10px;
+    --side: 16px;
 
-.arrowBtn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.arrowBtn:focus-visible {
-  outline: 2px solid var(--accent, #1f5c4e);
-  outline-offset: 2px;
-}
-
-.arrowLeft {
-  left: -20px;
-}
-
-.arrowRight {
-  right: -20px;
-}
-
-@media (max-width: 1300px) {
-  .arrowLeft {
-    left: -10px;
+    width: calc(100% - 24px);
+    padding: 20px var(--side) 36px;
   }
-  .arrowRight {
-    right: -10px;
+  .title {
+    font-size: 16px;
+  }
+  .logoBox {
+    margin-right: 12px;
+  }
+  .dot {
+    width: 5px;
+    height: 5px;
   }
 }
 
-@media (max-width: 768px) {
-  .arrowLeft {
-    left: -5px;
+/* Без анимации для тех, кто её отключил — ряд можно листать */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
   }
-  .arrowRight {
-    right: -5px;
+  .row {
+    overflow-x: auto;
   }
 }
